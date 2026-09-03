@@ -10,13 +10,16 @@ no Claude, no Cowork, no desktop app required at runtime. It:
   3. Fetches every URL, extracts the substantive text (or hashes it, for
      binaries like PDFs), and filters out obvious site chrome.
   4. Classifies each page as new / unchanged / changed / gap.
-  5. Posts one Monday.com update per real (non-cosmetic) change.
+  5. If any real (non-cosmetic) changes were found, opens ONE GitHub Issue
+     summarizing them all — GitHub emails the repo owner automatically when
+     an issue is opened, so this needs no external notification service.
   6. Writes snapshots.json and runs.json back out so the next run — and a
      GitHub Actions commit step — can pick up where this one left off.
 
-Environment variables required:
-  MONDAY_API_TOKEN   personal API token for the monday.com GraphQL API
-  MONDAY_ITEM_ID      the item to post updates to (defaults to the one below)
+Environment variables (both provided automatically by GitHub Actions —
+nothing to configure):
+  GITHUB_TOKEN        auto-injected token, used to open the issue
+  GITHUB_REPOSITORY   "owner/repo", used to target the right repo's API
 """
 import os
 import re
@@ -40,9 +43,9 @@ WATCHLIST_PATH = os.path.join(BASE_DIR, "watchlist.json")
 SNAPSHOTS_PATH = os.path.join(BASE_DIR, "snapshots.json")
 RUNS_PATH = os.path.join(BASE_DIR, "runs.json")
 
-MONDAY_API_URL = "https://api.monday.com/v2"
-MONDAY_ITEM_ID = os.environ.get("MONDAY_ITEM_ID", "12967259713")
-MONDAY_TOKEN = os.environ.get("MONDAY_API_TOKEN", "")
+GITHUB_API_URL = "https://api.github.com"
+GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY", "")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -178,41 +181,46 @@ def load_watchlist():
     return data.get("entries", [])
 
 
-def post_monday_update(url, description, note):
-    if not MONDAY_TOKEN:
-        log("No MONDAY_API_TOKEN set — skipping Monday post (would have posted): "
-            f"{description} — {note}")
-        return False, "no token"
+def create_github_issue(date_str, changes, gaps):
+    """Opens one issue summarizing this run's changes. GitHub emails the repo
+    owner automatically whenever an issue is opened — that email IS the
+    notification. Returns (success, issue_number_or_None, error_or_None)."""
+    if not GITHUB_TOKEN or not GITHUB_REPOSITORY:
+        log("No GITHUB_TOKEN/GITHUB_REPOSITORY set — skipping issue creation "
+            f"(would have reported {len(changes)} change(s)).")
+        return False, None, "no token/repo"
 
-    safe_desc = (description or url).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    safe_note = (note or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    body = f'<div><strong><a href="{url}">{safe_desc}</a></strong></div><div>{safe_note}</div>'
+    lines = [f"**{len(changes)} page(s) changed** on {date_str}.\n"]
+    for c in changes:
+        lines.append(f"- [{c['description'] or c['url']}]({c['url']})\n  {c['note']}")
+    if gaps:
+        lines.append(f"\n_{len(gaps)} page(s) could not be fetched this run — see runs.json for details._")
+    body = "\n".join(lines)[:60000]  # GitHub issue body size guard
 
-    query = """
-    mutation ($itemId: ID!, $body: String!) {
-      create_update(item_id: $itemId, body: $body) { id }
-    }
-    """
-    payload = json.dumps({"query": query, "variables": {"itemId": MONDAY_ITEM_ID, "body": body}}).encode()
+    payload = json.dumps({
+        "title": f"Regulatory changes detected — {date_str} ({len(changes)} page{'s' if len(changes) != 1 else ''})",
+        "body": body,
+        "labels": ["regulatory-change"],
+    }).encode()
     req = urllib.request.Request(
-        MONDAY_API_URL,
+        f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/issues",
         data=payload,
         headers={
-            "Authorization": MONDAY_TOKEN,
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
             "Content-Type": "application/json",
+            "User-Agent": USER_AGENT,
         },
         method="POST",
     )
     try:
         with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
             result = json.loads(resp.read().decode())
-            if result.get("errors"):
-                return False, json.dumps(result["errors"])[:300]
-            return True, None
+            return True, result.get("number"), None
     except urllib.error.HTTPError as e:
-        return False, f"HTTP {e.code}: {e.read().decode(errors='replace')[:300]}"
+        return False, None, f"HTTP {e.code}: {e.read().decode(errors='replace')[:300]}"
     except Exception as e:  # noqa: BLE001
-        return False, str(e)[:300]
+        return False, None, str(e)[:300]
 
 
 def main():
@@ -296,15 +304,13 @@ def main():
 
     log(f"Fetch pass done. Counts: {counts}")
 
-    posted, suppressed = [], []
-    for change in changes:
-        success, err = post_monday_update(change["url"], change["description"], change["note"])
+    issue_number, issue_error = None, None
+    if changes:
+        success, issue_number, issue_error = create_github_issue(started_at[:10], changes, gaps)
         if success:
-            posted.append(change)
+            log(f"Opened GitHub issue #{issue_number} for {len(changes)} change(s).")
         else:
-            suppressed.append({**change, "post_error": err})
-            log(f"Monday post FAILED for row {change['row']}: {err}")
-        time.sleep(0.5)
+            log(f"FAILED to open GitHub issue: {issue_error}")
 
     finished_at = datetime.datetime.utcnow().isoformat() + "Z"
     run_record = {
@@ -316,10 +322,10 @@ def main():
         "unchanged": counts["unchanged"],
         "changed": counts["changed"],
         "gaps": counts["gap"],
-        "posted_to_monday": len(posted),
+        "issue_number": issue_number,
+        "issue_error": issue_error,
         "changes": [{"row": c["row"], "vp_id": c["vp_id"], "url": c["url"],
                      "description": c["description"], "note": c["note"]} for c in changes],
-        "post_failures": suppressed,
         "gaps_list": [{"row": g["row"], "vp_id": g["vp_id"], "url": g["url"],
                        "description": g["description"], "error": g["error"]} for g in gaps],
     }
@@ -332,10 +338,10 @@ def main():
     log(
         f"DONE. checked={counts['checked']} new={counts['new']} "
         f"unchanged={counts['unchanged']} changed={counts['changed']} "
-        f"gaps={counts['gap']} posted_to_monday={len(posted)}"
+        f"gaps={counts['gap']} issue={issue_number}"
     )
-    if suppressed:
-        log(f"{len(suppressed)} real change(s) detected but FAILED to post to Monday — see runs.json.")
+    if changes and issue_error:
+        log(f"{len(changes)} real change(s) detected but the GitHub issue FAILED to open — see runs.json.")
 
 
 if __name__ == "__main__":
