@@ -2,12 +2,19 @@ name: Daily Regulatory Watch
 
 on:
   schedule:
-    # 8am UTC. GitHub Actions cron always runs in UTC - adjust this hour to match 8am in YOUR local timezone.
+    # 8am UTC. GitHub Actions cron always runs in UTC — adjust this hour to
+    # match 8am in YOUR local timezone. Examples:
+    #   UK/Ireland (BST, UTC+1, summer):        "0 7 * * *"
+    #   UK/Ireland (GMT, UTC+0, winter):        "0 8 * * *"
+    #   US Eastern (EDT, UTC-4, summer):        "0 12 * * *"
+    #   US Eastern (EST, UTC-5, winter):        "0 13 * * *"
+    #   US Central (UTC-5/-6):                  "0 13 * * *" or "0 14 * * *"
     - cron: "0 8 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch: {}   # lets you click "Run workflow" manually to test
 
 permissions:
-  contents: write
+  contents: write   # needed so the workflow can commit updated snapshots/runs back
+  issues: write     # needed so the workflow can open an issue when it finds a change
 
 jobs:
   watch:
@@ -26,7 +33,8 @@ jobs:
 
       - name: Run monitor
         env:
-          MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python monitor.py
 
       - name: Commit updated snapshots and run log
@@ -34,5 +42,5 @@ jobs:
           git config user.name "cloud-regulatory-watch-bot"
           git config user.email "actions@users.noreply.github.com"
           git add snapshots.json runs.json
-          git diff --quiet --cached || git commit -m "Daily watch run"
+          git diff --quiet --cached || git commit -m "Daily watch run: $(date -u +%Y-%m-%d)"
           git push
