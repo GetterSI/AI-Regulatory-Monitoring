@@ -1,1 +1,269 @@
-[]
+[
+  {
+    "changed": 0,
+    "changes": [],
+    "checked": 213,
+    "date": "2026-09-03",
+    "finished_at": "2026-09-03T16:19:23.161813Z",
+    "gaps": 36,
+    "gaps_list": [
+      {
+        "description": "Gertearten",
+        "error": "HTTP Error 404: Not Found",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Authorisation List - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "error": "HTTP Error 404: Not Found",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "error": "HTTP Error 404: Not Found",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "List of substances subject to POPs Regulation - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 40,
+        "url": "https://echa.europa.eu/list-of-substances-subject-to-pops-regulation",
+        "vp_id": 3120039
+      },
+      {
+        "description": "-",
+        "error": "<urlopen error timed out>",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "Table of harmonised entries in Annex VI to CLP - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 49,
+        "url": "https://echa.europa.eu/information-on-chemicals/annex-vi-to-clp",
+        "vp_id": 3504510
+      },
+      {
+        "description": "Ecologic",
+        "error": "HTTP Error 404: Not Found",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "Candidate List of substances of very high concern for Authorisation - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 53,
+        "url": "https://echa.europa.eu/candidate-list-table",
+        "vp_id": 4223573
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "error": "HTTP Error 404: Not Found",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "error": "HTTP Error 404: Not Found",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Deforestation FAQs",
+        "error": "HTTP Error 404: Not Found",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "SCIP Format - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 75,
+        "url": "https://www.echa.europa.eu/scip-format",
+        "vp_id": 5553536
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "ESPR FAQ",
+        "error": "HTTP Error 404: Not Found",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "Per- and polyfluoroalkyl substances (PFAS) - Canada.ca",
+        "error": "The read operation timed out",
+        "row": 96,
+        "url": "https://www.canada.ca/en/health-canada/services/chemical-substances/other-chemical-substances-interest/per-polyfluoroalkyl-substances.html",
+        "vp_id": 6089673
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "EU-ELV-ART_2_11 - ECHA Hazardous Substances list",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 105,
+        "url": "https://echa.europa.eu/de/eu-end_of_life_vehicles-art_2_11?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6174846
+      },
+      {
+        "description": "IEC 62474",
+        "error": "empty response",
+        "row": 113,
+        "url": "https://std.iec.ch/iec62474/iec62474.nsf/Index?open&q=125415",
+        "vp_id": 6276685
+      },
+      {
+        "description": "EU Deforestation Regulation",
+        "error": "empty response",
+        "row": 121,
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202501974",
+        "vp_id": 6410635
+      },
+      {
+        "description": "Circular Materials EPR Compliance Scheme News",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 124,
+        "url": "https://www.circularmaterials.ca/news/",
+        "vp_id": 6415805
+      },
+      {
+        "description": "Candidate List Package - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 128,
+        "url": "https://echa.europa.eu/candidate-list-package",
+        "vp_id": 6430838
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "EUDR Indicators - Coruption Perceptions Index (Transparency.org)",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 143,
+        "url": "https://www.transparency.org/en/cpi/2024",
+        "vp_id": 6521220
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "error": "HTTP Error 404: Not Found",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "New York PFAS - NYSDEC",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 179,
+        "url": "https://dec.ny.gov/environmental-protection/per-and-polyfluoroalkyl-substances-pfas",
+        "vp_id": 7792719
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out>",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      },
+      {
+        "description": "Tracking PFAS legislation across the US | Manufacturing Dive",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 196,
+        "url": "https://www.manufacturingdive.com/news/tracking-pfas-forever-chemicals-bills-legislation-us-states/749829/",
+        "vp_id": 8210516
+      }
+    ],
+    "issue_error": null,
+    "issue_number": null,
+    "new_baseline": 177,
+    "started_at": "2026-09-03T16:09:29.325737Z",
+    "unchanged": 0
+  }
+]
