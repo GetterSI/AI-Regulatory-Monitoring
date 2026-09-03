@@ -1,8 +1,10 @@
 # Cloud Regulatory Watch — setup
 
 This runs entirely on GitHub's own servers, on a schedule — your PC does not need
-to be on. It checks 213 regulatory/compliance URLs daily and posts anything that
-actually changed to Monday.com, where you'll get an email notification.
+to be on. It checks 213 regulatory/compliance URLs daily and, if anything
+actually changed, opens a GitHub Issue listing the changes — GitHub emails you
+automatically whenever an issue is opened on a repo you own, so that email IS
+the notification. No external service, account, or token needed for this part.
 
 One-time setup, about 10 minutes.
 
@@ -39,41 +41,25 @@ runs.json
 
 Commit them (the green "Commit changes" button).
 
-## 4. Get your Monday.com API token
-
-1. In monday.com, click your profile picture (top right) → **Developers**.
-   (If you don't see that, you're an account admin — use **Administration →
-   Connections → Personal API token** instead.)
-2. Click **API token → Show**, and copy it.
-
-Keep this private — it acts as you inside Monday.
-
-## 5. Add the token as a repo secret
-
-- In your GitHub repo: **Settings → Secrets and variables → Actions → New
-  repository secret**.
-- Name: `MONDAY_API_TOKEN`
-- Value: paste the token you copied.
-- Click **Add secret**.
-
-## 6. Let the workflow commit its own results
+## 4. Let the workflow write issues and commit its own results
 
 - **Settings → Actions → General**, scroll to **Workflow permissions**.
 - Select **Read and write permissions**.
 - Click **Save**.
 
-(Without this, the job can still fetch pages and post to Monday, but it can't
-save its own progress between days — every run would think it's starting from
-scratch.)
+This one setting covers both jobs the workflow needs to do on its own: open
+an issue when it finds a real change, and save its own progress (snapshots
+and run history) between days. Nothing to sign up for, no token to create —
+GitHub provides this automatically to every workflow run.
 
-## 7. Test it
+## 5. Test it
 
 - Go to the **Actions** tab → **Daily Regulatory Watch** (on the left) →
   **Run workflow** → **Run workflow** (green button).
 - Wait ~2–5 minutes, then click into the run to watch the log. You should see
   a line like `DONE. checked=213 new=213 ...` — the first run is always a
   baseline (everything is "new" since there's nothing to compare against yet),
-  so it's normal that nothing posts to Monday on this first run.
+  so it's normal that no issue opens on this first run.
 - Check that `snapshots.json` and `runs.json` in the repo were updated with a
   new commit from "cloud-regulatory-watch-bot".
 
@@ -91,7 +77,7 @@ difference only counts as a real change if it's not just whitespace/reordering
 and isn't a near-total match (>99.5% similar) — genuine wording tweaks with no
 substance get filtered out automatically. When in doubt, it errs toward
 flagging something as a change rather than staying silent, on the theory that
-an extra Monday post costs you a glance and a missed fee change doesn't.
+an extra issue costs you a glance and a missed fee change doesn't.
 
 Anything it can't fetch (blocked, empty, timed out) is marked as a coverage
 gap — never reported as "no change," since a broken fetch and an unchanged
@@ -99,18 +85,21 @@ page must never look the same.
 
 ## Where things are
 
-- **Change alerts**: monday.com board "Cloud Regulatory Watch" → item "Daily
-  URL Change Monitor". Subscribe to that item to get Monday's own
-  notification email.
+- **Change alerts**: the repo's **Issues** tab — one issue per day that had
+  real changes, listing every page that changed and why. GitHub emails you
+  the moment one opens (as long as your GitHub notification settings send
+  email for "Issues" on repos you own — that's the default).
 - **Run history**: `runs.json` in the repo — one entry per day, with counts
   and every change/gap.
 - **Current status per page**: `snapshots.json` — what was last seen, when,
   and whether it's currently a gap.
 
-## Note on the earlier Cowork-based version
+## Note on the earlier Cowork/Monday-based version
 
-An earlier version of this same watch ran as a Cowork scheduled task and
-wrote to a live dashboard artifact. That task has been deleted to avoid
-double-posting to Monday. The dashboard artifact still exists but will no
-longer receive new data — say if you'd like it repointed at this repo's data
+Earlier versions of this watch ran as a Cowork scheduled task and separately
+posted updates to a Monday.com board — both have been retired: the Cowork
+task because it only runs while the desktop app is open, and the Monday
+posting because it needed an admin-generated API token this account doesn't
+have. The dashboard artifact from the Cowork version still exists but no
+longer receives new data — say if you'd like it repointed at this repo's data
 or retired.
