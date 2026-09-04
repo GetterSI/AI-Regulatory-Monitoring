@@ -36,6 +36,7 @@ import difflib
 import datetime
 import urllib.request
 import urllib.error
+from zoneinfo import ZoneInfo
 
 try:
     from bs4 import BeautifulSoup
@@ -451,16 +452,31 @@ def escape_md(text):
     return (text or "").replace("|", "\\|").replace("\n", " ").strip()
 
 
+UK_TZ = ZoneInfo("Europe/London")
+
+
 def format_utc(iso_str):
-    """Formats an ISO-8601 '...Z' timestamp (e.g. from started_at/finished_at)
-    as 'YYYY-MM-DD HH:MM:SS UTC' for display — drops the sub-second precision,
-    which is noise for a human reading the dashboard."""
+    """Formats an ISO-8601 '...Z' timestamp (e.g. from started_at/finished_at,
+    always stored/recorded in UTC) as UK local time for display —
+    'YYYY-MM-DD HH:MM:SS GMT' or '... BST' depending on the time of year,
+    since Europe/London observes British Summer Time. Drops sub-second
+    precision, which is noise for a human reading the dashboard. Falls back
+    to plain UTC text if the system has no tzdata (shouldn't happen on the
+    GitHub Actions runner, but this keeps the dashboard readable either way)."""
     if not iso_str:
         return "—"
     s = iso_str.rstrip("Z")
     if "." in s:
         s = s.split(".", 1)[0]
-    return s.replace("T", " ") + " UTC"
+    try:
+        dt_utc = datetime.datetime.strptime(s, "%Y-%m-%dT%H:%M:%S").replace(
+            tzinfo=datetime.timezone.utc
+        )
+        dt_uk = dt_utc.astimezone(UK_TZ)
+        tz_label = dt_uk.tzname() or "UK"
+        return dt_uk.strftime("%Y-%m-%d %H:%M:%S") + f" {tz_label}"
+    except Exception:  # noqa: BLE001 — no tzdata or unexpected format
+        return s.replace("T", " ") + " UTC"
 
 
 def format_dashboard(entries, snapshots, runs, run_record):
@@ -479,8 +495,8 @@ def format_dashboard(entries, snapshots, runs, run_record):
     l.append("")
     l.append("| Metric | Value |")
     l.append("|---|---|")
-    l.append(f"| Completed (UTC) | {format_utc(run_record['finished_at'])} |")
-    l.append(f"| Started (UTC) | {format_utc(run_record.get('started_at'))} |")
+    l.append(f"| Completed (UK time) | {format_utc(run_record['finished_at'])} |")
+    l.append(f"| Started (UK time) | {format_utc(run_record.get('started_at'))} |")
     l.append(f"| Pages checked | {run_record['checked']} |")
     l.append(f"| New (baseline) | {run_record['new_baseline']} |")
     l.append(f"| Unchanged | {run_record['unchanged']} |")
@@ -513,7 +529,7 @@ def format_dashboard(entries, snapshots, runs, run_record):
 
     l.append("## Run history (most recent first)")
     l.append("")
-    l.append("| Date | Completed (UTC) | Checked | New | Unchanged | Changed | Gaps | Issue |")
+    l.append("| Date | Completed (UK time) | Checked | New | Unchanged | Changed | Gaps | Issue |")
     l.append("|---|---|---|---|---|---|---|---|")
     for r in list(reversed(runs))[:30]:
         r_issue = f"#{r['issue_number']}" if r.get("issue_number") else "—"
