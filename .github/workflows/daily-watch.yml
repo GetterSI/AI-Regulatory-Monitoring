@@ -31,6 +31,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install Playwright browser (Chromium)
+        # Headless-browser fallback for pages that block plain HTTP requests.
+        # --with-deps also installs the OS-level libraries Chromium needs on
+        # the bare Ubuntu runner. This only installs Chromium (not the other
+        # Playwright browsers), keeping the step reasonably fast.
+        run: playwright install --with-deps chromium
+
+
       - name: Run monitor
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
