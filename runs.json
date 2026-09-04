@@ -806,5 +806,181 @@
     "new_baseline": 0,
     "started_at": "2026-09-04T08:59:55.617313Z",
     "unchanged": 177
+  },
+  {
+    "changed": 0,
+    "changes": [],
+    "checked": 213,
+    "date": "2026-09-04",
+    "finished_at": "2026-09-04T09:53:36.725118Z",
+    "gaps": 23,
+    "gaps_list": [
+      {
+        "description": "Authorisation List - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "error": "HTTP Error 404: Not Found",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "error": "HTTP Error 404: Not Found",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "error": "HTTP Error 404: Not Found",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "List of substances subject to POPs Regulation - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 40,
+        "url": "https://echa.europa.eu/list-of-substances-subject-to-pops-regulation",
+        "vp_id": 3120039
+      },
+      {
+        "description": "-",
+        "error": "<urlopen error timed out>",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "Table of harmonised entries in Annex VI to CLP - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 49,
+        "url": "https://echa.europa.eu/information-on-chemicals/annex-vi-to-clp",
+        "vp_id": 3504510
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "Candidate List of substances of very high concern for Authorisation - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 53,
+        "url": "https://echa.europa.eu/candidate-list-table",
+        "vp_id": 4223573
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "error": "HTTP Error 404: Not Found",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "error": "HTTP Error 404: Not Found",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees",
+        "vp_id": 4431158
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "SCIP Format - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 75,
+        "url": "https://www.echa.europa.eu/scip-format",
+        "vp_id": 5553536
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "EU-ELV-ART_2_11 - ECHA Hazardous Substances list",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 105,
+        "url": "https://echa.europa.eu/de/eu-end_of_life_vehicles-art_2_11?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6174846
+      },
+      {
+        "description": "Circular Materials EPR Compliance Scheme News",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 124,
+        "url": "https://www.circularmaterials.ca/news/",
+        "vp_id": 6415805
+      },
+      {
+        "description": "Candidate List Package - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 128,
+        "url": "https://echa.europa.eu/candidate-list-package",
+        "vp_id": 6430838
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "error": "HTTP Error 403: Forbidden",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out>",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": null,
+    "new_baseline": 13,
+    "started_at": "2026-09-04T09:42:46.653572Z",
+    "unchanged": 177
   }
 ]
