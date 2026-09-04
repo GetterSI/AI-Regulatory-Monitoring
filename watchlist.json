@@ -85,7 +85,7 @@
       "domain": "www.stiftung-ear.de",
       "row": 11,
       "slug": "www-stiftung-ear-de-2913486",
-      "url": "https://www.stiftung-ear.de/themenwelten/pflichten-hersteller/welche-geraetearten-gibt-es/",
+      "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
       "vp_id": 2913486
     },
     {
@@ -101,7 +101,7 @@
       "domain": "erp-recycling.org",
       "row": 13,
       "slug": "erp-recycling-org-2913504",
-      "url": "https://erp-recycling.org/en-pt/fees",
+      "url": "https://erp-recycling.org/en-pt/fees/",
       "vp_id": 2913504
     },
     {
@@ -405,7 +405,7 @@
       "domain": "www.ecologic-france.com",
       "row": 51,
       "slug": "www-ecologic-france-com-3705456",
-      "url": "https://www.ecologic-france.com/profils/decouvrir-les-baremes-deco-contribution",
+      "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
       "vp_id": 3705456
     },
     {
@@ -437,7 +437,7 @@
       "domain": "www.polyco.co.za",
       "row": 55,
       "slug": "www-polyco-co-za-4324364",
-      "url": "https://www.polyco.co.za/extended-producer-responsibility",
+      "url": "https://www.polyco.co.za/extended-producer-responsibility/",
       "vp_id": 4324364
     },
     {
@@ -445,11 +445,11 @@
       "domain": "fibrecircle.co.za",
       "row": 56,
       "slug": "fibrecircle-co-za-4431158",
-      "url": "https://fibrecircle.co.za/epr-fees",
+      "url": "https://fibrecircle.co.za/epr-fees/",
       "vp_id": 4431158
     },
     {
-      "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+      "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
       "domain": "www.fao.org",
       "row": 57,
       "slug": "www-fao-org-4493282",
@@ -514,10 +514,10 @@
     },
     {
       "description": "Deforestation FAQs",
-      "domain": "environment.ec.europa.eu",
+      "domain": "circabc.europa.eu",
       "row": 65,
       "slug": "circabc-europa-eu-4965563",
-      "url": "https://environment.ec.europa.eu/publications/faq-eudr-implementation_en",
+      "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
       "vp_id": 4965563
     },
     {
@@ -682,10 +682,10 @@
     },
     {
       "description": "ESPR FAQ",
-      "domain": "environment.ec.europa.eu",
+      "domain": "circabc.europa.eu",
       "row": 86,
       "slug": "circabc-europa-eu-5868298",
-      "url": "https://environment.ec.europa.eu/strategy/circular-economy/ecodesign-sustainable-products-regulation_en",
+      "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
       "vp_id": 5868298
     },
     {
@@ -1282,10 +1282,10 @@
     },
     {
       "description": "EUDR Info - API details for Noud (EU Circabc)",
-      "domain": "green-forum.ec.europa.eu",
+      "domain": "circabc.europa.eu",
       "row": 161,
       "slug": "circabc-europa-eu-6910501",
-      "url": "https://green-forum.ec.europa.eu/nature-and-biodiversity/deforestation-regulation-implementation/information-system-deforestation-regulation_en",
+      "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
       "vp_id": 6910501
     },
     {
@@ -1373,7 +1373,7 @@
       "domain": "environment.ec.europa.eu",
       "row": 172,
       "slug": "environment-ec-europa-eu-7383164",
-      "url": "https://environment.ec.europa.eu/document/2e1f3934-a6e0-406a-9c7b-491f7a34fcb7_en",
+      "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
       "vp_id": 7383164
     },
     {
@@ -1490,10 +1490,10 @@
     },
     {
       "description": "EUDR Info - FAQs (EU Circabc)",
-      "domain": "environment.ec.europa.eu",
+      "domain": "circabc.europa.eu",
       "row": 187,
       "slug": "circabc-europa-eu-7885990",
-      "url": "https://environment.ec.europa.eu/publications/faq-eudr-implementation_en",
+      "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
       "vp_id": 7885990
     },
     {
