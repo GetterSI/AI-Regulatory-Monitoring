@@ -982,5 +982,118 @@
     "new_baseline": 13,
     "started_at": "2026-09-04T09:42:46.653572Z",
     "unchanged": 177
+  },
+  {
+    "changed": 0,
+    "changes": [],
+    "checked": 213,
+    "date": "2026-09-04",
+    "finished_at": "2026-09-04T10:30:37.859376Z",
+    "gaps": 14,
+    "gaps_list": [
+      {
+        "description": "Gertearten",
+        "error": "HTTP Error 404: Not Found",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "error": "HTTP Error 404: Not Found",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "error": "HTTP Error 404: Not Found",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "error": "HTTP Error 404: Not Found",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "Ecologic",
+        "error": "HTTP Error 404: Not Found",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "error": "HTTP Error 404: Not Found",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "error": "HTTP Error 404: Not Found",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "error": "HTTP Error 404: Not Found",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "ESPR FAQ",
+        "error": "HTTP Error 404: Not Found",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "error": "HTTP Error 404: Not Found",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": null,
+    "new_baseline": 16,
+    "started_at": "2026-09-04T10:18:50.467041Z",
+    "unchanged": 183
   }
 ]
