@@ -6,6 +6,13 @@ actually changed, opens a GitHub Issue listing the changes — GitHub emails you
 automatically whenever an issue is opened on a repo you own, so that email IS
 the notification. No external service, account, or token needed for this part.
 
+It also writes a `DASHBOARD.md` on every run — a live status page (latest
+counts, changes, coverage gaps, run history, and current status of all 213
+pages) viewable at the repo's normal file URL. The repo is public so
+teammates can open that link with no GitHub account needed; only the list of
+public regulatory URLs and extracts of their public page text are visible —
+nothing else about your account or company.
+
 One-time setup, about 10 minutes.
 
 ## 1. Create a GitHub account (free)
@@ -17,7 +24,10 @@ card needed.
 
 - Click the **+** in the top right → **New repository**.
 - Name it e.g. `cloud-regulatory-watch`.
-- Set it to **Private** (recommended — it's internal compliance tooling).
+- Set it to **Public** so the dashboard is viewable with no GitHub account
+  needed (only public regulatory-page data ever appears in it — see above).
+  Private also works, but then only people you add as collaborators can view
+  anything, dashboard included.
 - Leave everything else default, click **Create repository**.
 
 ## 3. Upload these files
@@ -85,6 +95,11 @@ page must never look the same.
 
 ## Where things are
 
+- **The dashboard**: `DASHBOARD.md` in the repo — click it on github.com and
+  it renders as a page: latest run counts, this run's changes and gaps, a
+  30-run history table, and a collapsible full status table for all 213
+  pages. Rewritten every run. Share the link with anyone — no GitHub account
+  needed to view it, since the repo is public.
 - **Change alerts**: the repo's **Issues** tab — one issue per day that had
   real changes, listing every page that changed and why. GitHub emails you
   the moment one opens (as long as your GitHub notification settings send
