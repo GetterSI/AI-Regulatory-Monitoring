@@ -105,6 +105,49 @@ KEEP_HINTS_RE = re.compile(
 
 BINARY_CONTENT_TYPES = ("application/pdf", "application/octet-stream", "application/zip")
 
+# Cloudflare/Akamai/Incapsula-style bot-challenge interstitials return a
+# normal HTTP 200 with real HTML, so they pass every check in fetch() and
+# fetch_with_retry() as a "successful" response. But the body is just a
+# challenge page containing a unique per-request token (Cloudflare calls it
+# a "Ray ID") that is different on every single load. If that token gets
+# scraped as the page's "text", classify_change() sees a different value
+# every run and reports a fake "changed" page forever — this is exactly
+# what happened to rows 52/57/76/131 (confirmed by opening each URL
+# directly: the runner's IP gets challenged even though a normal browser
+# session does not). Any response matching one of these markers must be
+# treated as a failed fetch, never stored as a snapshot.
+BOT_CHALLENGE_MARKERS = (
+    "just a moment",
+    "performing security verification",
+    "checking your browser before accessing",
+    "enable javascript and cookies to continue",
+    "attention required! | cloudflare",
+    "ddos protection by cloudflare",
+    "cf-browser-verification",
+    "cf_chl_",
+    "__cf_chl_rt_tk",
+    "sorry, you have been blocked",
+    "request unsuccessful. incapsula",
+    "distil_r_captcha",
+    "please verify you are a human",
+    "pardon our interruption",
+    "captcha-delivery.com",
+)
+
+
+def is_bot_challenge(html_bytes, content_type):
+    """True if raw looks like a bot-challenge interstitial rather than the
+    real page. Only sniffs the first few KB (the challenge markup is always
+    at the very top) and only for text responses — binaries (PDFs, etc.)
+    never hit this path."""
+    if not html_bytes or any(bt in (content_type or "") for bt in BINARY_CONTENT_TYPES):
+        return False
+    try:
+        sample = html_bytes[:4000].decode("utf-8", errors="ignore").lower()
+    except Exception:  # noqa: BLE001
+        return False
+    return any(marker in sample for marker in BOT_CHALLENGE_MARKERS)
+
 
 def log(msg):
     print(f"[{datetime.datetime.utcnow().isoformat()}Z] {msg}", flush=True)
@@ -260,8 +303,21 @@ def fetch_with_retry(url):
     block is keyed on the browser identity rather than the source IP.
     If every urllib attempt still fails (and it wasn't a 404), a headless
     Chromium fetch (fetch_with_playwright) is tried once as a final
-    fallback to obtain the full rendered page."""
-    ok, ct, raw, err = fetch(url, USER_AGENT)
+    fallback to obtain the full rendered page.
+
+    A response that comes back HTTP 200 but is actually a bot-challenge
+    interstitial (see is_bot_challenge) is treated exactly like any other
+    failure here — it clears ok/raw so the retry loop keeps going and, if
+    every attempt (including Playwright) hits the same wall, the page is
+    correctly reported as a GAP with an error naming the block, instead of
+    being stored as a snapshot that flips on every run."""
+
+    def _reject_challenge(ok, ct, raw, err):
+        if ok and raw and len(raw) >= 20 and is_bot_challenge(raw, ct):
+            return False, ct, raw, "blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content"
+        return ok, ct, raw, err
+
+    ok, ct, raw, err = _reject_challenge(*fetch(url, USER_AGENT))
     if ok and raw and len(raw) >= 20:
         return ok, ct, raw, err
     if err and "HTTP Error 404" in err:
@@ -270,7 +326,7 @@ def fetch_with_retry(url):
     got_404 = False
     for user_agent, delay in ((USER_AGENT, 2), (UA_FIREFOX, 3), (UA_GOOGLEBOT, 3)):
         time.sleep(delay)
-        ok, ct, raw, err = fetch(url, user_agent)
+        ok, ct, raw, err = _reject_challenge(*fetch(url, user_agent))
         if ok and raw and len(raw) >= 20:
             return ok, ct, raw, err
         if err and "HTTP Error 404" in err:
@@ -280,7 +336,7 @@ def fetch_with_retry(url):
     if got_404 or not PLAYWRIGHT_AVAILABLE:
         return ok, ct, raw, err
 
-    pw_ok, pw_ct, pw_raw, pw_err = fetch_with_playwright(url)
+    pw_ok, pw_ct, pw_raw, pw_err = _reject_challenge(*fetch_with_playwright(url))
     if pw_ok and pw_raw and len(pw_raw) >= 20:
         return pw_ok, pw_ct, pw_raw, pw_err
     combined_err = f"{err} | playwright: {pw_err}" if err else pw_err
