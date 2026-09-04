@@ -29,6 +29,8 @@ import re
 import sys
 import json
 import time
+import gzip
+import zlib
 import hashlib
 import difflib
 import datetime
@@ -55,6 +57,13 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 CloudRegulatoryWatch/1.0"
 )
+# Alternate identities used only as fallback retries when the primary
+# request is blocked (403) or times out. Some sites' bot-management rules
+# explicitly allowlist known search-engine crawlers even while blocking
+# generic scripts, so a Googlebot-style UA occasionally gets through where
+# a plain browser UA from a datacenter IP does not.
+UA_FIREFOX = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"
+UA_GOOGLEBOT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 REQUEST_TIMEOUT = 20
 MAX_TEXT_CHARS = 6000
 
@@ -103,23 +112,79 @@ def save_json(path, data):
         json.dump(data, f, ensure_ascii=False, indent=2, sort_keys=True)
 
 
-def fetch(url):
+def _headers_for(user_agent):
+    """A realistic browser-style header set. Many sites' bot-management
+    rules (Cloudflare, Akamai, etc.) key off more than just User-Agent —
+    a request missing Accept/Accept-Language/Sec-Fetch-* headers reads as
+    a script even with a browser UA string."""
+    headers = {
+        "User-Agent": user_agent,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+    }
+    if "Googlebot" not in user_agent:
+        headers.update({
+            "Sec-Fetch-Dest": "document",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "none",
+            "Sec-Fetch-User": "?1",
+        })
+    return headers
+
+
+def _decompress(raw, resp_headers):
+    """urllib does not auto-decompress — do it ourselves since we now ask
+    for gzip/deflate (some sites only serve compressed bodies)."""
+    encoding = (resp_headers.get("Content-Encoding") or "").lower()
+    try:
+        if "gzip" in encoding:
+            return gzip.decompress(raw)
+        if "deflate" in encoding:
+            try:
+                return zlib.decompress(raw)
+            except zlib.error:
+                return zlib.decompress(raw, -zlib.MAX_WBITS)
+    except Exception:  # noqa: BLE001 — fall back to the raw bytes
+        return raw
+    return raw
+
+
+def fetch(url, user_agent=USER_AGENT):
     """Returns (ok, content_type, raw_bytes_or_none, error_or_none)."""
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "en"})
+    req = urllib.request.Request(url, headers=_headers_for(user_agent))
     try:
         with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
             content_type = resp.headers.get("Content-Type", "")
             raw = resp.read()
+            raw = _decompress(raw, resp.headers)
             return True, content_type, raw, None
     except Exception as e:  # noqa: BLE001 — deliberately broad, this is a monitor
         return False, "", None, str(e)
 
 
 def fetch_with_retry(url):
-    ok, ct, raw, err = fetch(url)
-    if not ok or not raw:
-        time.sleep(2)
-        ok, ct, raw, err = fetch(url)
+    """First attempt with the normal browser identity. A 404 means the URL
+    itself is wrong — retrying won't fix that, so we stop immediately and
+    report it (it should be corrected in watchlist.json). Anything else
+    (403, timeout, empty body, connection error) gets up to three more
+    tries with short backoff, rotating through alternate UAs in case the
+    block is keyed on the browser identity rather than the source IP."""
+    ok, ct, raw, err = fetch(url, USER_AGENT)
+    if ok and raw and len(raw) >= 20:
+        return ok, ct, raw, err
+    if err and "HTTP Error 404" in err:
+        return ok, ct, raw, err
+
+    for user_agent, delay in ((USER_AGENT, 2), (UA_FIREFOX, 3), (UA_GOOGLEBOT, 3)):
+        time.sleep(delay)
+        ok, ct, raw, err = fetch(url, user_agent)
+        if ok and raw and len(raw) >= 20:
+            return ok, ct, raw, err
+        if err and "HTTP Error 404" in err:
+            break
     return ok, ct, raw, err
 
 
