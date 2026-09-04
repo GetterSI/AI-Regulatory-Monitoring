@@ -43,6 +43,17 @@ except ImportError:
     print("Missing dependency: pip install -r requirements.txt", file=sys.stderr)
     raise
 
+# Playwright (headless Chromium) is an OPTIONAL last-resort fallback for
+# pages that block plain urllib requests (IP-reputation/bot-management
+# blocks that no header or User-Agent tweak can get past). It is not a
+# hard dependency: if it isn't installed, the monitor still runs fine on
+# urllib alone, it just won't have this extra fallback layer.
+try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WATCHLIST_PATH = os.path.join(BASE_DIR, "watchlist.json")
 SNAPSHOTS_PATH = os.path.join(BASE_DIR, "snapshots.json")
@@ -65,6 +76,8 @@ USER_AGENT = (
 UA_FIREFOX = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"
 UA_GOOGLEBOT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 REQUEST_TIMEOUT = 20
+PLAYWRIGHT_NAV_TIMEOUT_MS = 25000
+PLAYWRIGHT_IDLE_TIMEOUT_MS = 8000
 MAX_TEXT_CHARS = 6000
 
 # Lines matched by any of these (case-insensitive) are treated as site chrome,
@@ -165,27 +178,113 @@ def fetch(url, user_agent=USER_AGENT):
         return False, "", None, str(e)
 
 
+_playwright_ctx = None
+_playwright_browser = None
+
+
+def _get_playwright_browser():
+    """Lazily launches a single shared headless Chromium instance, reused
+    across every fallback fetch this run so the ~1-2s browser startup cost
+    is paid once, not per page."""
+    global _playwright_ctx, _playwright_browser
+    if not PLAYWRIGHT_AVAILABLE:
+        return None
+    if _playwright_browser is None:
+        _playwright_ctx = sync_playwright().start()
+        _playwright_browser = _playwright_ctx.chromium.launch(headless=True)
+    return _playwright_browser
+
+
+def close_playwright():
+    """Shuts down the shared browser/driver. Safe to call even if it was
+    never started (e.g. Playwright isn't installed, or no page ever needed
+    the fallback)."""
+    global _playwright_ctx, _playwright_browser
+    if _playwright_browser is not None:
+        try:
+            _playwright_browser.close()
+        except Exception:  # noqa: BLE001
+            pass
+        _playwright_browser = None
+    if _playwright_ctx is not None:
+        try:
+            _playwright_ctx.stop()
+        except Exception:  # noqa: BLE001
+            pass
+        _playwright_ctx = None
+
+
+def fetch_with_playwright(url):
+    """Last-resort fetch via real headless Chromium. This is used only for
+    pages that fail every urllib attempt in fetch_with_retry — it renders
+    the full page with real JavaScript execution and a genuine browser
+    TLS/canvas fingerprint, which passes lighter bot-management checks
+    that a plain urllib request (no matter the headers or User-Agent)
+    cannot. It does NOT help against a hard IP-reputation block on the
+    runner's datacenter IP range — that would need a different exit IP
+    entirely. Returns (ok, content_type, raw_bytes_or_none, error_or_none),
+    matching fetch()'s signature so callers can treat it interchangeably."""
+    browser = _get_playwright_browser()
+    if browser is None:
+        return False, "", None, "playwright not available"
+    page = None
+    try:
+        page = browser.new_page(user_agent=USER_AGENT)
+        page.set_default_navigation_timeout(PLAYWRIGHT_NAV_TIMEOUT_MS)
+        page.goto(url, wait_until="domcontentloaded", timeout=PLAYWRIGHT_NAV_TIMEOUT_MS)
+        try:
+            # Best-effort: let late JS-rendered content settle. Many pages
+            # never truly go idle (ads/trackers keep polling), so this is
+            # allowed to time out without failing the fetch.
+            page.wait_for_load_state("networkidle", timeout=PLAYWRIGHT_IDLE_TIMEOUT_MS)
+        except Exception:  # noqa: BLE001
+            pass
+        html = page.content()
+        return True, "text/html; charset=utf-8", html.encode("utf-8"), None
+    except Exception as e:  # noqa: BLE001 — deliberately broad, this is a monitor
+        return False, "", None, f"playwright: {str(e)[:200]}"
+    finally:
+        if page is not None:
+            try:
+                page.close()
+            except Exception:  # noqa: BLE001
+                pass
+
+
 def fetch_with_retry(url):
     """First attempt with the normal browser identity. A 404 means the URL
     itself is wrong — retrying won't fix that, so we stop immediately and
     report it (it should be corrected in watchlist.json). Anything else
     (403, timeout, empty body, connection error) gets up to three more
     tries with short backoff, rotating through alternate UAs in case the
-    block is keyed on the browser identity rather than the source IP."""
+    block is keyed on the browser identity rather than the source IP.
+    If every urllib attempt still fails (and it wasn't a 404), a headless
+    Chromium fetch (fetch_with_playwright) is tried once as a final
+    fallback to obtain the full rendered page."""
     ok, ct, raw, err = fetch(url, USER_AGENT)
     if ok and raw and len(raw) >= 20:
         return ok, ct, raw, err
     if err and "HTTP Error 404" in err:
         return ok, ct, raw, err
 
+    got_404 = False
     for user_agent, delay in ((USER_AGENT, 2), (UA_FIREFOX, 3), (UA_GOOGLEBOT, 3)):
         time.sleep(delay)
         ok, ct, raw, err = fetch(url, user_agent)
         if ok and raw and len(raw) >= 20:
             return ok, ct, raw, err
         if err and "HTTP Error 404" in err:
+            got_404 = True
             break
-    return ok, ct, raw, err
+
+    if got_404 or not PLAYWRIGHT_AVAILABLE:
+        return ok, ct, raw, err
+
+    pw_ok, pw_ct, pw_raw, pw_err = fetch_with_playwright(url)
+    if pw_ok and pw_raw and len(pw_raw) >= 20:
+        return pw_ok, pw_ct, pw_raw, pw_err
+    combined_err = f"{err} | playwright: {pw_err}" if err else pw_err
+    return ok, ct, raw, combined_err
 
 
 def extract_text(html_bytes, content_type):
@@ -451,6 +550,7 @@ def main():
             log(f"OK    row {entry['row']:>3}  {url}")
 
     log(f"Fetch pass done. Counts: {counts}")
+    close_playwright()
 
     issue_number, issue_error = None, None
     if changes:
