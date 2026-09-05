@@ -1533,5 +1533,245 @@
     "new_baseline": 0,
     "started_at": "2026-09-04T13:37:31.040545Z",
     "unchanged": 195
+  },
+  {
+    "changed": 11,
+    "changes": [
+      {
+        "description": "NWT Electronics Recycling Program | Alberta Recycling",
+        "note": "Household Hazardous Waste | Renewables",
+        "row": 19,
+        "url": "https://www.albertarecycling.ca/nwt-recycling-program/",
+        "vp_id": 2913540
+      },
+      {
+        "description": "Good Delivery Current List | LBMA",
+        "note": "Good Delivery Current List | LBMA | Good Delivery | Good Delivery",
+        "row": 39,
+        "url": "https://www.lbma.org.uk/good-delivery/gold-current-list",
+        "vp_id": 3113865
+      },
+      {
+        "description": "ReSimple | Tarifas",
+        "note": "Tarifas | ReSimple | Nosotros | Quiénes somos",
+        "row": 77,
+        "url": "https://www.resimple.cl/tarifas/",
+        "vp_id": 5608899
+      },
+      {
+        "description": "Hellenic Copyright Organization",
+        "note": "Law 2121/1993 - library.opi.gr | Skip to the content | Close Menu",
+        "row": 82,
+        "url": "https://library.opi.gr/en/law-2121-1993/",
+        "vp_id": 5705616
+      },
+      {
+        "description": "Price list - Paristokierrätys",
+        "note": "Price list - Paristokierrätys | YHTEYSTIEDOT | puhelin: +358 10 249 1717",
+        "row": 87,
+        "url": "https://www.paristokierratys.fi/en/producers-extranet/price-list/",
+        "vp_id": 5868310
+      },
+      {
+        "description": "Proposition 65 - OEHHA",
+        "note": "Announcement of the Carcinogen Identification Committee Meeting Scheduled for November 17, 2026 | OEHHA is referring ethoprop to the Carcinogen Identification Committee for a recommendation concerning whether the chemical should continue to be included on the list of chemicals known to the state to cause cancer. | Fri, 09/04/2026 - 12:00pm",
+        "row": 103,
+        "url": "https://oehha.ca.gov/proposition-65",
+        "vp_id": 6174560
+      },
+      {
+        "description": "News - Paristokierrätys",
+        "note": "News - Paristokierrätys | YHTEYSTIEDOT | puhelin: +358 10 249 1717",
+        "row": 109,
+        "url": "https://www.paristokierratys.fi/en/news/",
+        "vp_id": 6206541
+      },
+      {
+        "description": "EU Deforestation Regulation",
+        "note": "EUR-Lex - 52024AP0058(01) - EN - EUR-Lex | × | EUR-Lex",
+        "row": 121,
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202501974",
+        "vp_id": 6410635
+      },
+      {
+        "description": "RLG WEEE - Romania Tariffs",
+        "note": "RLG Systems România - Reverse Logistics Group | Organizație colectivă DEEE | Reverse Logistics Group România și-a început operațiunile pe piața locală în decembrie 2008, când obținea prima licență ca OTR pentru deșeuri electrice pentru compania CCR Logistics Systems –",
+        "row": 180,
+        "url": "https://rev-log.com/ro/rlg-systems-romania/",
+        "vp_id": 7792897
+      },
+      {
+        "description": "El-Kretsen",
+        "note": "Product List and Fees – El-Kretsen | / | Product List and Fees",
+        "row": 186,
+        "url": "https://www.el-kretsen.se/product-list-and-fees?lang=en",
+        "vp_id": 7820182
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "4 septiembre, 2026 | Mesa público-privada entrega a ministra Toledo recomendaciones para mejorar la implementación de la Ley | REP",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-05",
+    "finished_at": "2026-09-05T08:24:31.860947Z",
+    "gaps": 21,
+    "gaps_list": [
+      {
+        "description": "Gertearten",
+        "error": "HTTP Error 404: Not Found",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "error": "HTTP Error 404: Not Found",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "error": "HTTP Error 404: Not Found",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "error": "HTTP Error 404: Not Found",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "Ecologic",
+        "error": "HTTP Error 404: Not Found",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "error": "HTTP Error 404: Not Found",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "error": "HTTP Error 404: Not Found",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Deforestation FAQs",
+        "error": "HTTP Error 404: Not Found",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "ESPR FAQ",
+        "error": "HTTP Error 404: Not Found",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "French Sustainability Index",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite\", waiting until \"domcontentloaded\"\n",
+        "row": 119,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite",
+        "vp_id": 6367839
+      },
+      {
+        "description": "French Repairability Index",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite\", waiting until \"domcontentloaded\"\n",
+        "row": 120,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite",
+        "vp_id": 6367916
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "Take back systems - Reclay Österreich",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://reclay-group.com/at/en/services/take-back-systems/\", waiting until \"domcontentloaded\"\n",
+        "row": 149,
+        "url": "https://reclay-group.com/at/en/services/take-back-systems/",
+        "vp_id": 6711808
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "error": "HTTP Error 404: Not Found",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 2,
+    "new_baseline": 0,
+    "started_at": "2026-09-05T08:06:31.145791Z",
+    "unchanged": 181
   }
 ]
