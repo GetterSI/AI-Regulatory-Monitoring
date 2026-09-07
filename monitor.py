@@ -36,6 +36,7 @@ import difflib
 import datetime
 import urllib.request
 import urllib.error
+import urllib.parse
 from zoneinfo import ZoneInfo
 
 try:
@@ -91,7 +92,37 @@ UA_GOOGLEBOT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/b
 REQUEST_TIMEOUT = 20
 PLAYWRIGHT_NAV_TIMEOUT_MS = 25000
 PLAYWRIGHT_IDLE_TIMEOUT_MS = 8000
-MAX_TEXT_CHARS = 6000
+# No text-length cap. Charles, 2026-09-07: "We need to analyse the entire
+# contents of the page. Otherwise this is pointless." Every character of
+# extracted, chrome-stripped text is compared, however long the page is —
+# at the cost of a larger snapshots.json and (for the rare huge page) a
+# slower classify_change() diff. That tradeoff is intentional: a change
+# past whatever cutoff we'd otherwise pick is exactly the kind of change
+# this tool exists to catch.
+
+# --- Image comparison ----------------------------------------------------
+# Some regulatory pages publish substantive content as an image (a fee
+# table rendered as a graphic, a scanned notice, a chart) that a text-only
+# diff can never see. This does a best-effort second channel: find images
+# that look like real page content (not logos, icons, nav chrome, or
+# tracking pixels), fetch each one, and hash it. A changed hash — or an
+# image added/removed — is treated as a real page change exactly like a
+# text change, even when the surrounding text is byte-identical.
+MAX_IMAGES_PER_PAGE = 6  # cap per page — keeps run time and byte-hashing
+    # bounded even on an image-heavy page; content images are rare enough
+    # per page that this ceiling should never bind in practice
+IMAGE_FETCH_TIMEOUT = 10
+MIN_CONTENT_IMAGE_DIMENSION = 100  # px; an <img> with an explicit width or
+    # height below this is almost always a logo/icon/badge, not content
+SKIP_IMAGE_EXTENSIONS = (".svg", ".ico", ".gif")
+    # .svg/.ico are logos and favicons; .gif on these sites is essentially
+    # always a spinner, tracking pixel, or decorative flourish — never
+    # observed to be the actual regulatory content
+SKIP_IMAGE_PATTERN = re.compile(
+    r"logo|icon|sprite|badge|avatar|spinner|loading|placeholder|"
+    r"pixel|1x1|spacer|banner-ad|flag-|arrow|chevron|social|share",
+    re.IGNORECASE,
+)
 
 # Lines matched by any of these (case-insensitive) are treated as site chrome,
 # not substance, and dropped before comparing snapshots.
@@ -176,12 +207,15 @@ def is_bot_challenge(html_bytes, content_type):
 
 def text_is_bot_challenge(text):
     """Second, size-independent safety net: checks the same markers against
-    the already-extracted, script/style-stripped visible text (capped at
-    MAX_TEXT_CHARS) rather than raw HTML bytes. Catches a challenge page that
-    slipped past is_bot_challenge()'s byte-window (e.g. a fetch layer whose
-    raw response structure pushes the challenge markup further down than
-    expected) before it can ever be compared against the previous snapshot
-    or stored as if it were real content."""
+    the already-extracted, script/style-stripped visible text rather than
+    raw HTML bytes. Catches a challenge page that slipped past
+    is_bot_challenge()'s byte-window (e.g. a fetch layer whose raw response
+    structure pushes the challenge markup further down than expected)
+    before it can ever be compared against the previous snapshot or stored
+    as if it were real content. Only samples the first 4000 characters —
+    independent of whether the full extracted text is capped — since a
+    genuine challenge page's banner is always right at the top; there is
+    no need to scan a whole (possibly very long) page looking for it."""
     if not text:
         return False
     sample = text[:4000].lower()
@@ -431,7 +465,103 @@ def fetch_with_retry(url):
     return ok, ct, raw, combined_err
 
 
-def extract_text(html_bytes, content_type):
+def _looks_like_content_image(img_tag, resolved_url):
+    """Heuristic filter: True if this <img> looks like real page content
+    worth hashing and comparing, False if it looks like chrome (a logo,
+    icon, tracking pixel, decorative flourish). Deliberately conservative —
+    missing a genuine content image is much cheaper than drowning every
+    page in false "changed" alerts from a rotating ad banner or a
+    per-request tracking pixel with a random query string."""
+    path = urllib.parse.urlparse(resolved_url).path.lower()
+    if path.endswith(SKIP_IMAGE_EXTENSIONS):
+        return False
+    class_attr = img_tag.get("class") or ""
+    if not isinstance(class_attr, str):
+        class_attr = " ".join(class_attr)
+    haystack = " ".join(filter(None, [
+        resolved_url, img_tag.get("alt", ""), class_attr, img_tag.get("id", ""),
+    ])).lower()
+    if SKIP_IMAGE_PATTERN.search(haystack):
+        return False
+    for attr in ("width", "height"):
+        val = img_tag.get(attr)
+        if val:
+            digits = re.sub(r"\D", "", str(val))
+            if digits and int(digits) < MIN_CONTENT_IMAGE_DIMENSION:
+                return False
+    return True
+
+
+def extract_images(soup, base_url):
+    """Finds up to MAX_IMAGES_PER_PAGE candidate content images in an
+    already-parsed, already-chrome-stripped soup — nav/header/footer/script
+    tags are already gone by the time this runs (extract_text_and_images
+    decomposes them first), so logos and icons living in those regions are
+    excluded for free, before the heuristic filter below even runs.
+    Returns resolved absolute URLs in page order."""
+    found = []
+    for img in soup.find_all("img"):
+        src = img.get("src") or img.get("data-src")
+        if not src or src.startswith("data:"):
+            continue
+        resolved = urllib.parse.urljoin(base_url, src)
+        if not resolved.startswith(("http://", "https://")):
+            continue
+        if _looks_like_content_image(img, resolved):
+            found.append(resolved)
+        if len(found) >= MAX_IMAGES_PER_PAGE:
+            break
+    return found
+
+
+def fetch_image_hash(url):
+    """Fetches one candidate content image and returns its SHA-256 hash, or
+    None if it can't be fetched or doesn't actually look like an image
+    (some sites respond to an image request with an HTML error/challenge
+    page — that must never get hashed as if it were the image). Failures
+    here are silent by design: this is a best-effort enrichment on top of
+    the text diff, not a hard requirement, so one unreachable image never
+    turns a page's own fetch into a gap."""
+    req = urllib.request.Request(url, headers=_headers_for(USER_AGENT))
+    try:
+        with urllib.request.urlopen(req, timeout=IMAGE_FETCH_TIMEOUT) as resp:
+            content_type = resp.headers.get("Content-Type", "")
+            if not content_type.startswith("image/"):
+                return None
+            raw = resp.read()
+            if not raw:
+                return None
+            return hashlib.sha256(raw).hexdigest()
+    except Exception:  # noqa: BLE001 — best-effort only, see docstring
+        return None
+
+
+def describe_image_change(old_hashes, new_hashes):
+    """Turns an old {url: hash} vs. new {url: hash} comparison into a short
+    human-readable note, the same role classify_change()'s note plays for
+    text — e.g. "1 image(s) changed; 1 image(s) added"."""
+    added = [u for u in new_hashes if u not in old_hashes]
+    removed = [u for u in old_hashes if u not in new_hashes]
+    changed = [u for u in new_hashes if u in old_hashes and old_hashes[u] != new_hashes[u]]
+    parts = []
+    if changed:
+        parts.append(f"{len(changed)} image(s) changed")
+    if added:
+        parts.append(f"{len(added)} image(s) added")
+    if removed:
+        parts.append(f"{len(removed)} image(s) removed")
+    return "; ".join(parts) if parts else "image content changed"
+
+
+def extract_text_and_images(html_bytes, content_type, base_url):
+    """Returns (text, image_urls) from a single HTML parse. text is the
+    full extracted, chrome-stripped visible text — no length cap (see the
+    comment by the removed MAX_TEXT_CHARS above): every character gets
+    compared, however long the page is. image_urls is up to
+    MAX_IMAGES_PER_PAGE candidate content images (see extract_images) for
+    the caller to hash and compare separately, since a genuine regulatory
+    change is sometimes published as a graphic (a fee table, a scanned
+    notice) rather than as text."""
     charset = "utf-8"
     m = re.search(r"charset=([\w-]+)", content_type or "", re.IGNORECASE)
     if m:
@@ -444,6 +574,8 @@ def extract_text(html_bytes, content_type):
     soup = BeautifulSoup(html, "html.parser")
     for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "form"]):
         tag.decompose()
+
+    images = extract_images(soup, base_url)
 
     raw_lines = soup.get_text("\n").splitlines()
     kept = []
@@ -458,7 +590,7 @@ def extract_text(html_bytes, content_type):
     text = "\n".join(kept)
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
-    return text.strip()[:MAX_TEXT_CHARS]
+    return text.strip(), images
 
 
 def normalize_for_compare(text):
@@ -672,6 +804,7 @@ def main():
                 "mode": (prev or {}).get("mode", "text"),
                 "text": (prev or {}).get("text"),
                 "hash": (prev or {}).get("hash"),
+                "image_hashes": (prev or {}).get("image_hashes"),
                 "status": "gap",
                 "last_checked": started_at,
                 "last_changed": (prev or {}).get("last_changed"),
@@ -699,7 +832,7 @@ def main():
                 "last_change_note": note if status == "changed" else (prev or {}).get("last_change_note"),
             }
         else:
-            new_text = extract_text(raw, content_type)
+            new_text, new_image_urls = extract_text_and_images(raw, content_type, url)
 
             if text_is_bot_challenge(new_text):
                 # The raw-bytes check (is_bot_challenge, inside
@@ -721,6 +854,7 @@ def main():
                     "mode": (prev or {}).get("mode", "text"),
                     "text": (prev or {}).get("text"),
                     "hash": (prev or {}).get("hash"),
+                    "image_hashes": (prev or {}).get("image_hashes"),
                     "status": "gap",
                     "last_checked": started_at,
                     "last_changed": (prev or {}).get("last_changed"),
@@ -729,14 +863,46 @@ def main():
                 log(f"GAP  row {entry['row']:>3}  {url}  (bot-challenge caught post-extraction)")
                 continue
 
+            # Hash each candidate content image found on the page (see
+            # extract_images/fetch_image_hash above). A page whose text is
+            # byte-identical to last time can still have genuinely changed
+            # if a fee table or notice published as a graphic was swapped
+            # out — this is how that gets caught.
+            new_image_hashes = {}
+            for img_url in new_image_urls:
+                h = fetch_image_hash(img_url)
+                if h:
+                    new_image_hashes[img_url] = h
+            prev_image_hashes = (prev or {}).get("image_hashes") or {}
+            # Distinguish "never tracked images for this page before" from
+            # "tracked them and they're the same" — an existing page whose
+            # snapshot predates this feature has no "image_hashes" key at
+            # all, and establishing that first baseline must not itself
+            # count as a change (same principle as prev is None for text).
+            # Without this, the rollout run would flag every page with at
+            # least one qualifying image as "changed" purely from having
+            # nothing to compare against yet.
+            had_image_baseline = prev is not None and "image_hashes" in prev
+
             if prev is None or prev.get("text") is None:
                 status, note = "new", None
             else:
-                is_changed, note = classify_change(prev.get("text", ""), new_text)
-                status = "changed" if is_changed else "unchanged"
+                text_changed, text_note = classify_change(prev.get("text", ""), new_text)
+                images_changed = had_image_baseline and new_image_hashes != prev_image_hashes
+                if text_changed or images_changed:
+                    status = "changed"
+                    note_parts = []
+                    if text_changed and text_note:
+                        note_parts.append(text_note)
+                    if images_changed:
+                        note_parts.append(describe_image_change(prev_image_hashes, new_image_hashes))
+                    note = " | ".join(note_parts) if note_parts else "image content changed"
+                else:
+                    status, note = "unchanged", None
 
             snapshots[slug] = {
                 **entry, "mode": "text", "text": new_text, "hash": None,
+                "image_hashes": new_image_hashes,
                 "status": "ok",
                 "last_checked": started_at,
                 "last_changed": started_at if status == "changed" else (prev or {}).get("last_changed"),
