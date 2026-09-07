@@ -3211,5 +3211,238 @@
     "new_baseline": 0,
     "started_at": "2026-09-07T12:04:54.060445Z",
     "unchanged": 122
+  },
+  {
+    "changed": 29,
+    "changes": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "Product Definitions, Fees & Clarification Protocols – EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits électroniques | Stewards | Product Definitions, Fees & Clarification Protocols",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Gertearten",
+        "note": "Welche Gerätearten gibt es und wozu gehört mein Gerät? | stiftung elektro-altgeräte register | 404-Fehler | stiftung elektro-altgeräte register | Consent to Cookies & Data processing",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "note": "Recycle Yukon Electronics | Top | Government of Yukon announces October 1, 2018 implementation of electronics recycling program | 2 image(s) added",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "Ecologic",
+        "note": "Découvrir les barèmes d'éco-contribution - Ecologic France | - Ecologic France | Découvrir les barèmes d'éco-contribution | 1 image(s) added",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "note": "Vu le règlement (CE) n° 1907/2006 du Parlement européen et du Conseil du 18 décembre 2006 concernant l'enregistrement, l'évaluation et l'autorisation des substances chimiques, ainsi que les restrictions applicables à ces substances (REACH) instituant une agence européenne des produits chimiques, modifiant la directive 1999/45 | Vu le règlement (CE) n° 1907/2006 du Parlement européen et du Conseil ",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "note": "1 image(s) added",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "FAQ on EUDR Implementation - Environment - European Commission | FAQ on EUDR Implementation | General publications",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "TSCA 8(a)(7) PFAS Chemicals - List Details - SRS | US EPA",
+        "note": "Substance Registry Services | US EPA | TSCA 8(a)(7) PFAS Chemicals - List Details - SRS | US EPA | An official website of the United States Government",
+        "row": 69,
+        "url": "https://cdxapps.epa.gov/oms-substance-registry-services/substance-list-details/490",
+        "vp_id": 5100072
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "note": "FAOLEX | Environment Law No. 2872. | FAOLEX | Türkiye | 1 image(s) added",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "Ecodesign for Sustainable Products Regulation - European Commission | Ecodesign for Sustainable Products Regulation | Making sustainable products the norm in the EU.",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "IEC 62474",
+        "note": "IEC 62474",
+        "row": 113,
+        "url": "https://std.iec.ch/iec62474/iec62474.nsf/Index?open&q=125415",
+        "vp_id": 6276685
+      },
+      {
+        "description": "EU Deforestation Regulation",
+        "note": "EUR-Lex - 52024AP0058(01) - EN - EUR-Lex | × | EUR-Lex",
+        "row": 121,
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202501974",
+        "vp_id": 6410635
+      },
+      {
+        "description": "Circular Materials EPR Compliance Scheme News",
+        "note": "Error 403 Forbidden | 403 Forbidden | News | Circular Materials",
+        "row": 124,
+        "url": "https://www.circularmaterials.ca/news/",
+        "vp_id": 6415805
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "note": "\" | \" means a | producer",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "Producer News - SK Recycles",
+        "note": "4 image(s) changed",
+        "row": 134,
+        "url": "https://skrecycles.ca/producers/news/",
+        "vp_id": 6513024
+      },
+      {
+        "description": "Reporting & Fees - SK Recycles",
+        "note": "1 image(s) changed",
+        "row": 135,
+        "url": "https://skrecycles.ca/producers/reporting-fees/",
+        "vp_id": 6513028
+      },
+      {
+        "description": "Saskatchewan Packaging and Paper Regulations",
+        "note": "Google Translate Disclaimer | A number of pages on the Government of Saskatchewan's website have been professionally translated in French. These translations are identified by a yellow box in the right or left rail that resembles the link below. The home page for French-language content on this site can be found at: | Renseignements en Français",
+        "row": 138,
+        "url": "https://publications.saskatchewan.ca/#/products/120617",
+        "vp_id": 6513044
+      },
+      {
+        "description": "Producer News - Recycle BC",
+        "note": "3 image(s) changed",
+        "row": 140,
+        "url": "https://recyclebc.ca/producers/news/",
+        "vp_id": 6514859
+      },
+      {
+        "description": "EUDR Indicators - FSC Country Score (Risk Assessments)",
+        "note": "1 image(s) changed",
+        "row": 142,
+        "url": "https://www.fsc-eudr-journey.org/fsc-aligned-eudr-risk-assessment",
+        "vp_id": 6521217
+      },
+      {
+        "description": "EUDR Indicators - Indigenous peoples, satellite (LandMark)",
+        "note": "Join the LandMark email list | Join our community to receive key updates, tools, and resources supporting land governance around the world. | Don't worry - we respect your privacy and data and never share your contact information with anyone.",
+        "row": 145,
+        "url": "https://www.landmarkmap.org/data-methods/access-data",
+        "vp_id": 6521271
+      },
+      {
+        "description": "EUDR Indicators - Timber Species Risk (WWF)",
+        "note": "About | Understand Risk | Assess Risk",
+        "row": 146,
+        "url": "https://www.woodrisk.org/assess-risk/species",
+        "vp_id": 6521276
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The Information System of the Deforestation Regulation - Green Forum | The Information System of the EU Deforestation Regulation | The Information System is a specialised online tool of the TRACES platform. It allows operators and their authorised representatives to create",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "ECO Synergy - Transparenta preturi si clienti",
+        "note": "Tarife OIREP - ECO Synergy | Eco Synergy | »",
+        "row": 166,
+        "url": "https://ecosynergy.ro/informatiipublice/",
+        "vp_id": 7191855
+      },
+      {
+        "description": "Legislatie de mediu pentru OIREP - Modificari si actualizari",
+        "note": "Legislatie de mediu pentru OIREP - Modificari si actualizari | Eco Synergy | »",
+        "row": 167,
+        "url": "https://ecosynergy.ro/legislatie-otr-mediu/",
+        "vp_id": 7191886
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Exemptions list: Validity and rolling plan Feb 2026 | Environment | Exemptions list: Validity and rolling plan Feb 2026 | General publications",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "VIII-787 Lithuania Law on Waste Management",
+        "note": "Lietuvos Respublikos atliekų tvarkymo įstatymas | Paprasta paieška | Dokumentų paieška | 1 image(s) added",
+        "row": 176,
+        "url": "https://e-seimas.lrs.lt/portal/legalActEditions/lt/TAD/TAIS.59267",
+        "vp_id": 7550943
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "FAQ on EUDR Implementation - Environment - European Commission | FAQ on EUDR Implementation | General publications",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "5 image(s) changed",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "This site uses cookies. Visit our | cookies policy page | or click the link in any footer for more information and to change your preferences.",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-07",
+    "finished_at": "2026-09-07T13:48:49.628134Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 8,
+    "new_baseline": 5,
+    "started_at": "2026-09-07T13:14:27.693378Z",
+    "unchanged": 177
   }
 ]
