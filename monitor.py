@@ -437,9 +437,18 @@ def fetch_with_flaresolverr(url):
     return True, "text/html; charset=utf-8", html.encode("utf-8"), None
 
 
-MIN_VISIBLE_TEXT_CHARS = 200  # below this, a "successful" fetch is treated
+MIN_VISIBLE_TEXT_CHARS = 400  # below this, a "successful" fetch is treated
     # as suspect — probably a JS-shell page that returned 200 with almost no
     # server-rendered content, not a real gap, but not full content either.
+    # Raised from 200 to 400 on 2026-09-07 after finding CIRCABC's 4 rows all
+    # cleared 200 (206 chars each) while capturing only a cookie-consent
+    # banner plus a literal "Loading..." placeholder — Playwright's own
+    # networkidle/scroll wait wasn't enough for CIRCABC's slow Angular API
+    # calls, and 200 was just under that specific stuck-state's length. 400
+    # comfortably clears it while a genuinely tiny real page (several exist
+    # in this watchlist, some under 60 chars) still gets returned via the
+    # best-so-far fallback if nothing longer turns up on any layer — this
+    # only costs extra escalation attempts, it can never lose real content.
 
 
 def _visible_text_len(raw, content_type):
