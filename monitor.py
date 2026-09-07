@@ -133,6 +133,12 @@ BOT_CHALLENGE_MARKERS = (
     "please verify you are a human",
     "pardon our interruption",
     "captcha-delivery.com",
+    # New template found 2026-09-06: 6 pages (LBMA, ReSimple, Hellenic
+    # Copyright Organization, Paristokierrätys x2, RLG WEEE Romania,
+    # El-Kretsen) all flipped to this exact challenge wording and back to
+    # real content the next day, firing false "changed" alerts each time.
+    "one moment, please",
+    "please wait while your request is being verified",
 )
 
 
