@@ -156,15 +156,35 @@ BOT_CHALLENGE_MARKERS = (
 
 def is_bot_challenge(html_bytes, content_type):
     """True if raw looks like a bot-challenge interstitial rather than the
-    real page. Only sniffs the first few KB (the challenge markup is always
-    at the very top) and only for text responses — binaries (PDFs, etc.)
-    never hit this path."""
+    real page. Sniffs a generous prefix of the raw response (the challenge
+    markup is always near the top, but FlareSolverr's rendered-Chrome output
+    for a Turnstile-style challenge often carries several KB of injected
+    analytics/JS before the visible "Just a moment..." text — a 4000-byte
+    window missed that variant in production on 2026-09-07 for rows
+    52/57/76/131, letting Cloudflare's challenge page through as if it were
+    real content. 20000 bytes comfortably covers that case while still being
+    cheap for the rare huge page) and only for text responses — binaries
+    (PDFs, etc.) never hit this path."""
     if not html_bytes or any(bt in (content_type or "") for bt in BINARY_CONTENT_TYPES):
         return False
     try:
-        sample = html_bytes[:4000].decode("utf-8", errors="ignore").lower()
+        sample = html_bytes[:20000].decode("utf-8", errors="ignore").lower()
     except Exception:  # noqa: BLE001
         return False
+    return any(marker in sample for marker in BOT_CHALLENGE_MARKERS)
+
+
+def text_is_bot_challenge(text):
+    """Second, size-independent safety net: checks the same markers against
+    the already-extracted, script/style-stripped visible text (capped at
+    MAX_TEXT_CHARS) rather than raw HTML bytes. Catches a challenge page that
+    slipped past is_bot_challenge()'s byte-window (e.g. a fetch layer whose
+    raw response structure pushes the challenge markup further down than
+    expected) before it can ever be compared against the previous snapshot
+    or stored as if it were real content."""
+    if not text:
+        return False
+    sample = text[:4000].lower()
     return any(marker in sample for marker in BOT_CHALLENGE_MARKERS)
 
 
@@ -680,6 +700,35 @@ def main():
             }
         else:
             new_text = extract_text(raw, content_type)
+
+            if text_is_bot_challenge(new_text):
+                # The raw-bytes check (is_bot_challenge, inside
+                # fetch_with_retry) already missed this once for this exact
+                # response — every fetch layer's raw HTML is only sniffed up
+                # to a byte limit, and FlareSolverr in particular can return
+                # a challenge page whose markup pushes "Just a moment..."
+                # further down than that window covers (rows 52/57/76/131,
+                # 2026-09-07). This is the safety net: it checks the final,
+                # already-extracted visible text instead, which is small
+                # and mostly IS the challenge message when a challenge slips
+                # through, so it can't miss on size. Treat exactly like a
+                # fetch failure — never let a solved-looking-but-not-really
+                # challenge page overwrite a real snapshot.
+                counts["gap"] += 1
+                gaps.append({**entry, "error": "blocked by bot-challenge interstitial (caught post-extraction) — page returned 200 but body is a verification page, not real content"})
+                snapshots[slug] = {
+                    **entry,
+                    "mode": (prev or {}).get("mode", "text"),
+                    "text": (prev or {}).get("text"),
+                    "hash": (prev or {}).get("hash"),
+                    "status": "gap",
+                    "last_checked": started_at,
+                    "last_changed": (prev or {}).get("last_changed"),
+                    "last_change_note": (prev or {}).get("last_change_note"),
+                }
+                log(f"GAP  row {entry['row']:>3}  {url}  (bot-challenge caught post-extraction)")
+                continue
+
             if prev is None or prev.get("text") is None:
                 status, note = "new", None
             else:
