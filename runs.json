@@ -3551,5 +3551,189 @@
     "new_baseline": 0,
     "started_at": "2026-09-07T14:04:38.186996Z",
     "unchanged": 200
+  },
+  {
+    "changed": 22,
+    "changes": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "Product Definitions, Fees & Clarification Protocols – EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits électroniques | Stewards | Product Definitions, Fees & Clarification Protocols",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "Stewardship - Alberta Recycling Management Authority | Registry | Stewardship",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "Authorisation List - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Authorisation List - ECHA",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "NWT Electronics Recycling Program | Alberta Recycling",
+        "note": "6 image(s) added",
+        "row": 19,
+        "url": "https://www.albertarecycling.ca/nwt-recycling-program/",
+        "vp_id": 2913540
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "note": "2 image(s) removed",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "List of substances subject to POPs Regulation - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | List of substances subject to POPs Regulation - ECHA",
+        "row": 40,
+        "url": "https://echa.europa.eu/list-of-substances-subject-to-pops-regulation",
+        "vp_id": 3120039
+      },
+      {
+        "description": "Table of harmonised entries in Annex VI to CLP - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Table of harmonised entries in Annex VI to CLP - ECHA",
+        "row": 49,
+        "url": "https://echa.europa.eu/information-on-chemicals/annex-vi-to-clp",
+        "vp_id": 3504510
+      },
+      {
+        "description": "Candidate List of substances of very high concern for Authorisation - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Candidate List of substances of very high concern for Authorisation - ECHA",
+        "row": 53,
+        "url": "https://echa.europa.eu/candidate-list-table",
+        "vp_id": 4223573
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "IMPORTANT! | CIRCABC is progressively transitioning towards EU institutional use. | From",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Registry of SVHC intentions until outcome - ECHA",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Proposals for listing chemicals in the Stockholm Convention on POPs - ECHA",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "SCIP Format - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | SCIP Format - ECHA",
+        "row": 75,
+        "url": "https://www.echa.europa.eu/scip-format",
+        "vp_id": 5553536
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "IMPORTANT! | CIRCABC is progressively transitioning towards EU institutional use. | From",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "EU-ELV-ART_2_11 - ECHA Hazardous Substances list",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | EU-END_OF_LIFE_VEHICLES-ART_2_11 - ECHA",
+        "row": 105,
+        "url": "https://echa.europa.eu/de/eu-end_of_life_vehicles-art_2_11?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6174846
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "Electronics Recycling Program - Alberta Recycling Management Authority | Stewardship Recycling Program | Electronics Recycling Program",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "Candidate List Package - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Candidate List Package - ECHA",
+        "row": 128,
+        "url": "https://echa.europa.eu/candidate-list-package",
+        "vp_id": 6430838
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "note": "Azure WAF | One moment, we're checking you're not a bot. | Liste der Beschränkungen - ECHA",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "IMPORTANT! | CIRCABC is progressively transitioning towards EU institutional use. | From",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Legislatie de mediu pentru OIREP - Modificari si actualizari",
+        "note": "Legislatie de mediu pentru OIREP - Modificari si actualizari | Eco Synergy | »",
+        "row": 167,
+        "url": "https://ecosynergy.ro/legislatie-otr-mediu/",
+        "vp_id": 7191886
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "IMPORTANT! | CIRCABC is progressively transitioning towards EU institutional use. | From",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "Adelphe - Fees",
+        "note": "1 image(s) changed",
+        "row": 198,
+        "url": "https://www.adelphe.fr/combien-ca-coute/",
+        "vp_id": 8396995
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-07",
+    "finished_at": "2026-09-07T15:27:44.998703Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 10,
+    "new_baseline": 0,
+    "started_at": "2026-09-07T14:49:45.296396Z",
+    "unchanged": 189
   }
 ]
