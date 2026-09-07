@@ -19,6 +19,16 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
+    services:
+      # FlareSolverr — free, open-source, no account or API key needed. Runs
+      # a stealth-patched Chromium purpose-built to solve Cloudflare-style JS
+      # challenges ("just a moment", "one moment, please", etc.). monitor.py
+      # only calls it as a last resort, after a plain request and a generic
+      # Playwright fetch have both already failed.
+      flaresolverr:
+        image: ghcr.io/flaresolverr/flaresolverr:latest
+        ports:
+          - 8191:8191
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -38,11 +48,30 @@ jobs:
         # Playwright browsers), keeping the step reasonably fast.
         run: playwright install --with-deps chromium
 
+      - name: Wait for FlareSolverr to be ready
+        # The service container starts fast, but FlareSolverr itself takes a
+        # few seconds to bring up Xvfb + Chromium internally before its API
+        # will actually answer requests — poll its health endpoint rather
+        # than assume it's ready. If it never comes up, don't fail the whole
+        # run over it: monitor.py treats FlareSolverr as optional and simply
+        # falls through to reporting affected pages as gaps, same as before
+        # this existed.
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8191/health > /dev/null; then
+              echo "FlareSolverr is ready."
+              exit 0
+            fi
+            echo "Waiting for FlareSolverr... ($i/30)"
+            sleep 2
+          done
+          echo "FlareSolverr did not become ready in time — continuing anyway."
 
       - name: Run monitor
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          FLARESOLVERR_URL: http://localhost:8191/v1
         run: python monitor.py
 
       - name: Commit updated snapshots, run log and dashboard
