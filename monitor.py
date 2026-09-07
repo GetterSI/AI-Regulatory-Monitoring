@@ -89,9 +89,17 @@ FLARESOLVERR_TIMEOUT_MS = 60000
 # a plain browser UA from a datacenter IP does not.
 UA_FIREFOX = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"
 UA_GOOGLEBOT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-REQUEST_TIMEOUT = 20
-PLAYWRIGHT_NAV_TIMEOUT_MS = 25000
-PLAYWRIGHT_IDLE_TIMEOUT_MS = 8000
+REQUEST_TIMEOUT = 30
+PLAYWRIGHT_NAV_TIMEOUT_MS = 35000
+PLAYWRIGHT_IDLE_TIMEOUT_MS = 12000
+# How many times to retry FlareSolverr itself before giving up on a page.
+# Solving a Cloudflare-style challenge is inherently non-deterministic — the
+# same URL that gets a clean solve on one run can come back "flaresolverr:
+# HTTP Error 500: Internal Server Error" on the next (observed 2026-09-07 for
+# rows 52/57/76/131, the exact rows a previous run had fetched cleanly). A
+# single extra attempt costs little and recovers most of these.
+FLARESOLVERR_ATTEMPTS = 2
+FLARESOLVERR_RETRY_DELAY = 5
 # No text-length cap. Charles, 2026-09-07: "We need to analyse the entire
 # contents of the page. Otherwise this is pointless." Every character of
 # extracted, chrome-stripped text is compared, however long the page is —
@@ -355,6 +363,30 @@ def fetch_with_playwright(url):
             page.wait_for_load_state("networkidle", timeout=PLAYWRIGHT_IDLE_TIMEOUT_MS)
         except Exception:  # noqa: BLE001
             pass
+        try:
+            # Charles, 2026-09-07: "we need to review the entire page ...
+            # otherwise we will miss important content." Some pages only
+            # populate real content (infinite-scroll lists, intersection-
+            # observer-triggered images/text) once the viewport actually
+            # reaches them — a page that never scrolls never renders it,
+            # no matter how long we wait at the top. Walk down the page in
+            # steps so anything gated on scroll position gets a chance to
+            # load, then return to the top before capturing content() (some
+            # sites lazy-unload text above the fold once you've scrolled
+            # past it, so ending at the top is the safer place to capture
+            # from). Best-effort: never fails the fetch if it errors.
+            prev_height = 0
+            for _ in range(8):
+                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                page.wait_for_timeout(400)
+                height = page.evaluate("document.body.scrollHeight")
+                if height == prev_height:
+                    break
+                prev_height = height
+            page.evaluate("window.scrollTo(0, 0)")
+            page.wait_for_timeout(200)
+        except Exception:  # noqa: BLE001
+            pass
         html = page.content()
         return True, "text/html; charset=utf-8", html.encode("utf-8"), None
     except Exception as e:  # noqa: BLE001 — deliberately broad, this is a monitor
@@ -405,19 +437,54 @@ def fetch_with_flaresolverr(url):
     return True, "text/html; charset=utf-8", html.encode("utf-8"), None
 
 
+MIN_VISIBLE_TEXT_CHARS = 200  # below this, a "successful" fetch is treated
+    # as suspect — probably a JS-shell page that returned 200 with almost no
+    # server-rendered content, not a real gap, but not full content either.
+
+
+def _visible_text_len(raw, content_type):
+    """Cheap, best-effort estimate of how much real visible text a fetched
+    response contains — used only to decide whether a nominally-successful
+    fetch is actually worth trusting, not the real extraction (see
+    extract_text_and_images, which does the full chrome-stripping compare
+    later). Binary responses (PDFs etc.) are exempt by the caller — sniffing
+    a PDF as if it were HTML text always looks empty and would wrongly
+    trigger escalation for something that was never a text page."""
+    try:
+        html = raw.decode("utf-8", errors="ignore")
+        soup = BeautifulSoup(html, "html.parser")
+        for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "form"]):
+            tag.decompose()
+        return len(soup.get_text(strip=True))
+    except Exception:  # noqa: BLE001
+        return 0
+
+
 def fetch_with_retry(url):
-    """First attempt with the normal browser identity. A 404 means the URL
-    itself is wrong — retrying won't fix that, so we stop immediately and
-    report it (it should be corrected in watchlist.json). Anything else
-    (403, timeout, empty body, connection error) gets up to three more
-    tries with short backoff, rotating through alternate UAs in case the
-    block is keyed on the browser identity rather than the source IP.
-    If every urllib attempt still fails (and it wasn't a 404), a headless
-    Chromium fetch (fetch_with_playwright) is tried next, and if that also
-    fails, FlareSolverr (fetch_with_flaresolverr) is tried as a final
-    fallback — it runs a stealth-patched Chromium specifically built to
-    solve Cloudflare-style JS challenges, a step up from Playwright's plain
-    fetch for that one failure class. Both are free and require no signup;
+    """Tries every layer before giving up on a page. Charles, 2026-09-07:
+    "we can't have gaps (unless they are genuinely broken)." A plain HTTP
+    404 used to be treated as terminal — the reasoning was "the URL itself
+    is wrong, retrying won't fix that" — but that reasoning doesn't hold in
+    general: some sites 404 a plain script request on a path that resolves
+    fine through client-side routing or a bot-management rule, and only a
+    real rendered browser can tell the difference. Verified directly
+    2026-09-07: most of a sample of 404 rows were confirmed genuinely dead
+    by opening them in a real browser, but that confirmation came from
+    trying a real browser, not from trusting the first 404. So a 404 no
+    longer short-circuits anything — it gets exactly the same escalation
+    as a 403, timeout, or empty body: alternate-UA retries, then Playwright,
+    then FlareSolverr. Only a page that fails *every* layer, including a
+    fully rendered browser, gets reported as a gap.
+
+    First attempt uses the normal browser identity; up to three more tries
+    follow with short backoff, rotating through alternate UAs in case the
+    block is keyed on the browser identity rather than the source IP. If
+    every urllib attempt still fails, a headless Chromium fetch
+    (fetch_with_playwright) is tried next, and if that also fails,
+    FlareSolverr (fetch_with_flaresolverr) is tried as a final fallback —
+    it runs a stealth-patched Chromium specifically built to solve
+    Cloudflare-style JS challenges, a step up from Playwright's plain fetch
+    for that one failure class. Both are free and require no signup;
     they're ordered cheapest-and-most-general-first so no attempt is wasted
     on a page a simpler method could already handle.
 
@@ -426,41 +493,75 @@ def fetch_with_retry(url):
     failure here — it clears ok/raw so the retry loop keeps going and, if
     every attempt (including Playwright and FlareSolverr) hits the same
     wall, the page is correctly reported as a GAP with an error naming the
-    block, instead of being stored as a snapshot that flips on every run."""
+    block, instead of being stored as a snapshot that flips on every run.
+
+    A response that is technically "ok" but suspiciously thin (see
+    MIN_VISIBLE_TEXT_CHARS) — a JS-rendered page that a plain script
+    request only ever sees as an empty shell, not a Cloudflare-style
+    challenge, just genuinely no server-rendered text — does NOT stop the
+    escalation either: it's kept as the best-so-far candidate, but every
+    remaining layer still gets tried in case a real browser renders more.
+    Only if nothing does better is the thin result finally accepted,
+    on the theory that a page that's thin everywhere really is just short
+    (some regulatory notices genuinely are one line) rather than treating
+    every short page as a failure."""
 
     def _reject_challenge(ok, ct, raw, err):
         if ok and raw and len(raw) >= 20 and is_bot_challenge(raw, ct):
             return False, ct, raw, "blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content"
         return ok, ct, raw, err
 
-    ok, ct, raw, err = _reject_challenge(*fetch(url, USER_AGENT))
-    if ok and raw and len(raw) >= 20:
-        return ok, ct, raw, err
-    if err and "HTTP Error 404" in err:
-        return ok, ct, raw, err
+    def _is_thin(ok, ct, raw):
+        if not ok or not raw or any(bt in (ct or "") for bt in BINARY_CONTENT_TYPES):
+            return False
+        return _visible_text_len(raw, ct) < MIN_VISIBLE_TEXT_CHARS
 
-    got_404 = False
+    best = None  # best-so-far (ok, ct, raw, err) among thin-but-technically-ok results
+
+    def _consider(ok, ct, raw, err):
+        nonlocal best
+        if not (ok and raw and len(raw) >= 20):
+            return None
+        if not _is_thin(ok, ct, raw):
+            return (ok, ct, raw, err)
+        if best is None or len(raw) > len(best[2]):
+            best = (ok, ct, raw, err)
+        return None
+
+    ok, ct, raw, err = _reject_challenge(*fetch(url, USER_AGENT))
+    result = _consider(ok, ct, raw, err)
+    if result:
+        return result
+
     for user_agent, delay in ((USER_AGENT, 2), (UA_FIREFOX, 3), (UA_GOOGLEBOT, 3)):
         time.sleep(delay)
         ok, ct, raw, err = _reject_challenge(*fetch(url, user_agent))
-        if ok and raw and len(raw) >= 20:
-            return ok, ct, raw, err
-        if err and "HTTP Error 404" in err:
-            got_404 = True
-            break
-
-    if got_404:
-        return ok, ct, raw, err
+        result = _consider(ok, ct, raw, err)
+        if result:
+            return result
 
     if PLAYWRIGHT_AVAILABLE:
         pw_ok, pw_ct, pw_raw, pw_err = _reject_challenge(*fetch_with_playwright(url))
-        if pw_ok and pw_raw and len(pw_raw) >= 20:
-            return pw_ok, pw_ct, pw_raw, pw_err
-        err = f"{err} | playwright: {pw_err}" if err else pw_err
+        result = _consider(pw_ok, pw_ct, pw_raw, pw_err)
+        if result:
+            return result
+        if pw_ok:
+            err = None  # a thin-but-ok Playwright fetch supersedes the earlier error text
+        else:
+            err = f"{err} | playwright: {pw_err}" if err else pw_err
 
-    fs_ok, fs_ct, fs_raw, fs_err = _reject_challenge(*fetch_with_flaresolverr(url))
-    if fs_ok and fs_raw and len(fs_raw) >= 20:
-        return fs_ok, fs_ct, fs_raw, fs_err
+    fs_ok, fs_ct, fs_raw, fs_err = False, "", None, None
+    for attempt in range(FLARESOLVERR_ATTEMPTS):
+        fs_ok, fs_ct, fs_raw, fs_err = _reject_challenge(*fetch_with_flaresolverr(url))
+        result = _consider(fs_ok, fs_ct, fs_raw, fs_err)
+        if result:
+            return result
+        if attempt < FLARESOLVERR_ATTEMPTS - 1:
+            time.sleep(FLARESOLVERR_RETRY_DELAY)
+
+    if best is not None:
+        return best
+
     combined_err = f"{err} | flaresolverr: {fs_err}" if err else fs_err
     return ok, ct, raw, combined_err
 
