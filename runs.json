@@ -3444,5 +3444,112 @@
     "new_baseline": 5,
     "started_at": "2026-09-07T13:14:27.693378Z",
     "unchanged": 177
+  },
+  {
+    "changed": 11,
+    "changes": [
+      {
+        "description": "Environmental contribution",
+        "note": "Access Denied | Access Denied | You don't have permission to access \"http://www.conai.org/en/businesses/environmental-contribution/\" on this server.",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "Loading...",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "Fee Schedule - Call2Recycle® | Canada Call2Recycle® | Canada",
+        "note": "1 image(s) changed",
+        "row": 66,
+        "url": "https://www.call2recycle.ca/fee-schedule/",
+        "vp_id": 5096022
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "Loading...",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "HDS Croatian Composers Society",
+        "note": "U tijeku isplate audiovizualnih naknada za 2025. godinu | Glazbeni vremeplov za dugo toplo ljeto: pogledajte kako hit pjesme žive kroz vrijeme",
+        "row": 92,
+        "url": "https://www.zamp.hr/korisnici/pregled/64/98/privatno-kopiranje",
+        "vp_id": 5917859
+      },
+      {
+        "description": "Producer News - SK Recycles",
+        "note": "2 image(s) changed",
+        "row": 134,
+        "url": "https://skrecycles.ca/producers/news/",
+        "vp_id": 6513024
+      },
+      {
+        "description": "Producer News - Recycle BC",
+        "note": "3 image(s) changed",
+        "row": 140,
+        "url": "https://recyclebc.ca/producers/news/",
+        "vp_id": 6514859
+      },
+      {
+        "description": "EUDR Indicators - FSC Country Score (Risk Assessments)",
+        "note": "1 image(s) changed",
+        "row": 142,
+        "url": "https://www.fsc-eudr-journey.org/fsc-aligned-eudr-risk-assessment",
+        "vp_id": 6521217
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "Loading...",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "Loading...",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "Adelphe - Fees",
+        "note": "1 image(s) changed",
+        "row": 198,
+        "url": "https://www.adelphe.fr/combien-ca-coute/",
+        "vp_id": 8396995
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-07",
+    "finished_at": "2026-09-07T14:38:00.011178Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 9,
+    "new_baseline": 0,
+    "started_at": "2026-09-07T14:04:38.186996Z",
+    "unchanged": 200
   }
 ]
