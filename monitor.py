@@ -190,6 +190,13 @@ BOT_CHALLENGE_MARKERS = (
     # real content the next day, firing false "changed" alerts each time.
     "one moment, please",
     "please wait while your request is being verified",
+    # Found 2026-09-07 for rows 9/125 (Alberta Recycling, both pages of the
+    # same site): a different WAF vendor's interstitial that was being
+    # stored as if it were real 80-character page content instead of being
+    # caught and escalated -- not in any of the markers above, so it
+    # slipped through silently rather than triggering a retry.
+    "robot challenge screen",
+    "checking the site connection security",
 )
 
 
@@ -228,6 +235,68 @@ def text_is_bot_challenge(text):
         return False
     sample = text[:4000].lower()
     return any(marker in sample for marker in BOT_CHALLENGE_MARKERS)
+
+
+# Charles, 2026-09-07: "add a section for links that are expired or no
+# longer working." A different failure class from BOT_CHALLENGE_MARKERS
+# above: these pages fetch completely successfully -- normal HTTP 200, no
+# security interstitial, every fetch layer agrees -- but the content itself
+# says the specific resource is gone. Confirmed 2026-09-07 for 2 CIRCABC
+# documents (appearing as 3 watchlist rows -- 65/161/187, with 65 and 187
+# being a literal duplicate URL): circabc.europa.eu/ui/no-content says "The
+# file or folder does not exists. It is maybe deleted or removed." This is
+# a soft-404 -- the kind of client-side-rendered SPA response that never
+# raises a real HTTP 404 status for urllib to catch, so it looks fetchable
+# forever. No fetch layer can ever recover it: the document really is gone
+# from the source, not a bot-management or rendering-timing problem. This
+# is the "genuinely broken" case, distinct from a "gap" (couldn't fetch
+# anything at all) -- tracked as its own status so it gets a dedicated,
+# honest list instead of silently sitting as an unremarkable "OK" row just
+# because the fetch technically succeeded.
+DEAD_LINK_MARKERS = (
+    "the file or folder does not exists",
+    "it is maybe deleted or removed",
+    "woops! nothing found here",
+    "the link you followed seems valid, but the content is missing",
+    "the page you are looking for does not exist",
+    "the page you requested was not found",
+    "the page you were looking for doesn't exist",
+    "we can't find the page you're looking for",
+    "we couldn't find the page you were looking for",
+    "sorry, this page isn't available",
+    "sorry, we couldn't find that page",
+    "oops! that page can't be found",
+    "the requested url was not found on this server",
+    "404 - page not found",
+    "404 not found",
+    "http error 404",
+)
+
+
+def is_dead_link(text):
+    """Returns the matched line of already-extracted visible text if it
+    reads like the target resource itself is gone (see DEAD_LINK_MARKERS
+    above), or None otherwise -- not a bot-challenge
+    (text_is_bot_challenge) and not a fetch failure (gaps). Only samples
+    the first 3000 characters: every known not-found template states it
+    right at the top, so this can't miss on a long, real page that happens
+    to mention "404" somewhere deep in unrelated content. Deliberately
+    conservative phrase list (full compound sentences, not bare words like
+    "404") to keep false positives on genuine content rare; if a real page
+    is ever misflagged, the fix is to remove or tighten the specific
+    marker that matched, not to abandon the check. Returning the matched
+    line (not just True/False) lets the caller show Charles exactly what
+    the source page says, instead of a generic "this looks dead" note."""
+    if not text:
+        return None
+    sample = text[:3000].lower()
+    for marker in DEAD_LINK_MARKERS:
+        if marker in sample:
+            for line in text[:3000].splitlines():
+                if marker in line.lower():
+                    return line.strip()
+            return marker  # matched but somehow not on its own line -- fall back to the marker text itself
+    return None
 
 
 def log(msg):
@@ -844,6 +913,7 @@ def format_dashboard(entries, snapshots, runs, run_record):
     l.append(f"| Unchanged | {run_record['unchanged']} |")
     l.append(f"| Changed | {run_record['changed']} |")
     l.append(f"| Coverage gaps | {run_record['gaps']} |")
+    l.append(f"| Dead / expired links | {run_record.get('dead', 0)} |")
     issue_txt = f"#{run_record['issue_number']}" if run_record.get("issue_number") else "none opened"
     l.append(f"| GitHub issue | {issue_txt} |")
     l.append("")
@@ -869,15 +939,36 @@ def format_dashboard(entries, snapshots, runs, run_record):
         l.append("</details>")
         l.append("")
 
+    if run_record.get("dead_links"):
+        # Charles, 2026-09-07: "add a section for links that are expired
+        # or no longer working." Distinct from Coverage gaps above -- a gap
+        # means the fetch itself failed (blocked, timed out, network
+        # error); a dead link means the fetch succeeded and the source
+        # itself says the resource is gone (a soft-404, confirmed by
+        # opening the page directly). These need a different fix: a gap
+        # might resolve itself next run, a dead link needs the URL
+        # updated or removed from watchlist.json.
+        l.append(f"## Dead / expired links this run ({len(run_record['dead_links'])})")
+        l.append("")
+        l.append("<details><summary>Show dead-link list</summary>")
+        l.append("")
+        l.append("| Row | Page | What the source page says |")
+        l.append("|---|---|---|")
+        for d in run_record["dead_links"]:
+            l.append(f"| {d['row']} | [{escape_md(d['description']) or d['url']}]({d['url']}) | {escape_md(d['note'])} |")
+        l.append("")
+        l.append("</details>")
+        l.append("")
+
     l.append("## Run history (most recent first)")
     l.append("")
-    l.append("| Date | Completed (UK time) | Checked | New | Unchanged | Changed | Gaps | Issue |")
-    l.append("|---|---|---|---|---|---|---|---|")
+    l.append("| Date | Completed (UK time) | Checked | New | Unchanged | Changed | Gaps | Dead | Issue |")
+    l.append("|---|---|---|---|---|---|---|---|---|")
     for r in list(reversed(runs))[:30]:
         r_issue = f"#{r['issue_number']}" if r.get("issue_number") else "—"
         finished = format_utc(r.get("finished_at"))
         l.append(f"| {r['date']} | {finished} | {r['checked']} | {r['new_baseline']} | {r['unchanged']} | "
-                  f"{r['changed']} | {r['gaps']} | {r_issue} |")
+                  f"{r['changed']} | {r['gaps']} | {r.get('dead', 0)} | {r_issue} |")
     l.append("")
 
     l.append(f"## Current status — all {len(entries)} watched pages")
@@ -888,7 +979,8 @@ def format_dashboard(entries, snapshots, runs, run_record):
     l.append("|---|---|---|---|")
     for entry in sorted(entries, key=lambda e: e["row"]):
         snap = snapshots.get(entry["slug"], {})
-        status = "GAP" if snap.get("status") == "gap" else "OK"
+        snap_status = snap.get("status")
+        status = "GAP" if snap_status == "gap" else ("DEAD" if snap_status == "dead" else "OK")
         last_changed = snap.get("last_changed") or "—"
         desc = escape_md(entry.get("description")) or entry["url"]
         l.append(f"| {entry['row']} | [{desc}]({entry['url']}) | {status} | {last_changed} |")
@@ -905,9 +997,10 @@ def main():
     snapshots = load_json(SNAPSHOTS_PATH, {})
     runs = load_json(RUNS_PATH, [])
 
-    counts = {"checked": 0, "new": 0, "unchanged": 0, "changed": 0, "gap": 0}
+    counts = {"checked": 0, "new": 0, "unchanged": 0, "changed": 0, "gap": 0, "dead": 0}
     changes = []
     gaps = []
+    dead_links = []
 
     log(f"Loaded {len(entries)} watchlist entries, {len(snapshots)} existing snapshots.")
 
@@ -986,6 +1079,10 @@ def main():
                 log(f"GAP  row {entry['row']:>3}  {url}  (bot-challenge caught post-extraction)")
                 continue
 
+            dead_reason = is_dead_link(new_text)
+            is_dead = dead_reason is not None
+            had_dead_before = (prev or {}).get("status") == "dead"
+
             # Hash each candidate content image found on the page (see
             # extract_images/fetch_image_hash above). A page whose text is
             # byte-identical to last time can still have genuinely changed
@@ -1011,6 +1108,16 @@ def main():
                 status, note = "new", None
             else:
                 text_changed, text_note = classify_change(prev.get("text", ""), new_text)
+                if is_dead and had_dead_before:
+                    # Both before and after are "this resource is gone"
+                    # states -- some dead-page templates embed a dynamic
+                    # element (a request id, a random "related pages"
+                    # list) that would otherwise diff as a false "changed"
+                    # every run. A page that's dead on both sides has
+                    # nothing new to report; only a genuine live<->dead
+                    # transition (handled below via prev.get("status"))
+                    # should ever surface as a real change.
+                    text_changed = False
                 images_changed = had_image_baseline and new_image_hashes != prev_image_hashes
                 if text_changed or images_changed:
                     status = "changed"
@@ -1026,11 +1133,21 @@ def main():
             snapshots[slug] = {
                 **entry, "mode": "text", "text": new_text, "hash": None,
                 "image_hashes": new_image_hashes,
-                "status": "ok",
+                "status": "dead" if is_dead else "ok",
                 "last_checked": started_at,
                 "last_changed": started_at if status == "changed" else (prev or {}).get("last_changed"),
                 "last_change_note": note if status == "changed" else (prev or {}).get("last_change_note"),
             }
+
+            if is_dead:
+                # Charles, 2026-09-07: "add a section for links that are
+                # expired or no longer working." Reported every run the
+                # page still reads as dead (not just the run it first
+                # flips) so the dashboard's dead-link list always reflects
+                # current reality, the same way gaps_list already does.
+                counts["dead"] += 1
+                dead_links.append({**entry, "note": dead_reason[:200]})
+                log(f"DEAD row {entry['row']:>3}  {url}  ({dead_reason[:100]})")
 
         counts[status] += 1
         if status == "changed":
@@ -1062,12 +1179,15 @@ def main():
         "unchanged": counts["unchanged"],
         "changed": counts["changed"],
         "gaps": counts["gap"],
+        "dead": counts["dead"],
         "issue_number": issue_number,
         "issue_error": issue_error,
         "changes": [{"row": c["row"], "vp_id": c["vp_id"], "url": c["url"],
                      "description": c["description"], "note": c["note"]} for c in changes],
         "gaps_list": [{"row": g["row"], "vp_id": g["vp_id"], "url": g["url"],
                        "description": g["description"], "error": g["error"]} for g in gaps],
+        "dead_links": [{"row": d["row"], "vp_id": d["vp_id"], "url": d["url"],
+                        "description": d["description"], "note": d["note"]} for d in dead_links],
     }
     runs.append(run_record)
     runs = runs[-90:]  # keep the most recent ~90 days, no unbounded growth
@@ -1082,7 +1202,7 @@ def main():
     log(
         f"DONE. checked={counts['checked']} new={counts['new']} "
         f"unchanged={counts['unchanged']} changed={counts['changed']} "
-        f"gaps={counts['gap']} issue={issue_number}"
+        f"gaps={counts['gap']} dead={counts['dead']} issue={issue_number}"
     )
     if changes and issue_error:
         log(f"{len(changes)} real change(s) detected but the GitHub issue FAILED to open — see runs.json.")
