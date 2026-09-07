@@ -69,6 +69,18 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 CloudRegulatoryWatch/1.0"
 )
+# FlareSolverr (see daily-watch.yml) is a free, self-hosted, open-source
+# service — no account or API key needed — run as a Docker container
+# alongside this job. It drives a stealth-patched Chromium purpose-built to
+# solve Cloudflare-style JS challenges ("just a moment", "one moment,
+# please", etc.), which is a step up from a generic Playwright fetch for
+# exactly that failure class. It is tried as the LAST resort, after both a
+# plain urllib fetch and a generic Playwright fetch have failed, so it never
+# spends time on pages the free methods already handle. It cannot get past a
+# hard IP-reputation block — this job's outbound IP is still GitHub's — only
+# a software challenge that a convincing-enough browser can clear.
+FLARESOLVERR_URL = os.environ.get("FLARESOLVERR_URL", "http://localhost:8191/v1")
+FLARESOLVERR_TIMEOUT_MS = 60000
 # Alternate identities used only as fallback retries when the primary
 # request is blocked (403) or times out. Some sites' bot-management rules
 # explicitly allowlist known search-engine crawlers even while blocking
@@ -301,6 +313,44 @@ def fetch_with_playwright(url):
                 pass
 
 
+def fetch_with_flaresolverr(url):
+    """Last-of-last-resort fetch via a locally-running FlareSolverr instance
+    (see daily-watch.yml — it runs as a Docker service alongside this job,
+    nothing to sign up for). Sends a plain 'solve this URL' request over
+    FlareSolverr's own HTTP API and gets back the already-rendered page.
+    Returns (ok, content_type, raw_bytes_or_none, error_or_none), matching
+    fetch()'s signature. If the service isn't running or unreachable (e.g.
+    running this file outside the GitHub Actions workflow), this fails soft —
+    same optional-dependency philosophy as PLAYWRIGHT_AVAILABLE — so a
+    missing FlareSolverr never breaks the run, the page just falls through
+    to being reported as a gap same as before this existed."""
+    payload = json.dumps({
+        "cmd": "request.get",
+        "url": url,
+        "maxTimeout": FLARESOLVERR_TIMEOUT_MS,
+    }).encode()
+    req = urllib.request.Request(
+        FLARESOLVERR_URL,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=(FLARESOLVERR_TIMEOUT_MS / 1000) + 10) as resp:
+            result = json.loads(resp.read().decode())
+    except Exception as e:  # noqa: BLE001 — service not running, timed out, etc.
+        return False, "", None, f"flaresolverr unreachable: {str(e)[:200]}"
+
+    if result.get("status") != "ok":
+        return False, "", None, f"flaresolverr: {str(result.get('message', 'unknown error'))[:200]}"
+
+    solution = result.get("solution") or {}
+    html = solution.get("response") or ""
+    if not html:
+        return False, "", None, "flaresolverr: empty response"
+    return True, "text/html; charset=utf-8", html.encode("utf-8"), None
+
+
 def fetch_with_retry(url):
     """First attempt with the normal browser identity. A 404 means the URL
     itself is wrong — retrying won't fix that, so we stop immediately and
@@ -309,15 +359,20 @@ def fetch_with_retry(url):
     tries with short backoff, rotating through alternate UAs in case the
     block is keyed on the browser identity rather than the source IP.
     If every urllib attempt still fails (and it wasn't a 404), a headless
-    Chromium fetch (fetch_with_playwright) is tried once as a final
-    fallback to obtain the full rendered page.
+    Chromium fetch (fetch_with_playwright) is tried next, and if that also
+    fails, FlareSolverr (fetch_with_flaresolverr) is tried as a final
+    fallback — it runs a stealth-patched Chromium specifically built to
+    solve Cloudflare-style JS challenges, a step up from Playwright's plain
+    fetch for that one failure class. Both are free and require no signup;
+    they're ordered cheapest-and-most-general-first so no attempt is wasted
+    on a page a simpler method could already handle.
 
     A response that comes back HTTP 200 but is actually a bot-challenge
     interstitial (see is_bot_challenge) is treated exactly like any other
     failure here — it clears ok/raw so the retry loop keeps going and, if
-    every attempt (including Playwright) hits the same wall, the page is
-    correctly reported as a GAP with an error naming the block, instead of
-    being stored as a snapshot that flips on every run."""
+    every attempt (including Playwright and FlareSolverr) hits the same
+    wall, the page is correctly reported as a GAP with an error naming the
+    block, instead of being stored as a snapshot that flips on every run."""
 
     def _reject_challenge(ok, ct, raw, err):
         if ok and raw and len(raw) >= 20 and is_bot_challenge(raw, ct):
@@ -340,13 +395,19 @@ def fetch_with_retry(url):
             got_404 = True
             break
 
-    if got_404 or not PLAYWRIGHT_AVAILABLE:
+    if got_404:
         return ok, ct, raw, err
 
-    pw_ok, pw_ct, pw_raw, pw_err = _reject_challenge(*fetch_with_playwright(url))
-    if pw_ok and pw_raw and len(pw_raw) >= 20:
-        return pw_ok, pw_ct, pw_raw, pw_err
-    combined_err = f"{err} | playwright: {pw_err}" if err else pw_err
+    if PLAYWRIGHT_AVAILABLE:
+        pw_ok, pw_ct, pw_raw, pw_err = _reject_challenge(*fetch_with_playwright(url))
+        if pw_ok and pw_raw and len(pw_raw) >= 20:
+            return pw_ok, pw_ct, pw_raw, pw_err
+        err = f"{err} | playwright: {pw_err}" if err else pw_err
+
+    fs_ok, fs_ct, fs_raw, fs_err = _reject_challenge(*fetch_with_flaresolverr(url))
+    if fs_ok and fs_raw and len(fs_raw) >= 20:
+        return fs_ok, fs_ct, fs_raw, fs_err
+    combined_err = f"{err} | flaresolverr: {fs_err}" if err else fs_err
     return ok, ct, raw, combined_err
 
 
