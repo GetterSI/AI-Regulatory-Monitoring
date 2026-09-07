@@ -2558,5 +2558,658 @@
     "new_baseline": 0,
     "started_at": "2026-09-07T11:17:56.092914Z",
     "unchanged": 191
+  },
+  {
+    "changed": 69,
+    "changes": [
+      {
+        "description": "- Afvalfonds verpakkingen",
+        "note": "€ 0,02 | € 0,022 | Plastic 2020 til 2023 (regular rate)",
+        "row": 1,
+        "url": "https://www.afvalfondsverpakkingen.nl/en/node/450",
+        "vp_id": 2913449
+      },
+      {
+        "description": "Not yet a client | Valipac",
+        "note": "E.g. you have goods delivered to a logistics par | E.g. you have goods delivered to a logistics partner to be packed. | Yes",
+        "row": 4,
+        "url": "https://www.valipac.be/en/not-yet-a-client/",
+        "vp_id": 2913465
+      },
+      {
+        "description": "Tariffs",
+        "note": "Hard disk, monitors, network products, notebook / laptop, printers, PCs, servers, scanners, tablet, till systems | Consumer electronics | 3D / VR / AR headset, CD/DVD/Blu-Ray Recorder/Player, headphones, loudspeakers, radios/Hi-Fi systems, remote control, smartspeaker, televisions, video projectors",
+        "row": 6,
+        "url": "https://www.swico.ch/en/recycling/basics/tariffs/",
+        "vp_id": 2913472
+      },
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "Stewardship - Alberta Recycling Management Authority | Registry | Stewardship",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "Sociedade Ponto Verde",
+        "note": "Assumimos, também, o compromisso de manter os nossos clientes informados sobre todas as alterações legais e novas obrigações que vão surgindo no âmbito desta reest | Assumimos, também, o compromisso de manter os nossos clientes informados sobre todas as alterações legais e novas obrigações que vão surgindo no âmbito desta reestruturação e que tenham impacto na sua atividade. | Promovemos a interaç",
+        "row": 10,
+        "url": "https://www.pontoverde.pt/aderentes/2_1_valor_a_pagar.php",
+        "vp_id": 2913484
+      },
+      {
+        "description": "ARA >Tarife",
+        "note": "Wir möchten an dieser St | Wir möchten an dieser Stelle darauf hinweisen, dass es sich bei diesen Kostenersätzen | NICHT",
+        "row": 17,
+        "url": "https://www.ara.at/leistungen-angebote/entpflichtungsservice/verpackungsentpflichtung/tarife",
+        "vp_id": 2913531
+      },
+      {
+        "description": "NWT Electronics Recycling Program | Alberta Recycling",
+        "note": "NWT Electronics - Alberta Recycling Management Authority | Registry | NWT Electronics",
+        "row": 19,
+        "url": "https://www.albertarecycling.ca/nwt-recycling-program/",
+        "vp_id": 2913540
+      },
+      {
+        "description": "Tarifs et dfinitions des produits soumis  Auvibel",
+        "note": "« refurbished » ou appareil reconditionné: appareil repris dans la liste des appareils ci-dessus, qui a été utilisé et qui est ensuite réparé, renouvelé, rétabli et/ou contrôlé afin de le mettre à nouveau en circulation sur le territoire national. Les appareils reconditionnés dans le délai et dans les termes d’une garantie de remplacement d’un appareil défectueux, ne sont pas soumis à la rémunérat",
+        "row": 24,
+        "url": "http://www.auvibel.be/fr/remuneration/tarifs",
+        "vp_id": 2913569
+      },
+      {
+        "description": "Speichermedienvergtung AKM austromechana",
+        "note": "Sind Sie gle­ichzeit­ig Expor­teur und Erstin­verkehrbringer, beacht­en Sie bitte, dass Sie keine Mel­dung für Spe­icher­me­di­en erstat­ten müssen, die nie in Öster­re­ich in Verkehr gebracht wer­den. Eine Rück­vergü­tung fü | Sind Sie gle­ichzeit­ig Expor­teur und Erstin­verkehrbringer, beacht­en Sie bitte, dass Sie keine Mel­dung für Spe­icher­me­di­en erstat­ten müssen, die nie in Öster­re­ich",
+        "row": 25,
+        "url": "https://www.akm.at/musiknutzende/speichermedienverguetung/",
+        "vp_id": 2913570
+      },
+      {
+        "description": "Procedura de achitare a remuneraiei pentru copia privat  UPFR",
+        "note": "înscrise în Raportul lunar, putând solicita documentele care au stat la baza | înscrise în Raportul lunar, putând solicita documentele care au stat la baza întocmirii acestuia. | 5. Primiţi Factura Fiscală",
+        "row": 28,
+        "url": "https://upfr.ro/procedura-de-achitare-a-remuneratiei-pentru-copia-privata/",
+        "vp_id": 2913582
+      },
+      {
+        "description": "Batteries - Environment - European Commission",
+        "note": "- study on the calculation of recycling efficiencies and implementation of export article (Art. 15) of the Batteries Dir | - study on the calculation of recycling efficiencies and implementation of export article (Art. 15) of the Batteries Directive 2006/66/EC | Final report",
+        "row": 31,
+        "url": "https://ec.europa.eu/environment/waste/batteries/legislation.htm",
+        "vp_id": 2913590
+      },
+      {
+        "description": "Critical raw materials | Internal Market, Industry, Entrepreneurship and SMEs",
+        "note": "negotiate trade agreements, challenge trade distortion measures, develop research and innovation actions and implement the 2030 ‘agenda on sustainable development and | negotiate trade agreements, challenge trade distortion measures, develop research and innovation actions and implement the 2030 ‘agenda on sustainable development and its sustainable development goals’ | The methodology to identify",
+        "row": 37,
+        "url": "https://ec.europa.eu/growth/sectors/raw-materials/specific-interest/critical_en",
+        "vp_id": 3082893
+      },
+      {
+        "description": "Stichting OPEN - Producten- en tarievenlijst",
+        "note": "€ 0, | € 0,0800 / kg | E5/16",
+        "row": 41,
+        "url": "https://my.stichting-open.org/productlist-external",
+        "vp_id": 3155476
+      },
+      {
+        "description": "Croatia WEEE/Batteries/Packaging fees & regulations",
+        "note": "Najčešća pitanja u svezi Pravilnika o ambalaži i otpadnoj ambalaži, plastičnim proizvodima za jednokratnu uporabu i ribolovnom ala | Najčešća pitanja u svezi Pravilnika o ambalaži i otpadnoj ambalaži, plastičnim proizvodima za jednokratnu uporabu i ribolovnom alatu koji sadržava plastiku (NN 13723) | Obrazac A02 - Izvješće ambalažera - Izvješće o vrsti i količini proizvedene i/ili uvezene ambalaže",
+        "row": 46,
+        "url": "https://www.fzoeu.hr/hr/naknada-za-ambalazu-i-ambalazni-otpad/1407",
+        "vp_id": 3450181
+      },
+      {
+        "description": "Implementation of the RoHS Directive",
+        "note": "Stakeholder consultations on 16 exemption requests under Pack 21, from 23 September to 2 December 2020 | Stakeholder consultations | on 2 exemption requests under Pack 19 and 20, from 10 January to 20 February 2020",
+        "row": 58,
+        "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/rohs-directive/implementation-rohs-directive_en",
+        "vp_id": 4538802
+      },
+      {
+        "description": "Tapkite organizacijos nariu | Žaliasis taškas",
+        "note": "Pavedus Žaliajam taškui organizuoti pakuočių atliekų tvarkymą, g | Pavedus Žaliajam taškui organizuoti pakuočių atliekų tvarkymą, gaunami prisijungimai prie informacinės sistemos, kurioje turi būti pateikiami pakuotės išleidimo į rinką duomenys. Atsižvelgiant į kiekvieno ketvirčio rezultatus, pagal poreikį, koreguojamas metinis kiekis. Duomenys apie pakuotes gali būti tikslinami tik sutartyje numa",
+        "row": 63,
+        "url": "https://www.zaliasistaskas.lt/tapkite-organizacijos-nariu/",
+        "vp_id": 4910107
+      },
+      {
+        "description": "Copia Privata",
+        "note": "Attualmente è in corso di definizione il Reg | Attualmente è in corso di definizione il Regolamento di ripartizione secondo quanto disposto dall’art. 6 del DM 259/2023. | Categoria Produttori di Videogrammi e Produttori di opere audiovisive",
+        "row": 64,
+        "url": "https://www.siae.it/it/cosa-facciamo/altri-servizi/copia-privata/",
+        "vp_id": 4948810
+      },
+      {
+        "description": "How to Access the TSCA Inventory | US EPA",
+        "note": "All field identifiers are present in a record even if some fields have no data. If there are no data, the field ID (with colon) is immediately followed by a tab unless it is the last field of | All field identifiers are present in a record even if some fields have no data. If there are no data, the field ID (with colon) is immediately followed by a tab unless it is the last field of the record, in",
+        "row": 70,
+        "url": "https://www.epa.gov/tsca-inventory/how-access-tsca-inventory",
+        "vp_id": 5135801
+      },
+      {
+        "description": "SILiAmb schemes - Specific waste streams - Legislation - Portugal",
+        "note": "Alteração, por apreciação parlame | Alteração, por apreciação parlamentar, ao Decreto-Lei n.º 102 -D/2020, de 10 de dezembro, que aprova o regime geral da gestão de resíduos, o regime jurídico da deposição de resíduos em aterro e altera o regime da gestão de fluxos específicos de resíduos, transpondo as Diretivas (UE) 2018/849, 2018/850, 2018/851 e 2018/852. | Decreto-Lei n.º 9/2021, de 29 de jane",
+        "row": 71,
+        "url": "https://www.apambiente.pt/residuos/fluxos-especificos-de-residuos",
+        "vp_id": 5287465
+      },
+      {
+        "description": "ReSimple | Tarifas",
+        "note": "1,57 | 5,36 | Envases de PP que contienen sustancias con grasa (5)",
+        "row": 77,
+        "url": "https://www.resimple.cl/tarifas/",
+        "vp_id": 5608899
+      },
+      {
+        "description": "EUDR Info - Due Diligence Information System (European Commission)",
+        "note": "For any further technical problem and support in the usage of the Informa | For any further technical problem and support in the usage of the Information System, you can contact | sante-traces",
+        "row": 78,
+        "url": "https://green-business.ec.europa.eu/deforestation-regulation-implementation/deforestation-due-diligence-registry_en#training-testing-and-user-manuals",
+        "vp_id": 5692226
+      },
+      {
+        "description": "Tarifs et supports - Copie France",
+        "note": "Je fais ma déclaration | Je fais ma déclaration mensuelle | Tarifs et supports",
+        "row": 81,
+        "url": "https://www.copiefrance.fr/fr/faire-sa-declaration/tarifs-et-supports",
+        "vp_id": 5693369
+      },
+      {
+        "description": "Hellenic Copyright Organization",
+        "note": "Article 66F: Definition of online content-sharing service provider and use o | Article 66F: Definition of online content-sharing service provider and use of works of other subject – matters of protection by online content-sharing service providers | CHAPTER  12 – FINAL AND TRANSITIONAL PROVISIONS",
+        "row": 82,
+        "url": "https://library.opi.gr/en/law-2121-1993/",
+        "vp_id": 5705616
+      },
+      {
+        "description": "Regeringskansliets rättsdatabaser",
+        "note": "den 1 januari 2 | den 1 januari 2009, | b) ersättning till den som har fått kostnader för",
+        "row": 84,
+        "url": "https://rkrattsbaser.gov.se/sfst?bet=2008:834",
+        "vp_id": 5720101
+      },
+      {
+        "description": "EcoRom Updates",
+        "note": "Asociația OIREP Ambalaje solicită Ministerului Mediului, Apelor și Pădurilor să acorde un termen mai mare pentru consultări | Asociația OIREP Ambalaje solicită Ministerului Mediului, Apelor și Pădurilor să acorde un termen mai mare pentru consultările publice privind proiectele de acte normative | Asociația OIREP Ambalaje atrage atenția asupra modalității în care Ministerul Mediului, Apelor și Păd",
+        "row": 89,
+        "url": "https://ecoromambalaje.ro/informatii-publice/",
+        "vp_id": 5905357
+      },
+      {
+        "description": "HDS Croatian Composers Society",
+        "note": "Cirkuska pr | Cirkuska priredba, artistička priredba | Sportska priredba",
+        "row": 92,
+        "url": "https://www.zamp.hr/korisnici/pregled/64/98/privatno-kopiranje",
+        "vp_id": 5917859
+      },
+      {
+        "description": "Price list - sewa",
+        "note": ", we will | , we will be happy to prepare a price offer according to your product range. | EEE",
+        "row": 93,
+        "url": "https://www.sewa.sk/en/price-list",
+        "vp_id": 5925311
+      },
+      {
+        "description": "Per- and polyfluoroalkyl substances (PFAS) - Canada.ca",
+        "note": "was published for a 60-day public comment period ending on Nov | was published for a 60-day public comment period ending on November 25, 2025. Comments received will be considered in the development of proposed regulations. | Adding substances to Schedule 1",
+        "row": 96,
+        "url": "https://www.canada.ca/en/health-canada/services/chemical-substances/other-chemical-substances-interest/per-polyfluoroalkyl-substances.html",
+        "vp_id": 6089673
+      },
+      {
+        "description": "TSCA Section 8(a)(7) Reporting and Recordkeeping Requirements for Perfluoroalkyl and Polyfluoroalkyl Substances | US EPA",
+        "note": ", months to years). Because of the widespread use of PFAS in commerce | , months to years). Because of the widespread use of PFAS in commerce and their tendency to persist in the environment, most people in the United States have been exposed to PFAS. As a result, several PFAS have been detected in human blood serum. | Under TSCA section 8(b), EPA maintains the TSCA Chemical Substance Inventory (“",
+        "row": 97,
+        "url": "https://www.epa.gov/assessing-and-managing-chemicals-under-tsca/tsca-section-8a7-reporting-and-recordkeeping",
+        "vp_id": 6152045
+      },
+      {
+        "description": "The Proposition 65 List - OEHHA",
+        "note": "1-(2-Chloroethyl)-3-cyclohexy | 1-(2-Chloroethyl)-3-cyclohexyl-1-nitrosourea (CCNU) (Lomustine) | 13010-47-4",
+        "row": 102,
+        "url": "https://oehha.ca.gov/proposition-65/proposition-65-list",
+        "vp_id": 6174557
+      },
+      {
+        "description": "End-of-Life Vehicles - European Commission",
+        "note": "200 | 2002-05 | ;",
+        "row": 104,
+        "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/end-life-vehicles_en",
+        "vp_id": 6174840
+      },
+      {
+        "description": "PFAS in Products, Maine Department of Environmental Protection",
+        "note": "The statute defines manufacturer as “the person that manufactures a product | The statute defines manufacturer as “the person that manufactures a product or whose brand name is affixed to the product.” In the case of a product that is imported into the United States, where the person that manufactured or assembled the product or whose brand name is affixed to the product does not have a presence i",
+        "row": 110,
+        "url": "https://www.maine.gov/dep/spills/topics/pfas/PFAS-products/",
+        "vp_id": 6218598
+      },
+      {
+        "description": "Normative - Ecoem",
+        "note": "derivanti da queste tipologie di prodotti, una volta giunti a fine vita. T | derivanti da queste tipologie di prodotti, una volta giunti a fine vita. Tale responsabilità può essere gestita in modo individuale, o collettivo, consorziandosi cioè con altri produttori di pile e accumulatori, per la realizzazione del sistema di raccolta. | Sistema Collettivo",
+        "row": 115,
+        "url": "https://www.ecoem.it/normative/#batterie",
+        "vp_id": 6310487
+      },
+      {
+        "description": "Normative - Ecoem",
+        "note": "derivanti da queste tipologie di prodotti, una volta giunti a fine vita. T | derivanti da queste tipologie di prodotti, una volta giunti a fine vita. Tale responsabilità può essere gestita in modo individuale, o collettivo, consorziandosi cioè con altri produttori di pile e accumulatori, per la realizzazione del sistema di raccolta. | Sistema Collettivo",
+        "row": 116,
+        "url": "https://www.ecoem.it/normative/",
+        "vp_id": 6310700
+      },
+      {
+        "description": "PFAS Resources for States and other ECOS Members - The Environmental Council of the States (ECOS)",
+        "note": "For years, states have been actively working to address PFAS contamination in a variety of environmental media. One recent challenge is the management of solids, which may be contaminated with PFAS as a result of it | For years, states have been actively working to address PFAS contamination in a variety of environmental media. One recent challenge is the management of solids, which may be contami",
+        "row": 117,
+        "url": "https://www.ecos.org/pfas/",
+        "vp_id": 6329558
+      },
+      {
+        "description": "French Sustainability Index",
+        "note": "Le visuel de l'indice de durabilité est défini par arrêté du 5 avril 2024 relatif aux modalités d’affichage, à la signalétique et aux paramètres génér | Le visuel de l'indice de durabilité est défini par arrêté du 5 avril 2024 relatif aux modalités d’affichage, à la signalétique et aux paramètres généraux de calcul de l'indice de durabilité des équipements électriques et électroniques. | Les vende",
+        "row": 119,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite",
+        "vp_id": 6367839
+      },
+      {
+        "description": "French Repairability Index",
+        "note": "Pour accompagner au mieux | Pour accompagner au mieux l’introduction de l’indice de réparabilité, le ministère de la Transition écologique, de la Biodiversité, de la Mer et de la Pêche met à la disposition des professionnels et du public les documents nécessaires à son calcul et à son affichage. | La charte graphique de la signalétique de l’indice de réparabilité",
+        "row": 120,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite",
+        "vp_id": 6367916
+      },
+      {
+        "description": "Asekol Czech Republic WEEE",
+        "note": "elektrozařízením elektrické nebo elektronické zařízení, jehož správná funkce závisí na elektrickém proudu nebo na elektromagnetickém poli, nebo zařízení k výrobě, přenosu a měření elektrického proudu nebo elektromagnetického pole, které je určeno pro použití při napětí nepřesahujícím 1000 V pro střídavý proud a 15 | elektrozařízením elektrické nebo elektronické zařízení, jehož správná funkce závis",
+        "row": 122,
+        "url": "https://asekol.webflow.io/povinnosti-vyrobcu-a-prodejcu#elektrozarizeni",
+        "vp_id": 6412521
+      },
+      {
+        "description": "Asekol Czech Republic Batteries",
+        "note": "elektrozařízením elektrické nebo elektronické zařízení, jehož správná funkce závisí na elektrickém proudu nebo na elektromagnetickém poli, nebo zařízení k výrobě, přenosu a měření elektrického proudu nebo elektromagnetického pole, které je určeno pro použití při napětí nepřesahujícím 1000 V pro střídavý proud a 15 | elektrozařízením elektrické nebo elektronické zařízení, jehož správná funkce závis",
+        "row": 123,
+        "url": "https://asekol.webflow.io/povinnosti-vyrobcu-a-prodejcu#baterie",
+        "vp_id": 6412523
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "Electronics Recycling Program - Alberta Recycling Management Authority | Stewardship Recycling Program | Electronics Recycling Program",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "The Red List - Living Future",
+        "note": "1318-09- | 1318-09-8 Amphibole-group minerals | Asbestos",
+        "row": 127,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6417425
+      },
+      {
+        "description": "Asekol Downloads",
+        "note": "pi | picture_as_pdf | PDF",
+        "row": 129,
+        "url": "https://asekol.webflow.io/ke-stazeni#vyrobci-a-prodejci",
+        "vp_id": 6453843
+      },
+      {
+        "description": "Circular Energy Fees",
+        "note": "R1.2 | R1.27 | Ballasts / Drivers",
+        "row": 130,
+        "url": "https://circular-energy.org/epr-fees/",
+        "vp_id": 6456973
+      },
+      {
+        "description": "PFAS Central",
+        "note": "Maine will use an experimental networked approach to the campaign, providing special training to operators at the state’s 988 and 211 crisis lines to handle | Maine will use an experimental networked approach to the campaign, providing special training to operators at the state’s 988 and 211 crisis lines to handle the unique stress of a farmer trying to cope with the wide range of risks associated",
+        "row": 132,
+        "url": "https://pfascentral.org/",
+        "vp_id": 6475025
+      },
+      {
+        "description": "CPCB | Central Pollution Control Board",
+        "note": "Enforcement | Training | Mass Awareness",
+        "row": 133,
+        "url": "https://cpcb.nic.in/latest-cpcb.php",
+        "vp_id": 6495233
+      },
+      {
+        "description": "Recycling Regulation",
+        "note": "( | (c) | beverage container product category;",
+        "row": 141,
+        "url": "https://www.bclaws.gov.bc.ca/civix/document/id/lc/statreg/449_2004",
+        "vp_id": 6514865
+      },
+      {
+        "description": "EUDR Indicators - Coruption Perceptions Index (Transparency.org)",
+        "note": "Weak democratic institutions and rule of la | Weak democratic institutions and rule of law are exacerbated by ongoing instability and external pressures. | CPI 2024 for the Middle East & North Africa: Corruption linked to authoritarianism, but calls for reform emerging",
+        "row": 143,
+        "url": "https://www.transparency.org/en/cpi/2024",
+        "vp_id": 6521220
+      },
+      {
+        "description": "EUDR Indicators - Expert Group Conclusion (EU)",
+        "note": "Uzbekistan | low risk category | V",
+        "row": 144,
+        "url": "https://green-forum.ec.europa.eu/deforestation-regulation-implementation/eudr-cooperation-and-partnerships/country-classification-list_en",
+        "vp_id": 6521233
+      },
+      {
+        "description": "India RoHS - CPCB e-waste rules",
+        "note": "Scientific,Tech. and R | Scientific,Tech. and R&D | Enforcement",
+        "row": 147,
+        "url": "https://cpcb.nic.in/rules-6/",
+        "vp_id": 6525036
+      },
+      {
+        "description": "Základné povinnosti | NATUR-PACK, a.s.",
+        "note": "v prípade predaja koncovému používateľovi výrobku mal považov | v prípade predaja koncovému používateľovi výrobku mal považovať | zahraničný dodávateľ",
+        "row": 151,
+        "url": "https://www.naturpack.sk/sluzby/vyrobcovia/obaly/zakladne-povinnosti/",
+        "vp_id": 6715506
+      },
+      {
+        "description": "UK RoHS",
+        "note": "“manufacturer” means a person who manufactures EEE or who has EEE designed or manufactured, and markets | “manufacturer” means a person who manufactures EEE or who has EEE designed or manufactured, and markets it under that person’s name or trademark; | “market surveillance authority” has the meaning given in regulation",
+        "row": 153,
+        "url": "https://www.legislation.gov.uk/uksi/2012/3032/",
+        "vp_id": 6726933
+      },
+      {
+        "description": "Living Building Challenge - Red List",
+        "note": "1318-09- | 1318-09-8 Amphibole-group minerals | Asbestos",
+        "row": 157,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6794445
+      },
+      {
+        "description": "Léko tariffs",
+        "note": "Wh | Why Léko? | Our missions",
+        "row": 158,
+        "url": "https://www.leko-organisme.fr/en/pourquoi-leko/",
+        "vp_id": 6834415
+      },
+      {
+        "description": "Annual Producer Meetings & Fee Consultations - Knowledge Base",
+        "note": "presentation about proposed cha | presentation about proposed changes | delivered at the ASM and",
+        "row": 170,
+        "url": "https://knowledge.werecycle.ca/?title=Producers/03_Fees/Annual_Producer_Meetings_%26_Fee_Consultations",
+        "vp_id": 7251443
+      },
+      {
+        "description": "Prices - Ecoembes Companies",
+        "note": "Shops that carry out a | Shops that carry out a comprehensive and private management of more than 85% of the commercial packaging waste of which they are final holders, without making a majority use of the municipal channel. | Other businesses or final holders that do not reach this 85% of integral management (i.e. more than 15% ends up in the municipal channel) or those that take all the waste di",
+        "row": 173,
+        "url": "https://ecoembesempresas.com/en/prices",
+        "vp_id": 7429652
+      },
+      {
+        "description": "Elektronikos gamintoju ir importuotoju organizacija Lithuania WEEE and Battery Categories and Information",
+        "note": "Ši kategorija apima namų ūkio prietaisus, vartojimo įrangą, šviestuvus, garso ir vaizdo atkūrimo įrangą, mu | Ši kategorija apima namų ūkio prietaisus, vartojimo įrangą, šviestuvus, garso ir vaizdo atkūrimo įrangą, muzikinę įrangą, elektrinius ir elektroninius įrankius, žaislus, laisvalaikio ir sporto įrangą, medicinos prietaisus, stebėjimo ir kontrolės prietaisus, automatinius daiktų išdavimo įta",
+        "row": 174,
+        "url": "https://eei.lt/gamintojams-ir-importuotojams/",
+        "vp_id": 7550835
+      },
+      {
+        "description": "Electrical and electronic equipment (EEE) covered by the WEEE Regulations - GOV.UK",
+        "note": "Packaging, instructions and consumables, such as dishwasher tablets supplied with a dishwasher or a music book supplied with an electronic keyb | Packaging, instructions and consumables, such as dishwasher tablets supplied with a dishwasher or a music book supplied with an electronic keyboard, are not | EEE",
+        "row": 177,
+        "url": "https://www.gov.uk/government/publications/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations",
+        "vp_id": 7791333
+      },
+      {
+        "description": "Electrical and electronic equipment (EEE) covered by the WEEE Regulations - GOV.UK",
+        "note": "Packaging, instructions and consumables, such as dishwasher tablets supplied with a dishwasher or a music book supplied with an electronic keyb | Packaging, instructions and consumables, such as dishwasher tablets supplied with a dishwasher or a music book supplied with an electronic keyboard, are not | EEE",
+        "row": 178,
+        "url": "https://www.gov.uk/government/publications/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations#choose-the-most-appropriate-category-for-your-product",
+        "vp_id": 7791338
+      },
+      {
+        "description": "New York PFAS - NYSDEC",
+        "note": "Public water systems in New York must monitor for more than 100 different contaminants on a regular schedule, including PFOA and PFOS. Public water systems must report on all PFAS included in the analytical method when they detect any level of PFOA and PFOS. This helps identify additional unregulated PFAS contaminants that ma | Public water systems in New York must monitor for more than 100 differ",
+        "row": 179,
+        "url": "https://dec.ny.gov/environmental-protection/per-and-polyfluoroalkyl-substances-pfas",
+        "vp_id": 7792719
+      },
+      {
+        "description": "California WEEE Fees",
+        "note": "$0.1435 | $0.1435/cigarette ($2.87/pack of 20s) | 62.78% of wholesale cost",
+        "row": 181,
+        "url": "https://cdtfa.ca.gov/taxes-and-fees/special-taxes-and-fees-tax-rates/#elecrecyclefee",
+        "vp_id": 7810112
+      },
+      {
+        "description": "California Electronic Waste",
+        "note": "were finalized and became effective October 22, 2018. | # | Statute",
+        "row": 182,
+        "url": "https://calrecycle.ca.gov/Electronics/CEW/",
+        "vp_id": 7810208
+      },
+      {
+        "description": "Stichting OPEN",
+        "note": "Herziene Tarieven E | Herziene Tarieven EEA 2025 | Download",
+        "row": 185,
+        "url": "https://www.stichting-open.org/en/producers-importers/",
+        "vp_id": 7820135
+      },
+      {
+        "description": "Program Fees - Resource Productivity and Recovery Authority RPRA Packaging",
+        "note": "RPRA’s cost allocation met | RPRA’s cost allocation methodology divides RPRA’s overall costs into two categories: direct and common. Direct costs are attributable to a specific program. Common costs cannot be directly attributed to a program as they are either indirect costs or shared service costs. Common costs have multiple different allocation methods, which are based on data that intends to re",
+        "row": 190,
+        "url": "https://rpra.ca/program-fees/#how-much-are-fees",
+        "vp_id": 7929983
+      },
+      {
+        "description": "Producers & importers - Stichting UPV Textiel - Fee",
+        "note": "For further information on textile admin | For further information on textile administration, please refer to the Textile Administration Manual in Textool. | What should I include in my statement?",
+        "row": 191,
+        "url": "https://www.stichtingupvtextiel.nl/en/producers/",
+        "vp_id": 7936287
+      },
+      {
+        "description": "Tracking PFAS legislation across the US | Manufacturing Dive",
+        "note": "laced with PFAS at Richmond International Airport. The new law mandates that the Capital Region Airport Commission create | laced with PFAS at Richmond International Airport. The new law mandates that the Capital Region Airport Commission create a phase-out plan by Nov. 15, 2026. The ban would take effect Jan. 1, 2030. | Keep reading",
+        "row": 196,
+        "url": "https://www.manufacturingdive.com/news/tracking-pfas-forever-chemicals-bills-legislation-us-states/749829/",
+        "vp_id": 8210516
+      },
+      {
+        "description": "Extended Producer Responsibility for Packaging, Waste Management, Maine Department of Environmental Protection",
+        "note": "For more information regarding the Stewardship Program for Packaging, conta | For more information regarding the Stewardship Program for Packaging, contact the Department by emailing | MainePackagingEPR@maine.gov",
+        "row": 201,
+        "url": "https://www.maine.gov/dep/waste/recycle/epr.html",
+        "vp_id": 8460260
+      },
+      {
+        "description": "Legislation | ENVI - PAK",
+        "note": "Commission De | Commission Decision of 29 9. 2008, establishing, pursuant to Directive 2006/66/EC of the European Parliament and of the Council, a common methodology for the calculation of annual sales of portable batteries and accumulators to end-users - 2008/763 / EC (IN SLOVAK) | 36 kB",
+        "row": 205,
+        "url": "https://envipak.sk/en/legislative",
+        "vp_id": 8626259
+      },
+      {
+        "description": "Éco Entreprises Québec Fees",
+        "note": "Les contenants, emballages et i | Les contenants, emballages et imprimés que vous déclarez pourraient être admissibles à un crédit sur votre PFP si vous avez réalisé des actions d'écoconception ou ils pourraient être ciblés par un malus. Consultez la page sur | l'écomodulation",
+        "row": 207,
+        "url": "https://www.eeq.ca/entreprises-tout-sur-votre-role/grilles-de-taux-utiles-pour-votre-declaration",
+        "vp_id": 8882904
+      },
+      {
+        "description": "EU Digital Product Passports - Main Web Page",
+        "note": "Consumers can access key product information to support informed purchasing decisions, repairers and recyclers can retrieve information relevant to their activities, and public authoriti | Consumers can access key product information to support informed purchasing decisions, repairers and recyclers can retrieve information relevant to their activities, and public authorities can verify compliance ",
+        "row": 209,
+        "url": "https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en#what-is-a-digital-product-passport",
+        "vp_id": 9040811
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-07",
+    "finished_at": "2026-09-07T12:37:14.425813Z",
+    "gaps": 22,
+    "gaps_list": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Gertearten",
+        "error": "HTTP Error 404: Not Found",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "error": "HTTP Error 404: Not Found",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "error": "HTTP Error 404: Not Found",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"http://recycleyukonelectronics.ca/\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "error": "HTTP Error 404: Not Found",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "Ecologic",
+        "error": "HTTP Error 404: Not Found",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "error": "HTTP Error 404: Not Found",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "error": "HTTP Error 404: Not Found",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Deforestation FAQs",
+        "error": "HTTP Error 404: Not Found",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "ESPR FAQ",
+        "error": "HTTP Error 404: Not Found",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "ECO Synergy - Transparenta preturi si clienti",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://ecosynergy.ro/informatiipublice/\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 166,
+        "url": "https://ecosynergy.ro/informatiipublice/",
+        "vp_id": 7191855
+      },
+      {
+        "description": "Legislatie de mediu pentru OIREP - Modificari si actualizari",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://ecosynergy.ro/legislatie-otr-mediu/\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 167,
+        "url": "https://ecosynergy.ro/legislatie-otr-mediu/",
+        "vp_id": 7191886
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "error": "HTTP Error 404: Not Found",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "error": "HTTP Error 404: Not Found",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 25000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 7,
+    "new_baseline": 0,
+    "started_at": "2026-09-07T12:04:54.060445Z",
+    "unchanged": 122
   }
 ]
