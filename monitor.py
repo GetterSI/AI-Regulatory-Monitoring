@@ -364,6 +364,19 @@ def fetch_with_playwright(url):
         except Exception:  # noqa: BLE001
             pass
         try:
+            # Charles, 2026-09-07: found via CIRCABC row 86 (a live, real
+            # document page, not a dead link) still only capturing a cookie
+            # banner + "Loading..." after networkidle resolved — Angular's
+            # own render/zone.js cycle can lag a beat behind the network
+            # settling, so "no more network requests" doesn't mean "DOM
+            # finished painting" for every SPA. A flat extra 3s here costs
+            # nothing on ordinary pages (they already have their content)
+            # and gives slow-rendering apps a chance to finish painting
+            # before we capture and scroll.
+            page.wait_for_timeout(3000)
+        except Exception:  # noqa: BLE001
+            pass
+        try:
             # Charles, 2026-09-07: "we need to review the entire page ...
             # otherwise we will miss important content." Some pages only
             # populate real content (infinite-scroll lists, intersection-
