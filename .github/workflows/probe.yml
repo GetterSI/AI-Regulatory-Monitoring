@@ -1,0 +1,107 @@
+name: Network probe (diagnostic)
+
+# Standalone, dispatch-only diagnostic.
+#
+# Why it exists: on 2026-09-08 answering one "why can't we reach this host"
+# question cost a full 38-minute monitor run. This does the same reachability
+# work in about a minute. It never runs on a schedule, never fetches the
+# watchlist, and never writes snapshots.json, runs.json or DASHBOARD.md — so
+# it cannot disturb change detection.
+#
+# It answers, per host: what DNS returns for IPv4 and IPv6, which family curl
+# actually connects over, whether forcing IPv4 or IPv6 changes the outcome,
+# and whether a bare TCP+TLS handshake on 443 succeeds. That distinguishes a
+# broken IPv6 path from a silent network-level drop from a site that answers
+# but refuses us.
+
+on:
+  workflow_dispatch:
+    inputs:
+      extra_url:
+        description: "Optional extra URL to probe alongside the standing two"
+        required: false
+        default: ""
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe reachability — IPv4 vs IPv6 vs default
+        env:
+          # Passed through the environment rather than interpolated into the
+          # script body, so a dispatch input can never inject shell.
+          EXTRA_URL: ${{ inputs.extra_url }}
+        run: |
+          set +e
+
+          probe () {
+            url="$1"
+            host=$(printf '%s' "$url" | sed -E 's#^https?://##; s#/.*##')
+            echo "==================================================="
+            echo "HOST: $host"
+
+            echo "--- DNS: A records (IPv4)"
+            getent ahostsv4 "$host" | awk '{print "   " $1}' | sort -u
+            echo "--- DNS: AAAA records (IPv6)"
+            getent ahostsv6 "$host" | awk '{print "   " $1}' | sort -u
+
+            for family in "default:" "IPv4:-4" "IPv6:-6"; do
+              label="${family%%:*}"
+              flag="${family##*:}"
+              echo "--- curl, $label"
+              curl $flag -sL -o /dev/null -m 20 \
+                -w "   http_code=%{http_code} time_total=%{time_total}s size=%{size_download}B connected_ip=%{remote_ip}\n" \
+                "$url"
+            done
+
+            echo "--- bare TCP+TLS handshake on 443, forced IPv4"
+            timeout 20 bash -c "echo | openssl s_client -4 -connect ${host}:443 -servername ${host} -brief" 2>&1 \
+              | head -8 | sed 's/^/   /'
+
+            echo
+          }
+
+          echo "###############################################"
+          echo "### CONTROL — a host we know answers. If this"
+          echo "### row looks broken, the probe itself is wrong."
+          echo "###############################################"
+          probe "https://example.com/"
+
+          echo "###############################################"
+          echo "### row 193 — gesetze-im-internet.de (VerpackG)"
+          echo "###############################################"
+          probe "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html"
+
+          echo "###############################################"
+          echo "### row 42 — ecommunity-erp.co.il"
+          echo "###############################################"
+          probe "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/"
+
+          if [ -n "$EXTRA_URL" ]; then
+            echo "###############################################"
+            echo "### extra URL supplied at dispatch"
+            echo "###############################################"
+            probe "$EXTRA_URL"
+          fi
+
+          echo "Probe complete. This workflow is diagnostic only and cannot fail."
+          exit 0
+
+      - name: Does this runner have IPv6 egress at all?
+        # If the runner has no working IPv6 route, every -6 result above is
+        # meaningless as evidence about the target hosts — it would fail for
+        # example.com too. Establish it explicitly rather than inferring.
+        run: |
+          set +e
+          echo "--- local IPv6 addresses on the runner"
+          ip -6 addr show scope global | sed 's/^/   /'
+          echo "--- default IPv6 route"
+          ip -6 route show default | sed 's/^/   /'
+          echo "--- can we reach a known dual-stack host over IPv6?"
+          curl -6 -sL -o /dev/null -m 15 \
+            -w "   cloudflare.com over IPv6: http_code=%{http_code} time=%{time_total}s ip=%{remote_ip}\n" \
+            https://cloudflare.com/
+          curl -4 -sL -o /dev/null -m 15 \
+            -w "   cloudflare.com over IPv4: http_code=%{http_code} time=%{time_total}s ip=%{remote_ip}\n" \
+            https://cloudflare.com/
+          exit 0
