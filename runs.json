@@ -3901,5 +3901,220 @@
     "new_baseline": 1,
     "started_at": "2026-09-07T16:55:07.466019Z",
     "unchanged": 198
+  },
+  {
+    "changed": 20,
+    "changes": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "Consent | Details | [#IABV2SETTINGS#]",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "Stewardship - Alberta Recycling Management Authority | Registry | Stewardship",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "Authorisation List - ECHA",
+        "note": "1,3-Dioxane, 2-(2,4-dimethyl-3-cyclohexen-1-yl)-5-methyl-5-(1-methylpropyl)- | EC No.: | 601-499-3",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "NWT Electronics Recycling Program | Alberta Recycling",
+        "note": "NWT Electronics - Alberta Recycling Management Authority | Registry | NWT Electronics",
+        "row": 19,
+        "url": "https://www.albertarecycling.ca/nwt-recycling-program/",
+        "vp_id": 2913540
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "note": "Recycle Yukon Electronics | Top | Government of Yukon announces October 1, 2018 implementation of electronics recycling program | 2 image(s) added",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "WEEE Fees",
+        "note": "5 image(s) removed",
+        "row": 21,
+        "url": "https://www.dpa-system.dk/en/WEEE/Producers/Economy/Fees",
+        "vp_id": 2913546
+      },
+      {
+        "description": "DPA Fees",
+        "note": "5 image(s) removed",
+        "row": 22,
+        "url": "https://producentansvar.dk/",
+        "vp_id": 2913547
+      },
+      {
+        "description": "List of substances subject to POPs Regulation - ECHA",
+        "note": "3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,14,14,14-tetracosafluoro-13-(trifluoromethyl)tetradecyl acrylate | EC / List no: | 258-277-0",
+        "row": 40,
+        "url": "https://echa.europa.eu/list-of-substances-subject-to-pops-regulation",
+        "vp_id": 3120039
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "note": "Angola: Presidential Decree No. 151/26 approving the Regulation on the Protection of New Seed Varieties and the Rights of Plant Breeders and Seed Developers. | Date of text: 20 August 2026 | Kenya: The National Disaster Risk Management Act no. 16 of 2026.",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "note": "3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,14,14,14-tetracosafluoro-13-(trifluoromethyl)tetradecyl acrylate | EC / List no: | 258-277-0",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "Last updated 07 September 2026. Database contains 14 unique substances/entries. | Last updated 08 September 2026. Database contains 14 unique substances/entries. | Cadmium methacrylate",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "CESI China RoHS News",
+        "note": "》 | 新闻 | ·关于召开2026年版中国RoHS《达标管理目录》《例外清单》及强制性国家标准《电器电子产品有害物质限制使用要求》宣贯会的通知",
+        "row": 118,
+        "url": "https://www.cesi.cn/rohs/page/list.jsp?catalog=/001/001-006",
+        "vp_id": 6351528
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "Electronics Recycling Program - Alberta Recycling Management Authority | Stewardship Recycling Program | Electronics Recycling Program",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "The Red List - Living Future",
+        "note": "1 image(s) changed",
+        "row": 127,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6417425
+      },
+      {
+        "description": "CPCB | Central Pollution Control Board",
+        "note": "6 | 39th AQC Notice regarding willingness from Environmental Laboratories to participate | 07-08-2026",
+        "row": 133,
+        "url": "https://cpcb.nic.in/latest-cpcb.php",
+        "vp_id": 6495233
+      },
+      {
+        "description": "EUDR Indicators - Indigenous peoples, satellite (LandMark)",
+        "note": "To learn more, view the following link: | Accept | Deny Non-Essential",
+        "row": 145,
+        "url": "https://www.landmarkmap.org/data-methods/access-data",
+        "vp_id": 6521271
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "note": "Legal Notice | Die Europäische Chemikalienagentur (im Folgenden „ECHA“) unterhält diese Website (im Folgenden „ECHA-Website“), um den Zugang der Öffentlichkeit zu Informationen über ihre Tätigkeit zu verbessern und um den Verpflichtungen nachzukommen, die ihr im Rahmen ihres Auftrags erwachsen. | Eine Person, die die ECHA-Website benutzt (im Folgenden „Nutzer“), stimmt den unten aufgeführten Bedin",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "Living Building Challenge - Red List",
+        "note": "1 image(s) changed",
+        "row": 157,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6794445
+      },
+      {
+        "description": "Legislatie de mediu pentru OIREP - Modificari si actualizari",
+        "note": "Eco Synergy | » | Legislație OIREP",
+        "row": 167,
+        "url": "https://ecosynergy.ro/legislatie-otr-mediu/",
+        "vp_id": 7191886
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "Ministra Toledo inicia septiembre promoviendo la economía circular de cara a las Fiestas Patrias | 7 septiembre, 2026 | Ministra Toledo inicia septiembre promoviendo la economía circular de cara a las Fiestas Patrias | 5 image(s) changed; 1 image(s) added; 1 image(s) removed",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-08",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-08T08:39:18.183220Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 12,
+    "new_baseline": 0,
+    "started_at": "2026-09-08T08:07:32.979824Z",
+    "unchanged": 191
   }
 ]
