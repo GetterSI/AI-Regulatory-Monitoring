@@ -4553,5 +4553,199 @@
     "new_baseline": 0,
     "started_at": "2026-09-08T12:36:33.327256Z",
     "unchanged": 177
+  },
+  {
+    "changed": 15,
+    "changes": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "Consent | Details | About",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "List of EEEs and fees | Ecotrel",
+        "note": "Do you accept the use of cookies to ensure a better experience on our website ?",
+        "row": 16,
+        "url": "https://www.ecotrel.lu/en/professional/list-of-ee-es-and-fees",
+        "vp_id": 2913514
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "note": "Recycle Yukon Electronics | Top | Government of Yukon announces October 1, 2018 implementation of electronics recycling program | 2 new image(s) by content",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "Table of harmonised entries in Annex VI to CLP - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 49,
+        "url": "https://echa.europa.eu/information-on-chemicals/annex-vi-to-clp",
+        "vp_id": 3504510
+      },
+      {
+        "description": "Candidate List of substances of very high concern for Authorisation - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | show/hide",
+        "row": 53,
+        "url": "https://echa.europa.eu/candidate-list-table",
+        "vp_id": 4223573
+      },
+      {
+        "description": "SCIP Format - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 75,
+        "url": "https://www.echa.europa.eu/scip-format",
+        "vp_id": 5553536
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | Chlorous acid, cadmium salt",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "CESI China RoHS News",
+        "note": "中国电子技术标准化研究院 | 首页 | 收藏本页",
+        "row": 118,
+        "url": "https://www.cesi.cn/rohs/page/list.jsp?catalog=/001/001-006",
+        "vp_id": 6351528
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "Electronics Recycling Program - Alberta Recycling Management Authority | Stewardship Recycling Program | Electronics Recycling Program",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "Candidate List Package - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 128,
+        "url": "https://echa.europa.eu/candidate-list-package",
+        "vp_id": 6430838
+      },
+      {
+        "description": "EUDR Indicators - Coruption Perceptions Index (Transparency.org)",
+        "note": "accept marketing cookies",
+        "row": 143,
+        "url": "https://www.transparency.org/en/cpi/2024",
+        "vp_id": 6521220
+      },
+      {
+        "description": "ECO Synergy - Transparenta preturi si clienti",
+        "note": "Eco Synergy | » | Tarife",
+        "row": 166,
+        "url": "https://ecosynergy.ro/informatiipublice/",
+        "vp_id": 7191855
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-08",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-08T14:05:24.985529Z",
+    "gaps": 4,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "error": "HTTP Error 403: Forbidden | playwright: blocked by bot-challenge interstitial (e.g. Cloudflare) — page returned 200 but body is a verification page, not real content | flaresolverr: flaresolverr unreachable: HTTP Error 500: Internal Server Error",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 16,
+    "new_baseline": 0,
+    "started_at": "2026-09-08T13:27:27.895477Z",
+    "unchanged": 194
   }
 ]
