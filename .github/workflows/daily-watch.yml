@@ -138,16 +138,92 @@ jobs:
           exit 0
 
       - name: Run monitor
+        # CHANGED 2026-09-08. Piped through tee so the log survives as a file.
+        # Run 34217747212 failed in this step after 33m 58s, and the traceback
+        # was unreadable: GitHub's log viewer renders only ~49 lines of a step
+        # this long, the raw-log zip endpoint 404s, and the log search box did
+        # not work. Losing 38 minutes and still not knowing the cause is not
+        # acceptable for something this important.
+        #
+        # pipefail matters: without it the exit status of the pipeline is
+        # tee's, which is always 0, and a crashed monitor would look like a
+        # clean run. That is exactly the class of silent failure this whole
+        # system exists to avoid.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           FLARESOLVERR_URL: http://localhost:8191/v1
-        run: python monitor.py
+        run: |
+          set -o pipefail
+          python monitor.py 2>&1 | tee /tmp/monitor.log
+
+      - name: Show the traceback if the monitor failed
+        # Runs only on failure. Writes the tail of the log into the run's own
+        # summary page, which renders as Markdown on the run and needs no log
+        # viewer at all.
+        if: failure()
+        run: |
+          {
+            echo "## Monitor failed — last 120 lines"
+            echo
+            echo '```'
+            tail -n 120 /tmp/monitor.log 2>/dev/null || echo "(no /tmp/monitor.log was produced)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit updated snapshots, run log and dashboard
+        # CHANGED 2026-09-08, two failure modes fixed.
+        #
+        # 1. if: always(). Previously this step was skipped whenever the
+        #    monitor errored, so run 34217747212 opened an issue for 30
+        #    changed pages and then discarded every snapshot behind it. The
+        #    next run would then re-detect the same 30. A run must never
+        #    alert and then throw away the state the alert was based on.
+        #    monitor.py writes snapshots.json and runs.json before it builds
+        #    the dashboard, so a late crash still leaves valid files worth
+        #    committing; an early crash leaves them untouched and the
+        #    git diff check below simply finds nothing to commit.
+        #
+        # 2. A non-fast-forward push. If anything lands on main during the
+        #    ~38 minutes a run takes, the old plain `git push` was rejected
+        #    and the run's state was lost. These three files are generated
+        #    artefacts, never hand-edited, so the run's own output always
+        #    wins: reset onto the current origin/main, restore the generated
+        #    files over it, then commit. That cannot produce a merge
+        #    conflict, which a rebase of a 2MB JSON file certainly could.
+        if: always()
         run: |
+          set -e
+          if [ ! -f snapshots.json ] && [ ! -f runs.json ] && [ ! -f DASHBOARD.md ]; then
+            echo "Nothing generated this run — nothing to commit."
+            exit 0
+          fi
+
+          mkdir -p /tmp/generated
+          for f in snapshots.json runs.json DASHBOARD.md; do
+            [ -f "$f" ] && cp "$f" /tmp/generated/
+          done
+
           git config user.name "cloud-regulatory-watch-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add snapshots.json runs.json DASHBOARD.md
-          git diff --quiet --cached || git commit -m "Daily watch run: $(date -u +%Y-%m-%d)"
-          git push
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/generated/* . 2>/dev/null || true
+            git add snapshots.json runs.json DASHBOARD.md 2>/dev/null || true
+            if git diff --quiet --cached; then
+              echo "No changes to commit."
+              exit 0
+            fi
+            git commit -m "Daily watch run: $(date -u +%Y-%m-%d)"
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected on attempt $attempt — refetching and retrying."
+            sleep 5
+          done
+
+          echo "::error::Could not push the run's snapshots after 3 attempts. The run's state was NOT saved."
+          exit 1
