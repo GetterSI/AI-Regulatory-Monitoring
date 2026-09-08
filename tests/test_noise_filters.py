@@ -49,6 +49,11 @@ CONSENT_LINES = [
     "Manage my cookie preferences",
     "Strictly necessary cookies are always active",
     "Your Privacy Choices",
+    # The three shapes that escaped the first pass and were still reported as
+    # regulatory changes in issue #15. Exact strings from that issue.
+    "Consent | Details | About",
+    "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | show/hide",
+    "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | ECHA",
 ]
 
 # Several of these use "consent" in its legal sense on purpose. If a future
@@ -101,10 +106,16 @@ IMAGE_CASES = [
     ("row 20: slider re-adds the same images under new urls",
      {"/s1.jpg": "x", "/s2.jpg": "y"},
      {"/s1.jpg": "x", "/s2.jpg": "y", "/s3.jpg": "x", "/s4.jpg": "y"}, False, False),
-    ("genuine new graphic published, text unchanged",
-     {"/old.png": "old"}, {"/old.png": "old", "/fees-2027.png": "new"}, False, True),
-    ("same url, genuinely different bytes",
-     {"/fees.png": "v1"}, {"/fees.png": "v2"}, False, True),
+    # CHANGED 2026-09-08. Image-only deltas no longer alert at all - see the
+    # comment in assess_image_change. These two cases previously expected an
+    # alert and now expect silence. That is the accepted loss, asserted here
+    # so it stays visible and deliberate rather than drifting.
+    ("ACCEPTED LOSS: graphic-only publication, no text change",
+     {"/old.png": "old"}, {"/old.png": "old", "/fees-2027.png": "new"}, False, False),
+    ("same url, different bytes, no text change (CDN re-encode)",
+     {"/fees.png": "v1"}, {"/fees.png": "v2"}, False, False),
+    ("images corroborating a real text change still reported",
+     {"/a.png": "1"}, {"/a.png": "1", "/new.png": "2"}, True, True),
     ("images lost but text also changed",
      {"/a.png": "1"}, {}, True, True),
     ("nothing changed at all",
@@ -116,6 +127,11 @@ for label, prev, new, text_changed, should_alert in IMAGE_CASES:
     alert, _note = monitor.assess_image_change(prev, new, True, text_changed)
     check("%-52s -> %s" % (label[:52], "alert" if should_alert else "silent"),
           bool(alert) == should_alert)
+
+check(
+    "image-only change is silent even when content genuinely differs",
+    monitor.assess_image_change({"/a.png": "1"}, {"/a.png": "2"}, True, False)[0] is False,
+)
 
 check(
     "no baseline yet never alerts",
