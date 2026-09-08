@@ -124,6 +124,44 @@ check(
 
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# 3. Failure classification. Every error string below is one this system has
+#    actually produced, taken from run logs, not invented.
+# ---------------------------------------------------------------------------
+
+FAILURE_CASES = [
+    # rows 42 and 193: nothing answers at any layer
+    ("<urlopen error timed out> | playwright: playwright: Page.goto: Timeout "
+     "35000ms exceeded | flaresolverr: flaresolverr unreachable: timed out", "connect"),
+    ("<urlopen error timed out>", "connect"),
+    ("HTTP Error 403: Forbidden", "http_client"),
+    ("HTTP Error 404: Not Found", "http_client"),
+    ("HTTP Error 500: Internal Server Error", "http_server"),
+    ("empty response", "empty"),
+    # a challenge served instead of the page. Checked before the HTTP status,
+    # deliberately: a 403 carrying an interstitial is a challenge, not a
+    # plain refusal, and calling it a challenge is the more useful truth.
+    ("HTTP Error 403: Forbidden | playwright: blocked by bot-challenge "
+     "interstitial (e.g. Cloudflare)", "challenge"),
+    ("Robot Challenge Screen - checking the site connection security", "challenge"),
+    # an unknown failure must look unknown rather than be filed under the
+    # nearest available label
+    ("some entirely novel failure nobody has seen", "other"),
+    (None, "other"),
+]
+
+print("FAILURE CLASSIFICATION (classify_failure)")
+for err, expected in FAILURE_CASES:
+    got = monitor.classify_failure(err)
+    label = (err or "(no error string)")[:46]
+    check("%-48s -> %s" % (label, expected), got == expected, "got %r" % got)
+
+check(
+    "connect failures promote only after UNREACHABLE_AFTER_RUNS",
+    monitor.UNREACHABLE_AFTER_RUNS >= 3,
+    "- a lower threshold would promote a single flaky run",
+)
+
 print()
 if failures:
     print("FAILED: %d check(s) -> %s" % (len(failures), "; ".join(failures)))
