@@ -176,6 +176,22 @@ CONSENT_PATTERNS = [
     r"\b(onetrust|cookiebot|usercentrics|trustarc|quantcast choice)\b",
     r"your privacy choices|do not sell my personal information",
     r"^\s*(accept|reject|decline)( all)?\s*[|.-]?\s*(details|settings|preferences|more info)\s*$",
+    # ADDED 2026-09-08 after issue #15. Three consent shapes escaped the list
+    # above and were still being reported as regulatory changes. Verified
+    # against the exact strings from that issue.
+    #
+    # "Accept only essential cookies" - the earlier pattern only allowed a
+    # fixed set of adjectives. Any accept...cookies inside a short window that
+    # does not cross a pipe, so it cannot swallow a sentence that merely
+    # contains both words ("Member States shall accept declarations...").
+    r"\baccept\b[^|]{0,30}\bcookies?\b",
+    # "...to change your preferences." - the other half of the same widget.
+    r"change your (cookie |privacy )?preferences",
+    # A line that IS the widget's own label row: "Consent | Details | About".
+    # Anchored to line start AND followed by a separator, so "Consent of the
+    # notified body is required under Article 30" is untouched. The rule
+    # against matching the bare word "consent" still holds.
+    r"^\s*consent\s*[|>]",
 ]
 CONSENT_RE = re.compile("|".join(CONSENT_PATTERNS), re.IGNORECASE)
 
@@ -908,9 +924,26 @@ def assess_image_change(prev_hashes, new_hashes, had_baseline, text_changed):
         return False, None
     gained = new_set - prev_set
     lost = prev_set - new_set
-    if not text_changed and not gained:
-        return False, ("images lost with no new image content and no text "
-                       "change - treated as extraction instability")
+    if not text_changed:
+        # CHANGED 2026-09-08 after issue #15. Image-only changes no longer
+        # raise an alert at all.
+        #
+        # Evidence: that issue reported "5 new image(s) by content" on row 9,
+        # "6 new image(s) by content" on row 19, and the same shape on rows
+        # 20, 66, 127, 134 and 135 - every one with no text change anywhere on
+        # the page. Content-keying fixed url churn, but it cannot help when a
+        # site serves different image BYTES on each fetch: CDN resizing,
+        # format negotiation, a rotating banner. Across every run to date,
+        # image-only alerts have produced zero confirmed real changes.
+        #
+        # The trade, stated openly rather than buried: a regulatory change
+        # published ONLY as a new graphic, with no accompanying text change
+        # anywhere on the page, will not raise an alert. That is a genuine
+        # loss. It is accepted because the alternative is an alert list that
+        # is mostly noise, and a monitor that cries wolf gets ignored - at
+        # which point nothing is detected at all. Images still corroborate a
+        # text change, and the delta is still recorded on the snapshot.
+        return False, "image delta with no text change - not alerted"
     parts = []
     if gained:
         parts.append(f"{len(gained)} new image(s) by content")
