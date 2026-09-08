@@ -4240,5 +4240,318 @@
     "new_baseline": 0,
     "started_at": "2026-09-08T09:41:02.402206Z",
     "unchanged": 204
+  },
+  {
+    "changed": 34,
+    "changes": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "Consent | Details | About",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "5 new image(s) by content",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "Authorisation List - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "[#IABV2SETTINGS#] | This website uses cookies | We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "NWT Electronics Recycling Program | Alberta Recycling",
+        "note": "6 new image(s) by content",
+        "row": 19,
+        "url": "https://www.albertarecycling.ca/nwt-recycling-program/",
+        "vp_id": 2913540
+      },
+      {
+        "description": "Recycle Yukon Electronics",
+        "note": "Recycle Yukon Electronics | Top | Government of Yukon announces October 1, 2018 implementation of electronics recycling program | 2 image(s) no longer present",
+        "row": 20,
+        "url": "http://recycleyukonelectronics.ca/",
+        "vp_id": 2913544
+      },
+      {
+        "description": "Packaging Fees | Green Dot Cyprus",
+        "note": "We use cookies on this site to enhance your user experience. By clicking the Accept button, you agree to us doing so. | This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-par",
+        "row": 23,
+        "url": "http://greendot.com.cy/en/business/packaging-fees",
+        "vp_id": 2913555
+      },
+      {
+        "description": "English",
+        "note": "THIS WEBSITE USES COOKIES. | Click “Accept all” to accept all cookies or “Manage settings” to manage your cookie preferences. Please refer to our | Accept all cookies",
+        "row": 43,
+        "url": "https://www.era-gmbh.at/en/meta/downloads/",
+        "vp_id": 3443014
+      },
+      {
+        "description": "Table of harmonised entries in Annex VI to CLP - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 49,
+        "url": "https://echa.europa.eu/information-on-chemicals/annex-vi-to-clp",
+        "vp_id": 3504510
+      },
+      {
+        "description": "Candidate List of substances of very high concern for Authorisation - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 53,
+        "url": "https://echa.europa.eu/candidate-list-table",
+        "vp_id": 4223573
+      },
+      {
+        "description": "Fee Schedule - Call2Recycle® | Canada Call2Recycle® | Canada",
+        "note": "1 new image(s) by content; 1 image(s) no longer present",
+        "row": 66,
+        "url": "https://www.call2recycle.ca/fee-schedule/",
+        "vp_id": 5096022
+      },
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | show/hide",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "SCIP Format - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 75,
+        "url": "https://www.echa.europa.eu/scip-format",
+        "vp_id": 5553536
+      },
+      {
+        "description": "AURAEKO Packaging - AURAEKO",
+        "note": "This site uses cookies to provide services at the highest level. By continuing to use the site, you agree to their use.",
+        "row": 85,
+        "url": "https://auraeko.pl/en/packaging/",
+        "vp_id": 5849318
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "Price list - sewa",
+        "note": "Strictly Necessary Cookies | This website uses cookies so that we can provide you with the best user experience possible. Cookie information is stored in your browser and performs functions such as recognising you when you return to our website and helping our team to understand which sections of the website you find most interesting and useful. | Strictly Necessary Cookies",
+        "row": 93,
+        "url": "https://www.sewa.sk/en/price-list",
+        "vp_id": 5925311
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "or click the link in any footer for more information and to change your preferences. | Accept only essential cookies | ECHA",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "News - Paristokierrätys",
+        "note": "08 | Sep | Webinar Provides Answers: Industrial Battery Producer Responsibility in Practice: What BESS Project Stakeholders Need to Know | 1 new image(s) by content; 1 image(s) no longer present",
+        "row": 109,
+        "url": "https://www.paristokierratys.fi/en/news/",
+        "vp_id": 6206541
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "Electronics Recycling Program - Alberta Recycling Management Authority | Stewardship Recycling Program | Electronics Recycling Program",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "The Red List - Living Future",
+        "note": "2 new image(s) by content; 2 image(s) no longer present",
+        "row": 127,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6417425
+      },
+      {
+        "description": "Candidate List Package - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 128,
+        "url": "https://echa.europa.eu/candidate-list-package",
+        "vp_id": 6430838
+      },
+      {
+        "description": "Producer News - SK Recycles",
+        "note": "2 new image(s) by content; 2 image(s) no longer present",
+        "row": 134,
+        "url": "https://skrecycles.ca/producers/news/",
+        "vp_id": 6513024
+      },
+      {
+        "description": "Reporting & Fees - SK Recycles",
+        "note": "1 new image(s) by content; 1 image(s) no longer present",
+        "row": 135,
+        "url": "https://skrecycles.ca/producers/reporting-fees/",
+        "vp_id": 6513028
+      },
+      {
+        "description": "Producer News - Recycle BC",
+        "note": "4 new image(s) by content; 4 image(s) no longer present",
+        "row": 140,
+        "url": "https://recyclebc.ca/producers/news/",
+        "vp_id": 6514859
+      },
+      {
+        "description": "EUDR Indicators - Indigenous peoples, satellite (LandMark)",
+        "note": "Deny Non-Essential",
+        "row": 145,
+        "url": "https://www.landmarkmap.org/data-methods/access-data",
+        "vp_id": 6521271
+      },
+      {
+        "description": "EUDR Indicators - Timber Species Risk (WWF)",
+        "note": "This site uses cookies to enhance your experience.",
+        "row": 146,
+        "url": "https://www.woodrisk.org/assess-risk/species",
+        "vp_id": 6521276
+      },
+      {
+        "description": "Elektro Recycling Austria ",
+        "note": "THIS WEBSITE USES COOKIES. | Click “Accept all” to accept all cookies or “Manage settings” to manage your cookie preferences. Please refer to our | Accept all cookies",
+        "row": 165,
+        "url": "https://era-gmbh.at/en/meta/downloads/",
+        "vp_id": 7191666
+      },
+      {
+        "description": "ECO Synergy - Transparenta preturi si clienti",
+        "note": "Eco Synergy | » | Tarife",
+        "row": 166,
+        "url": "https://ecosynergy.ro/informatiipublice/",
+        "vp_id": 7191855
+      },
+      {
+        "description": "Interzero Croatia News",
+        "note": "This website uses cookies and third-party services to optimize your user experience. For further details, please see our",
+        "row": 171,
+        "url": "https://epr.interzero.hr/blog/",
+        "vp_id": 7332498
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "2 new image(s) by content; 2 image(s) no longer present",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "This site uses cookies. Visit our | cookies policy page | Accept all cookies",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      },
+      {
+        "description": "Packaging Declarations 2026 - Green Dot Cyprus",
+        "note": "We use cookies on this site to enhance your user experience. By clicking the Accept button, you agree to us doing so. | This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-par",
+        "row": 197,
+        "url": "https://greendot.com.cy/en/green-dot-member-declarations/packaging-statements-2026/",
+        "vp_id": 8223405
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-08",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-08T13:12:54.871840Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 15,
+    "new_baseline": 0,
+    "started_at": "2026-09-08T12:36:33.327256Z",
+    "unchanged": 177
   }
 ]
