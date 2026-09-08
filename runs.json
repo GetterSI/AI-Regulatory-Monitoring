@@ -4116,5 +4116,129 @@
     "new_baseline": 0,
     "started_at": "2026-09-08T08:07:32.979824Z",
     "unchanged": 191
+  },
+  {
+    "changed": 7,
+    "changes": [
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | or click the link in any footer for more information and to change your preferences.",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "ESPR FAQ",
+        "note": "Details of | the document | Back",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "This site uses cookies. Visit our | cookies policy page | or click the link in any footer for more information and to change your preferences.",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "The Red List - Living Future",
+        "note": "2 image(s) changed",
+        "row": 127,
+        "url": "https://living-future.org/red-list/",
+        "vp_id": 6417425
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "note": "Legal Notice | Die Europäische Chemikalienagentur (im Folgenden „ECHA“) unterhält diese Website (im Folgenden „ECHA-Website“), um den Zugang der Öffentlichkeit zu Informationen über ihre Tätigkeit zu verbessern und um den Verpflichtungen nachzukommen, die ihr im Rahmen ihres Auftrags erwachsen. | Eine Person, die die ECHA-Website benutzt (im Folgenden „Nutzer“), stimmt den unten aufgeführten Bedin",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "RLG WEEE - Romania Tariffs",
+        "note": "1 image(s) removed",
+        "row": 180,
+        "url": "https://rev-log.com/ro/rlg-systems-romania/",
+        "vp_id": 7792897
+      },
+      {
+        "description": "Adelphe - Fees",
+        "note": "1 image(s) changed",
+        "row": 198,
+        "url": "https://www.adelphe.fr/combien-ca-coute/",
+        "vp_id": 8396995
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-08",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-08T10:15:29.547951Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 13,
+    "new_baseline": 0,
+    "started_at": "2026-09-08T09:41:02.402206Z",
+    "unchanged": 204
   }
 ]
