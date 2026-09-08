@@ -584,6 +584,103 @@ def _visible_text_len(raw, content_type):
         return 0
 
 
+# --- Failure taxonomy -------------------------------------------------------
+# Charles, 2026-09-08: "every source detected effectively, and links that
+# genuinely don't work presented". That needs the run to tell apart four
+# things it previously collapsed into one word, "gap":
+#
+#   transient    failed this run, has fetched successfully before. Watch it,
+#                do not act on it.
+#   unreachable  never completes a connection from this runner, run after
+#                run. Rows 42 and 193 measured 2026-09-08: DNS resolves,
+#                then no SYN-ACK, empty connected_ip after the full timeout
+#                even on forced IPv4. Nothing above the connection layer -
+#                user agent, headless browser, challenge solver, dismissing
+#                a consent banner - can ever reach them. A settled fact, not
+#                a defect to re-litigate every morning.
+#   dead         the fetch SUCCEEDED and the page itself says the resource is
+#                gone. Already handled by is_dead_link().
+#   challenge    a bot-verification interstitial was served instead of a page.
+#
+# The reason this matters: in change monitoring the dangerous failure is not
+# a visible error, it is one that looks identical to "no change".
+FAILURE_KIND_PATTERNS = [
+    ("challenge", r"bot-challenge|just a moment|please wait while|robot challenge|being verified"),
+    ("dns", r"name or service not known|nodename nor servname|temporary failure in name resolution|getaddrinfo"),
+    ("http_client", r"HTTP Error 4\d\d"),
+    ("http_server", r"HTTP Error 5\d\d"),
+    ("connect", r"timed out|timeout|connection refused|connection reset|network is unreachable|no route to host"),
+    ("empty", r"empty response|too little visible text"),
+]
+
+# Consecutive connection-level failures before a row stops being called a
+# transient gap and is stated plainly as unreachable. Three means one flaky
+# run - the FlareSolverr readiness flake of 2026-09-07, say - never promotes
+# a working page to "unreachable".
+UNREACHABLE_AFTER_RUNS = 3
+
+
+def classify_failure(err):
+    """Maps a fetch error string onto one of the kinds above.
+
+    Returns "other" rather than guessing when nothing matches: an unknown
+    failure should look unknown, not be filed under the nearest label.
+    """
+    text = (err or "")
+    for kind, pattern in FAILURE_KIND_PATTERNS:
+        if re.search(pattern, text, re.IGNORECASE):
+            return kind
+    return "other"
+
+
+def _health_row(g):
+    last_ok = g.get("last_ok")
+    return "| %s | [%s](%s) | %s | %d | %s |" % (
+        g.get("row", "?"),
+        escape_md(g.get("description", "")),
+        g.get("url", ""),
+        g.get("kind", "?"),
+        g.get("consecutive_failures", 0),
+        format_utc(last_ok) if last_ok else "never",
+    )
+
+
+def render_health_sections(unreachable, transient):
+    """Two sections the dashboard could not previously show, because every
+    failure was the same single word.
+
+    Kept separate deliberately. An unreachable host is a standing fact to be
+    accepted or re-sourced; a transient failure is something to watch. Showing
+    both as "gap" meant two permanent rows read as a defect every morning,
+    which is the fastest way to train someone to ignore a monitor.
+    """
+    out = []
+    if unreachable:
+        out.append("## Hosts that will not connect from CI (%d)\n" % len(unreachable))
+        out.append(
+            "These resolve in DNS but never complete a TCP connection from the GitHub\n"
+            "runner, run after run. Nothing above the connection layer - user agent,\n"
+            "headless browser, challenge solver, dismissing a consent banner - can\n"
+            "reach them. Either accept them as out of reach from CI, or re-source the\n"
+            "page somewhere reachable.\n"
+        )
+        out.append("| Row | Page | Failure | Consecutive runs | Last successful fetch |")
+        out.append("|---|---|---|---|---|")
+        out.extend(_health_row(g) for g in unreachable)
+        out.append("")
+    if transient:
+        out.append("## Transient failures this run (%d)\n" % len(transient))
+        out.append(
+            "Failed this run, but has fetched successfully before. Watch rather than\n"
+            "act - and read the consecutive count: if it climbs, it is not transient.\n"
+        )
+        out.append("| Row | Page | Failure | Consecutive runs | Last successful fetch |")
+        out.append("|---|---|---|---|---|")
+        out.extend(_health_row(g) for g in transient)
+        out.append("")
+    return ("\n".join(out) + "\n") if out else ""
+
+
 def fetch_with_retry(url):
     """Tries every layer before giving up on a page. Charles, 2026-09-07:
     "we can't have gaps (unless they are genuinely broken)." A plain HTTP
@@ -1075,6 +1172,13 @@ def main():
     entries = load_watchlist()
     snapshots = load_json(SNAPSHOTS_PATH, {})
     runs = load_json(RUNS_PATH, [])
+    # Captured before the loop overwrites snapshots[slug]: each row's failure
+    # streak and last-known-good time carried in from previous runs. This is
+    # what lets a persistent failure be told apart from a one-off.
+    prev_failure_streak = {
+        k: (v or {}).get("consecutive_failures", 0) for k, v in snapshots.items()
+    }
+    prev_last_ok = {k: (v or {}).get("last_ok") for k, v in snapshots.items()}
 
     counts = {"checked": 0, "new": 0, "unchanged": 0, "changed": 0, "gap": 0, "dead": 0}
     changes = []
@@ -1250,6 +1354,49 @@ def main():
         else:
             log(f"FAILED to open GitHub issue: {issue_error}")
 
+    # --- Failure taxonomy pass ---------------------------------------------
+    # Runs once every row has been fetched, so it sees this run's outcome
+    # together with the streak carried in from previous runs. Records per-row
+    # health on the snapshot and promotes persistent connection failures out
+    # of "transient" and into "unreachable".
+    unreachable, transient = [], []
+    for gap in gaps:
+        gap_slug = gap["slug"]
+        kind = classify_failure(gap.get("error"))
+        streak = prev_failure_streak.get(gap_slug, 0) + 1
+        snap = snapshots.get(gap_slug) or {}
+        snap["consecutive_failures"] = streak
+        snap["last_failure_kind"] = kind
+        snap["last_ok"] = prev_last_ok.get(gap_slug)
+        gap["kind"] = kind
+        gap["consecutive_failures"] = streak
+        gap["last_ok"] = prev_last_ok.get(gap_slug)
+        if kind in ("connect", "dns") and streak >= UNREACHABLE_AFTER_RUNS:
+            snap["status"] = "unreachable"
+            unreachable.append(gap)
+        else:
+            transient.append(gap)
+        snapshots[gap_slug] = snap
+
+    # A row that fetched cleanly this run has its streak reset and its
+    # last-known-good time stamped, so a recovered page stops being reported.
+    # Dead rows are deliberately left alone - they fetched fine, the resource
+    # itself is gone.
+    for entry in entries:
+        ok_slug = entry["slug"]
+        snap = snapshots.get(ok_slug) or {}
+        if snap.get("status") in ("ok", "changed", "new", "unchanged"):
+            snap["consecutive_failures"] = 0
+            snap["last_failure_kind"] = None
+            snap["last_ok"] = snap.get("last_checked")
+            snapshots[ok_slug] = snap
+
+    counts["unreachable"] = len(unreachable)
+    log(
+        "failure taxonomy: %d unreachable, %d transient, %d dead"
+        % (len(unreachable), len(transient), len(dead_links))
+    )
+
     finished_at = datetime.datetime.utcnow().isoformat() + "Z"
     run_record = {
         "date": started_at[:10],
@@ -1277,6 +1424,11 @@ def main():
     save_json(RUNS_PATH, runs)
 
     dashboard_md = format_dashboard(entries, snapshots, runs, run_record)
+    dashboard_md = dashboard_md.replace(
+        "## Run history",
+        render_health_sections(unreachable, transient) + "## Run history",
+        1,
+    )
     with open(DASHBOARD_PATH, "w", encoding="utf-8") as f:
         f.write(dashboard_md)
 
