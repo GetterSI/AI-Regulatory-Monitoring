@@ -23,6 +23,32 @@ on:
         default: ""
 
 jobs:
+  # Fast feedback on monitor.py itself. A syntax error or a regression in the
+  # noise filters previously only showed up in a 38-minute production run, or
+  # worse, in a run that completed and quietly reported nonsense. This gives
+  # the same answer in well under a minute, and runs in parallel with the
+  # network probe below.
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check monitor.py
+        run: python -m py_compile monitor.py && echo "monitor.py compiles."
+
+      - name: Regression tests — consent filter and image comparison
+        # Exits non-zero on any failed check, so this step fails loudly.
+        run: python tests/test_noise_filters.py
+
   probe:
     runs-on: ubuntu-latest
     steps:
