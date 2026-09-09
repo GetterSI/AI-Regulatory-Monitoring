@@ -4747,5 +4747,157 @@
     "new_baseline": 0,
     "started_at": "2026-09-08T13:27:27.895477Z",
     "unchanged": 194
+  },
+  {
+    "changed": 11,
+    "changes": [
+      {
+        "description": "List of substances subject to POPs Regulation - ECHA",
+        "note": "1-bromohenicosafluorodecane | EC / List no: | 206-201-1",
+        "row": 40,
+        "url": "https://echa.europa.eu/list-of-substances-subject-to-pops-regulation",
+        "vp_id": 3120039
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "note": "Brazil: Law No. 15.496 establishing the Fertiliser Industry Development Programme (Profert). | Date of text: 03 September 2026 | Zambia: Water Supply and Sanitation Services Act, 2026 (Act No. 13 of 2026).",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "note": "1-bromohenicosafluorodecane | EC / List no: | 206-201-1",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "EUDR Info - Due Diligence Information System (European Commission)",
+        "note": "Due diligence statements and simplified declarations submitted in the LIVE server have legal value and their content can be subject to checks by Competent Authorities. | Due diligence statements and simplified declarations submitted in the PRODUCTION server have legal value and their content can be subject to checks by Competent Authorities. | Release notes for the latest updates to the PRODUCTION",
+        "row": 78,
+        "url": "https://green-business.ec.europa.eu/deforestation-regulation-implementation/deforestation-due-diligence-registry_en#training-testing-and-user-manuals",
+        "vp_id": 5692226
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "Cadmium sulfoselenide orange | This substance is identified in the Colour Index by Colour Index Constitution Number, C.I. 77202. | EC / List no:",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "Proposition 65 - OEHHA",
+        "note": "Proposition 65: Omnibus 2026 Pre-Rulemaking | The Office of Environmental Health Hazard Assessment (OEHHA) will host an in-person and online workshop to discuss potential amendments to the Proposition 65 regulations on July 30, 2026. The workshop will include a discussion of potential regulatory amendments that OEHHA will publish on its website prior to the workshop. | Wed, 07/22/2026 - 12:00pm",
+        "row": 103,
+        "url": "https://oehha.ca.gov/proposition-65",
+        "vp_id": 6174560
+      },
+      {
+        "description": "CESI China RoHS News",
+        "note": "请稍候... | 云防护 | 中国电子技术标准化研究院 | 首页",
+        "row": 118,
+        "url": "https://www.cesi.cn/rohs/page/list.jsp?catalog=/001/001-006",
+        "vp_id": 6351528
+      },
+      {
+        "description": "PFAS Central",
+        "note": "How to limit your PFAS exposure in the great outdoors | In fact, most people already have PFAS in their bodies, where they can persist and accumulate over time, potentially magnifying the health risks. So, it’s best to limit exposure wherever we can. | EPA draft guidance on PFAS in biosolids draws mixed reviews",
+        "row": 132,
+        "url": "https://pfascentral.org/",
+        "vp_id": 6475025
+      },
+      {
+        "description": "Liste der Beschränkungen - ECHA",
+        "note": "Legal Notice | Die Europäische Chemikalienagentur (im Folgenden „ECHA“) unterhält diese Website (im Folgenden „ECHA-Website“), um den Zugang der Öffentlichkeit zu Informationen über ihre Tätigkeit zu verbessern und um den Verpflichtungen nachzukommen, die ihr im Rahmen ihres Auftrags erwachsen. | Eine Person, die die ECHA-Website benutzt (im Folgenden „Nutzer“), stimmt den unten aufgeführten Bedin",
+        "row": 148,
+        "url": "https://echa.europa.eu/de/substances-restricted-under-reach",
+        "vp_id": 6710184
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "Desde reciclaje de aceite a parrillas a gas: alcalde Desbordes y ministra Toledo dan a conocer el lado sustentable de la fonda del Parque O’Higgins | 8 septiembre, 2026 | Desde reciclaje de aceite a parrillas a gas: alcalde Desbordes y ministra Toledo dan a conocer el lado sustentable de la fonda del Parque O’Higgins | 1 new image(s) by content; 1 image(s) no longer present",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      },
+      {
+        "description": "Tracking PFAS legislation across the US | Manufacturing Dive",
+        "note": "Beyond the Grid: How Next Gen Compressors Are Slashing Energy Overheads for U.S. Plants | From Hertz Kompressoren | August 18, 2026",
+        "row": 196,
+        "url": "https://www.manufacturingdive.com/news/tracking-pfas-forever-chemicals-bills-legislation-us-states/749829/",
+        "vp_id": 8210516
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-09",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-09T08:41:51.687396Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 17,
+    "new_baseline": 0,
+    "started_at": "2026-09-09T08:10:02.358900Z",
+    "unchanged": 200
   }
 ]
