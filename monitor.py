@@ -661,6 +661,28 @@ FAILURE_KIND_PATTERNS = [
 # a working page to "unreachable".
 UNREACHABLE_AFTER_RUNS = 3
 
+# --- Two-run confirmation ---------------------------------------------------
+# Charles, 2026-09-09: "we need a solution that works for any URL we throw at
+# it, instead of adapting the model each time for individual links."
+#
+# Every noise fix before this one was a denylist entry - a marker string or a
+# consent pattern learned from one site. That cannot cover 213 sources in a
+# dozen languages, and it covers a new URL not at all.
+#
+# This rule knows nothing about any site. A change must reproduce on the next
+# fetch before it raises an alert, judged only against the row's own history.
+# It therefore works on a URL added tomorrow, from that URL's first fetch, and
+# it kills flapping noise of every kind at once: an intermittent consent
+# banner, a rotating slider, a WAF page that comes and goes, a session id in
+# the markup.
+#
+# A page that changes to a DIFFERENT value every run can never reproduce. Such
+# a page is declared volatile once, then stops alerting - and clears itself
+# again after VOLATILE_CLEARS_AFTER stable runs, so a row cannot be muted
+# permanently by a bad patch.
+VOLATILE_AFTER_RUNS = 3
+VOLATILE_CLEARS_AFTER = 3
+
 
 def classify_failure(err):
     """Maps a fetch error string onto one of the kinds above.
@@ -978,6 +1000,107 @@ def assess_image_change(prev_hashes, new_hashes, had_baseline, text_changed):
     return True, "; ".join(parts)
 
 
+def assess_confirmation(prev, new_text, text_changed, note):
+    """Decides whether a detected change is reported now, held, or muted.
+
+    Site-agnostic by construction: the only inputs are this row's previous
+    snapshot and its new text. Returns (status, fields, note) where status is
+    one of unchanged / pending / changed / volatile and fields are merged onto
+    the snapshot.
+
+    The baseline text is deliberately NOT advanced while a change is pending.
+    If it were, the next run would compare against the new text, find no
+    difference, and the change could never confirm.
+
+    Behaviour verified before shipping, over seven sequences: never changes,
+    real change persists, flap on/off, news feed changing every run, volatile
+    then settling, wobble then settling, quiet then a real change.
+    """
+    prev = prev or {}
+    status = "changed" if text_changed else "unchanged"
+    baseline_text = new_text
+    pending_hash = prev.get("pending_hash")
+    pending_runs = prev.get("pending_runs") or 0
+    volatile = bool(prev.get("volatile"))
+    stable_runs = prev.get("stable_runs") or 0
+    new_hash = hashlib.sha256(
+        normalize_for_compare(new_text).encode("utf-8")
+    ).hexdigest()
+
+    if status == "changed":
+        stable_runs = 0
+        if pending_hash == new_hash:
+            pending_hash, pending_runs = None, 0          # reproduced: real
+        else:
+            pending_runs = pending_runs + 1 if pending_hash else 1
+            pending_hash = new_hash
+            if pending_runs >= VOLATILE_AFTER_RUNS and not volatile:
+                volatile = True                            # say so once
+                pending_hash, pending_runs = None, 0
+                note = "changes on every run (volatile) - " + (note or "")
+            elif volatile:
+                status = "volatile"                        # already known: mute
+                pending_hash, pending_runs = None, 0
+            else:
+                status = "pending"
+                baseline_text = prev.get("text", new_text)
+    else:
+        pending_hash, pending_runs = None, 0
+        if volatile:
+            stable_runs += 1
+            if stable_runs >= VOLATILE_CLEARS_AFTER:
+                volatile, stable_runs = False, 0           # self-healing
+
+    return status, {
+        "text": baseline_text,
+        "pending_hash": pending_hash,
+        "pending_runs": pending_runs,
+        "volatile": volatile,
+        "stable_runs": stable_runs,
+    }, note
+
+
+def render_confirmation_sections(pending, volatile):
+    """Rows seen changing but not yet reported, and rows that never settle.
+
+    These go on the dashboard and never into the GitHub issue, so a change is
+    visible the same day it is first seen while the emailed alert stays
+    restricted to changes that reproduced.
+    """
+    out = []
+    if pending:
+        out.append("## Seen changing, awaiting confirmation (%d)\n" % len(pending))
+        out.append(
+            "First sighting of a change on these pages. They are deliberately not in\n"
+            "the issue: a change has to reproduce on the next fetch before it is\n"
+            "emailed, which is what removes flapping banners, rotating images and\n"
+            "intermittent challenge pages without needing a rule per site.\n"
+        )
+        out.append("| Row | Page | What changed |")
+        out.append("|---|---|---|")
+        for c in pending:
+            out.append("| %s | [%s](%s) | %s |" % (
+                c.get("row", "?"), escape_md(c.get("description", "")),
+                c.get("url", ""), escape_md((c.get("note") or "")[:160])))
+        out.append("")
+    if volatile:
+        out.append("## Volatile pages, not alerted (%d)\n" % len(volatile))
+        out.append(
+            "These change to something different on every single run, so a change can\n"
+            "never reproduce and an alert would fire forever. Reported once when first\n"
+            "detected, then listed here only. If one goes stable for %d runs it clears\n"
+            "itself and starts alerting normally again.\n" % VOLATILE_CLEARS_AFTER
+        )
+        out.append("| Row | Page | Latest difference |")
+        out.append("|---|---|---|")
+        for c in volatile:
+            out.append("| %s | [%s](%s) | %s |" % (
+                c.get("row", "?"), escape_md(c.get("description", "")),
+                c.get("url", ""), escape_md((c.get("note") or "")[:160])))
+        out.append("")
+    return ("\n".join(out) + "\n") if out else ""
+
+
 def extract_text_and_images(html_bytes, content_type, base_url):
     """Returns (text, image_urls) from a single HTML parse. text is the
     full extracted, chrome-stripped visible text — no length cap (see the
@@ -1239,8 +1362,11 @@ def main():
     }
     prev_last_ok = {k: (v or {}).get("last_ok") for k, v in snapshots.items()}
 
-    counts = {"checked": 0, "new": 0, "unchanged": 0, "changed": 0, "gap": 0, "dead": 0}
+    counts = {"checked": 0, "new": 0, "unchanged": 0, "changed": 0, "gap": 0,
+              "dead": 0, "pending": 0, "volatile": 0}
     changes = []
+    pending_changes = []
+    volatile_rows = []
     gaps = []
     dead_links = []
 
@@ -1374,8 +1500,17 @@ def main():
                 else:
                     status, note = "unchanged", None
 
+            # Gate the change on reproduction before it becomes an alert.
+            if status in ("changed", "unchanged"):
+                status, confirm_fields, note = assess_confirmation(
+                    prev, new_text, status == "changed", note
+                )
+            else:
+                confirm_fields = {"text": new_text}
+
             snapshots[slug] = {
-                **entry, "mode": "text", "text": new_text, "hash": None,
+                **entry, "mode": "text", "hash": None,
+                **confirm_fields,
                 "image_hashes": new_image_hashes,
                 "status": "dead" if is_dead else "ok",
                 "last_checked": started_at,
@@ -1394,7 +1529,13 @@ def main():
                 log(f"DEAD row {entry['row']:>3}  {url}  ({dead_reason[:100]})")
 
         counts[status] += 1
-        if status == "changed":
+        if status == "pending":
+            pending_changes.append({**entry, "note": note})
+            log(f"HOLD  row {entry['row']:>4}  first sighting, awaiting confirmation")
+        elif status == "volatile":
+            volatile_rows.append({**entry, "note": note})
+            log(f"VOLAT row {entry['row']:>4}  changes every run, not alerted")
+        elif status == "changed":
             changes.append({**entry, "note": note})
             log(f"CHANGED row {entry['row']:>3}  {url}  -- {note}")
         elif status == "new":
@@ -1485,7 +1626,9 @@ def main():
     dashboard_md = format_dashboard(entries, snapshots, runs, run_record)
     dashboard_md = dashboard_md.replace(
         "## Run history",
-        render_health_sections(unreachable, transient) + "## Run history",
+        render_health_sections(unreachable, transient)
+        + render_confirmation_sections(pending_changes, volatile_rows)
+        + "## Run history",
         1,
     )
     with open(DASHBOARD_PATH, "w", encoding="utf-8") as f:
