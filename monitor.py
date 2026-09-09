@@ -246,6 +246,19 @@ BOT_CHALLENGE_MARKERS = (
     # slipped through silently rather than triggering a retry.
     "robot challenge screen",
     "checking the site connection security",
+    # Found 2026-09-09 on row 118 (CESI, China RoHS news). The 09-09 run
+    # reported "请稍候... | 云防护 | 中国电子技术标准化研究院" as a regulatory
+    # change: that is "please wait" plus the 360 vendor's "cloud protection",
+    # i.e. an interstitial being stored as page content. Every marker above
+    # this point is English, so a non-Latin challenge page passed straight
+    # through. The 2026-08-11 notes had already recorded this site's 360
+    # challenge; the marker was simply never added.
+    "请稍候",
+    "云防护",
+    # ECHA serves an Azure WAF interstitial to automated clients (found
+    # 2026-09-08: a real Chrome navigation retitled the tab "Azure WAF").
+    "azure waf",
+    "web application firewall",
 )
 
 
@@ -263,7 +276,20 @@ def is_bot_challenge(html_bytes, content_type):
     if not html_bytes or any(bt in (content_type or "") for bt in BINARY_CONTENT_TYPES):
         return False
     try:
-        sample = html_bytes[:20000].decode("utf-8", errors="ignore").lower()
+        # Decode with the charset the server actually declared, falling back
+        # to utf-8. This used to be a hard-coded utf-8 decode with
+        # errors="ignore", which silently DROPPED every non-UTF-8 byte - so a
+        # GBK-encoded Chinese challenge page decoded to nothing recognisable
+        # and no marker could ever match it. Verified: the old decode finds
+        # no markers in a GBK challenge page, the new one finds both.
+        charset = "utf-8"
+        declared = re.search(r"charset=([\w-]+)", content_type or "", re.IGNORECASE)
+        if declared:
+            charset = declared.group(1)
+        try:
+            sample = html_bytes[:20000].decode(charset, errors="ignore").lower()
+        except (LookupError, UnicodeDecodeError):
+            sample = html_bytes[:20000].decode("utf-8", errors="ignore").lower()
     except Exception:  # noqa: BLE001
         return False
     return any(marker in sample for marker in BOT_CHALLENGE_MARKERS)
