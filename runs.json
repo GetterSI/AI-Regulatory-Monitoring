@@ -5062,5 +5062,143 @@
     "new_baseline": 0,
     "started_at": "2026-09-11T08:10:01.464257Z",
     "unchanged": 195
+  },
+  {
+    "changed": 7,
+    "changes": [
+      {
+        "description": "Authorisation List - ECHA",
+        "note": "1,3-Dioxane, 2-(2,4-dimethyl-3-cyclohexen-1-yl)-5-methyl-5-(1-methylpropyl)- | EC No.: | 601-499-3",
+        "row": 12,
+        "url": "https://echa.europa.eu/authorisation-list",
+        "vp_id": 2913496
+      },
+      {
+        "description": "FAOLEX Database | Food and Agriculture Organization of the United Nations",
+        "note": "Brazil: Law No. 15.496 establishing the Fertiliser Industry Development Programme (Profert). | Date of text: 03 September 2026 | Spain: Ley 4/2026, de 2 de julio, de Caza y Pesca de la Comunidad de Madrid.",
+        "row": 57,
+        "url": "https://www.fao.org/faolex/en",
+        "vp_id": 4493282
+      },
+      {
+        "description": "List of substances proposed as POPs - ECHA",
+        "note": "show/hide | show/hide | show/hide",
+        "row": 74,
+        "url": "https://echa.europa.eu/list-of-substances-proposed-as-pops",
+        "vp_id": 5549728
+      },
+      {
+        "description": "EU-BATTERIES_REGULATION-ANX_I_VI_ART_13_5 - ECHA",
+        "note": "changes on every run (volatile) - Waste solids, cadmium-electrolysis, thallium-rich | Residue obtained in the electrolysis of cadmium, composed primarily of thallium chromate. Other non-ferrous metals or metal compounds may also be present. | EC / List no:",
+        "row": 98,
+        "url": "https://echa.europa.eu/eu-batteries_regulation-anx_i_vi_art_13_5?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6152060
+      },
+      {
+        "description": "CPCB | Central Pollution Control Board",
+        "note": "Updated On: 07 Sep 2026 | Updated On: 10 Sep 2026 | Notice for submission of 39th Analytical Quality Control (AQC) Exercise Participation Fees",
+        "row": 133,
+        "url": "https://cpcb.nic.in/latest-cpcb.php",
+        "vp_id": 6495233
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "changes on every run (volatile) - Desde reciclaje de aceite a parrillas a gas: alcalde Desbordes y ministra Toledo dan a conocer el lado sustentable de la fonda del Parque O’Higgins | 8 septiembre, 2026 | Desde reciclaje de aceite a parrillas a gas: alcalde Desbordes y ministra Toledo dan a conocer el lado sustentable de la fonda del Parque O’Higgins",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      },
+      {
+        "description": "EU Digital Product Passports - Main Web Page",
+        "note": "changes on every run (volatile) - 30 | Sep | 2026",
+        "row": 209,
+        "url": "https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en#what-is-a-digital-product-passport",
+        "vp_id": 9040811
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-12",
+    "dead": 6,
+    "dead_links": [
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-12T08:52:31.482215Z",
+    "gaps": 4,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "French Sustainability Index",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 119,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite",
+        "vp_id": 6367839
+      },
+      {
+        "description": "French Repairability Index",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 120,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite",
+        "vp_id": 6367916
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 19,
+    "new_baseline": 0,
+    "started_at": "2026-09-12T08:09:39.185801Z",
+    "unchanged": 199
   }
 ]
