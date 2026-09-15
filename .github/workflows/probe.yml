@@ -68,6 +68,51 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  # Vera, 2026-09-15: drive the REAL fetch chain against one URL in about
+  # three minutes. A full daily-watch run is 40-75 minutes, which is far too
+  # slow a loop for diagnosing a single row -- two fixes for row 113 were
+  # shipped that day and neither worked, because the evidence needed to
+  # choose between the causes sat in a step log GitHub would not render.
+  # Skipped unless an extra_url is supplied, so an ordinary probe run is
+  # unaffected.
+  urlcheck:
+    if: inputs.extra_url != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browser (Chromium)
+        run: python -m playwright install --with-deps chromium
+
+      - name: Check the URL through the real fetch chain
+        env:
+          # Through the environment, never interpolated into the script body,
+          # so a dispatch input cannot inject shell.
+          EXTRA_URL: ${{ inputs.extra_url }}
+        run: |
+          set -o pipefail
+          python tools/url_check.py "$EXTRA_URL" 2>&1 | tee /tmp/urlcheck.log
+
+      - name: Show the result in the run summary
+        if: always()
+        run: |
+          {
+            echo "### url_check output"
+            echo ""
+            echo '```'
+            cat /tmp/urlcheck.log 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
   probe:
     runs-on: ubuntu-latest
     steps:
