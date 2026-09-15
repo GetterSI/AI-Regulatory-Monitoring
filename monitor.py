@@ -618,28 +618,45 @@ def fetch_with_playwright(url):
             pass
         html = page.content()
         try:
-            # Vera, 2026-09-15: row 113 (IEC 62474 declarable substances)
-            # stored NINE characters -- "IEC 62474" -- every run and was
-            # reported OK, i.e. monitored in name only. Confirmed in a real
-            # browser: that page is a shell whose entire content sits in an
-            # <iframe>, and page.content() only ever returns the top
-            # document. If the top document is thin AND there are child
-            # frames, append their HTML so the real content is captured.
-            # Generic on purpose -- no site rule; it triggers on any
-            # frame-based page, including ones added to the watchlist later.
-            if _visible_text_len(
-                html.encode("utf-8"), "text/html"
-            ) < MIN_VISIBLE_TEXT_CHARS:
-                extra = []
-                for frame in page.frames:
-                    if frame is page.main_frame:
-                        continue
-                    try:
-                        extra.append(frame.content())
-                    except Exception:  # noqa: BLE001
-                        pass
-                if extra:
-                    html = html + "\n" + "\n".join(extra)
+            # Vera, 2026-09-15 (SECOND PASS -- the first version did not
+            # work, and the reason is worth keeping).
+            #
+            # Row 113 (IEC 62474 declarable substances) stored NINE
+            # characters -- "IEC 62474" -- every run while reporting OK, i.e.
+            # monitored in name only. Its content sits entirely in an
+            # <iframe>, and page.content() only returns the top document.
+            #
+            # The first fix gated this on the top document looking thin,
+            # measured with _visible_text_len. That never fired: row 113's
+            # outer document carries ~520 characters of visible nav text,
+            # which clears MIN_VISIBLE_TEXT_CHARS -- but CHROME_PATTERNS then
+            # strips every one of those nav lines, so the STORED text was 9
+            # characters. The gate measured one thing and the symptom was
+            # another. Do not reintroduce a pre-chrome-strip gate here.
+            #
+            # A page's own frames ARE part of the page, so follow them
+            # whenever they exist, with no thinness test at all. Restricted
+            # to SAME-ORIGIN frames, which keeps third-party ad and tracker
+            # iframes out of the compared text while capturing frame-based
+            # sites like this one. Verified in a real browser: row 113's
+            # frame holds 11,410 characters against the 9 being stored.
+            top_host = urllib.parse.urlsplit(page.url).netloc
+            extra = []
+            for frame in page.frames:
+                if frame is page.main_frame:
+                    continue
+                try:
+                    frame_host = urllib.parse.urlsplit(frame.url).netloc
+                except Exception:  # noqa: BLE001
+                    continue
+                if frame_host and frame_host != top_host:
+                    continue  # third-party frame: ads, trackers, embeds
+                try:
+                    extra.append(frame.content())
+                except Exception:  # noqa: BLE001
+                    pass
+            if extra:
+                html = html + "\n" + "\n".join(extra)
         except Exception:  # noqa: BLE001
             pass
         return True, "text/html; charset=utf-8", html.encode("utf-8"), None
@@ -896,7 +913,27 @@ def fetch_with_retry(url):
     def _is_thin(ok, ct, raw):
         if not ok or not raw or any(bt in (ct or "") for bt in BINARY_CONTENT_TYPES):
             return False
-        return _visible_text_len(raw, ct) < MIN_VISIBLE_TEXT_CHARS
+        # Vera, 2026-09-15: measure the text that will actually be STORED
+        # and compared, not a looser pre-chrome-strip estimate.
+        #
+        # _visible_text_len only removes script/style/nav/header/footer/form
+        # TAGS. Row 113's navigation is a plain list of links in the body, so
+        # it survived that and scored ~520 characters -- above the floor, so
+        # the row never escalated past the first plain fetch. But
+        # extract_text_and_images then strips those same lines via
+        # CHROME_PATTERNS, leaving 9 characters, which is what got stored and
+        # reported OK for weeks. Escalation was deciding on one number while
+        # the snapshot was built from another.
+        #
+        # Using the real extraction path costs one BeautifulSoup parse of
+        # bytes already in memory (no network), and it means "thin" now means
+        # exactly "thin once chrome is removed" -- which is the only
+        # definition that matches what a change would be detected against.
+        try:
+            text, _ = extract_text_and_images(raw, ct, url)
+        except Exception:  # noqa: BLE001
+            return _visible_text_len(raw, ct) < MIN_VISIBLE_TEXT_CHARS
+        return len((text or "").strip()) < MIN_VISIBLE_TEXT_CHARS
 
     best = None  # best-so-far (ok, ct, raw, err) among thin-but-technically-ok results
 
