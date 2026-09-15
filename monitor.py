@@ -238,6 +238,31 @@ KEEP_HINTS_RE = re.compile(
 
 BINARY_CONTENT_TYPES = ("application/pdf", "application/octet-stream", "application/zip")
 
+# --- What gets stripped before text is compared ----------------------------
+# Vera, 2026-09-15, found with tools/url_check.py in 53 seconds after two
+# blind fixes had failed.
+#
+# "form" used to be in this list, and it was quietly destroying whole pages.
+# Lotus Notes/Domino and classic ASP.NET WebForms both wrap the ENTIRE page
+# body in a single <form> element, so decomposing it threw away everything.
+# Measured on row 113 (std.iec.ch, a Domino .nsf application): Playwright
+# fetched 28,290 bytes of real content and extraction returned NINE
+# characters -- "IEC 62474". The fetch was never the problem, which is why
+# two fixes aimed at fetching changed nothing.
+#
+# This one line plausibly explains six of the thin rows, all form-wrapped
+# platforms: 113 (Domino), 29 and 59 (ventanillaunica .aspx), 203 and 204
+# (MOENV Taiwan .aspx), 15 (jcpra.or.jp, DotNetNuke). Each is confirmed
+# individually with url_check before being claimed as fixed.
+#
+# What the form-strip was actually FOR is interactive controls -- search
+# boxes, login fields, dropdowns -- so strip those precisely instead of the
+# container that happens to wrap the page. Control labels and options go
+# too: "Search", "Submit" and dropdown lists are chrome, not regulatory
+# text. Consent text inside a form is still handled by CONSENT_RE.
+NOISE_TAGS = ("script", "style", "noscript", "svg", "nav", "header", "footer")
+FORM_CONTROL_TAGS = ("input", "select", "button", "textarea", "option", "label")
+
 # Cloudflare/Akamai/Incapsula-style bot-challenge interstitials return a
 # normal HTTP 200 with real HTML, so they pass every check in fetch() and
 # fetch_with_retry() as a "successful" response. But the body is just a
@@ -733,7 +758,9 @@ def _visible_text_len(raw, content_type):
     try:
         html = raw.decode("utf-8", errors="ignore")
         soup = BeautifulSoup(html, "html.parser")
-        for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "form"]):
+        for tag in soup(NOISE_TAGS):
+            tag.decompose()
+        for tag in soup(FORM_CONTROL_TAGS):
             tag.decompose()
         return len(soup.get_text(strip=True))
     except Exception:  # noqa: BLE001
@@ -1247,7 +1274,9 @@ def extract_text_and_images(html_bytes, content_type, base_url):
         html = html_bytes.decode("utf-8", errors="replace")
 
     soup = BeautifulSoup(html, "html.parser")
-    for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "form"]):
+    for tag in soup(NOISE_TAGS):
+        tag.decompose()
+    for tag in soup(FORM_CONTROL_TAGS):
         tag.decompose()
 
     images = extract_images(soup, base_url)
