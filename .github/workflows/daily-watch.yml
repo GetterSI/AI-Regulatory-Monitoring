@@ -98,45 +98,6 @@ jobs:
           echo "Pages that need FlareSolverr will be reported as gaps this run."
           exit 0
 
-      - name: Probe the two standing gap URLs (diagnostic only, never fails)
-        # ADDED 2026-09-08, temporary. Rows 42 and 193 have been the only two
-        # gaps for several runs. They were recorded on 2026-09-07 as "a
-        # GitHub Actions outbound-IP block", but that was never actually
-        # established — and row 193 returned a real "not found" page to this
-        # same runner on 09-07, which a blocked IP would not do.
-        #
-        # This step settles it with evidence instead of inference. It reports,
-        # per URL: whether the runner reaches the site directly at all
-        # (HTTP status + wall time), and what FlareSolverr makes of it. Read
-        # the step log after the run, then delete this step.
-        run: |
-          set +e
-          probe () {
-            label="$1"; url="$2"
-            echo "================ $label"
-            echo "--- direct curl, 15s cap, follow redirects"
-            curl -sL -o /dev/null \
-              -w "  http_code=%{http_code}  time_total=%{time_total}s  size=%{size_download}B\n" \
-              -m 15 "$url"
-            echo "--- via FlareSolverr, 90s cap"
-            START=$(date +%s)
-            RESP=$(curl -s -m 90 -X POST http://localhost:8191/v1 \
-              -H 'Content-Type: application/json' \
-              -d "{\"cmd\":\"request.get\",\"url\":\"$url\",\"maxTimeout\":60000}")
-            echo "  elapsed=$(( $(date +%s) - START ))s"
-            echo "  response head: $(echo "$RESP" | head -c 400)"
-            echo
-          }
-
-          probe "row 193 — gesetze-im-internet.de (VerpackG)" \
-            "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html"
-
-          probe "row 42 — ecommunity-erp.co.il" \
-            "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/"
-
-          echo "Diagnostic complete. This step cannot fail the run."
-          exit 0
-
       - name: Run monitor
         # CHANGED 2026-09-08. Piped through tee so the log survives as a file.
         # Run 34217747212 failed in this step after 33m 58s, and the traceback
