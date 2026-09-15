@@ -913,27 +913,20 @@ def fetch_with_retry(url):
     def _is_thin(ok, ct, raw):
         if not ok or not raw or any(bt in (ct or "") for bt in BINARY_CONTENT_TYPES):
             return False
-        # Vera, 2026-09-15: measure the text that will actually be STORED
-        # and compared, not a looser pre-chrome-strip estimate.
+        # REVERTED 2026-09-15 (Vera). For a few hours this measured the
+        # post-chrome-strip text instead, on the correct reasoning that
+        # escalation should judge the same number the snapshot is built from.
+        # It did not fix what it was aimed at (row 113 stayed at 9 characters)
+        # and it was expensive: every chronically thin row then went through
+        # 3 UA retries -> Playwright -> FlareSolverr, taking the run from 37
+        # to 75 minutes and gaps from 2 to 15 as slow hosts hit their
+        # timeouts. Reverted on evidence, not on principle -- the reasoning
+        # still looks right, so if it is retried it needs an escalation
+        # budget per row, not an unbounded chain.
         #
-        # _visible_text_len only removes script/style/nav/header/footer/form
-        # TAGS. Row 113's navigation is a plain list of links in the body, so
-        # it survived that and scored ~520 characters -- above the floor, so
-        # the row never escalated past the first plain fetch. But
-        # extract_text_and_images then strips those same lines via
-        # CHROME_PATTERNS, leaving 9 characters, which is what got stored and
-        # reported OK for weeks. Escalation was deciding on one number while
-        # the snapshot was built from another.
-        #
-        # Using the real extraction path costs one BeautifulSoup parse of
-        # bytes already in memory (no network), and it means "thin" now means
-        # exactly "thin once chrome is removed" -- which is the only
-        # definition that matches what a change would be detected against.
-        try:
-            text, _ = extract_text_and_images(raw, ct, url)
-        except Exception:  # noqa: BLE001
-            return _visible_text_len(raw, ct) < MIN_VISIBLE_TEXT_CHARS
-        return len((text or "").strip()) < MIN_VISIBLE_TEXT_CHARS
+        # The visibility that actually mattered came from the low-confidence
+        # dashboard section, which needs none of this.
+        return _visible_text_len(raw, ct) < MIN_VISIBLE_TEXT_CHARS
 
     best = None  # best-so-far (ok, ct, raw, err) among thin-but-technically-ok results
 
