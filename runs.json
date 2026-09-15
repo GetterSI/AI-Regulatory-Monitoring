@@ -5481,5 +5481,194 @@
     "new_baseline": 0,
     "started_at": "2026-09-15T08:09:29.746949Z",
     "unchanged": 205
+  },
+  {
+    "changed": 3,
+    "changes": [
+      {
+        "description": "ESPR FAQ",
+        "note": "added: 1.0 | 1.0 | 1.22 MB",
+        "row": 86,
+        "url": "https://circabc.europa.eu/ui/group/418195ae-4919-45fa-a959-3b695c9aab28/library/25c48e7c-9ce3-41cb-96ac-d2942a8a29d6/details",
+        "vp_id": 5868298
+      },
+      {
+        "description": "PFAS Central",
+        "note": "added: 10 Sep 2026 | J. Hazard. Mater. | 10 Sep 2026 | WRAL News | 11 Sep 2026 | Maryland Matters; removed: 1 Sep 2026 | Ecotoxicol Environ Saf | 2 Sep 2026 | 2026 Unified Regulatory Agenda",
+        "row": 132,
+        "url": "https://pfascentral.org/",
+        "vp_id": 6475025
+      },
+      {
+        "description": "Latest news | Ecosurety",
+        "note": "added: 14 September 2026 | Ecosurety and UWE Bristol launch deposit-free, app-free reusable cup scheme | Impact; removed: 3 June 2026 | A number of significant policy updates have emerged in recent weeks, affecting packaging EPR reporting, Plastic Packaging Tax (PPT) compliance, the future rollo | DRS",
+        "row": 206,
+        "url": "https://www.ecosurety.com/news",
+        "vp_id": 8693410
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-15",
+    "dead": 10,
+    "dead_links": [
+      {
+        "description": "Gertearten",
+        "note": "404-Fehler | stiftung elektro-altgeräte register",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "Page Not Found - Conai",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "note": "Sidan hittades inte - Batteriretur",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Page not found | Environment",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-15T12:33:54.052860Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 24,
+    "low_confidence": [
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "52 characters captured",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "The Japan Containers and Packaging Recycling Association",
+        "note": "56 characters captured",
+        "row": 15,
+        "url": "https://www.jcpra.or.jp/english/tabid/603/index.php",
+        "vp_id": 2913512
+      },
+      {
+        "description": "Ventanilla Unica digital tariffs",
+        "note": "19 characters captured",
+        "row": 29,
+        "url": "https://www.ventanillaunica.digital/VU_Tarifas.aspx",
+        "vp_id": 2913586
+      },
+      {
+        "description": "Ventanilla Unica digital reporting template",
+        "note": "19 characters captured",
+        "row": 59,
+        "url": "https://www.ventanillaunica.digital/VU_Liquidaciones_Plantillas3T2023.aspx",
+        "vp_id": 4662311
+      },
+      {
+        "description": "IEC 62474",
+        "note": "9 characters captured",
+        "row": 113,
+        "url": "https://std.iec.ch/iec62474/iec62474.nsf/Index?open&q=125415",
+        "vp_id": 6276685
+      },
+      {
+        "description": "ECO Synergy - Transparenta preturi si clienti",
+        "note": "26 characters captured",
+        "row": 166,
+        "url": "https://ecosynergy.ro/informatiipublice/",
+        "vp_id": 7191855
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "185 characters captured",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      },
+      {
+        "description": "MOENV Taiwan Packaging registration and declaration documents",
+        "note": "17 characters captured",
+        "row": 203,
+        "url": "https://recycle1.moenv.gov.tw/sys/Business/doc/DocDownload.aspx",
+        "vp_id": 8615358
+      },
+      {
+        "description": "MOENV Taiwan Packaging - Latest News",
+        "note": "33 characters captured",
+        "row": 204,
+        "url": "https://recycle1.moenv.gov.tw/",
+        "vp_id": 8615426
+      }
+    ],
+    "new_baseline": 0,
+    "started_at": "2026-09-15T11:57:11.475550Z",
+    "unchanged": 195
   }
 ]
