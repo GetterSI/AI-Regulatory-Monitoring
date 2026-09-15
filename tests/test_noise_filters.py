@@ -179,6 +179,146 @@ check(
 )
 
 print()
+
+# ---------------------------------------------------------------------------
+# 4. Order-insensitive comparison (2026-09-15).
+#
+#    ECHA row 98 returns the SAME rows in a DIFFERENT ORDER on every request
+#    -- proven by loading it twice, seconds apart, and hashing the extracted
+#    rows: identical total text length, 10 of 15 positions different. The old
+#    concatenated-text comparison therefore reported a change every run, and
+#    that is what got the Art. 13(5) battery list muted as volatile.
+#
+#    The strings below are the real first two rows of that page.
+# ---------------------------------------------------------------------------
+print("ORDER-INSENSITIVE COMPARISON (classify_change)")
+
+_ECHA_A = "\n".join([
+    "cadmium|231-152-8|7440-43-9|All batteries||As cadmium||View Details",
+    "cadmium|231-152-8|7440-43-9|Portable batteries, whether or not incorporated",
+    "Cadmium and cadmium compounds show/hide Cadmium lithopone yellow",
+    "Mercury|231-106-7|7439-97-6|Batteries, whether or not incorporated",
+])
+_ECHA_B = "\n".join([
+    "cadmium|231-152-8|7440-43-9|Portable batteries, whether or not incorporated",
+    "Mercury|231-106-7|7439-97-6|Batteries, whether or not incorporated",
+    "cadmium|231-152-8|7440-43-9|All batteries||As cadmium||View Details",
+    "Cadmium and cadmium compounds show/hide Cadmium lithopone yellow",
+])
+
+_changed, _note = monitor.classify_change(_ECHA_A, _ECHA_B)
+check("ECHA reshuffle is not a change", _changed is False,
+      "got %r / %r" % (_changed, _note))
+
+_changed, _note = monitor.classify_change(
+    _ECHA_A,
+    _ECHA_B + "\nLead|231-100-4|7439-92-1|All batteries||As lead||View Details",
+)
+check("a substance ADDED inside a reshuffle still alerts", _changed is True,
+      "got %r" % (_changed,))
+check("the note names what was added", "added:" in (_note or "")
+      and "Lead" in (_note or ""), "note=%r" % (_note,))
+check("the note does not blame a line that merely moved",
+      "removed:" not in (_note or ""), "note=%r" % (_note,))
+
+_changed, _note = monitor.classify_change(
+    _ECHA_A, "\n".join(_ECHA_B.split("\n")[:-1])
+)
+check("a substance REMOVED still alerts", _changed is True, "got %r" % (_changed,))
+check("the note says removed", "removed:" in (_note or ""), "note=%r" % (_note,))
+
+_changed, _note = monitor.classify_change(_ECHA_A, _ECHA_A)
+check("identical text is unchanged", _changed is False and _note is None,
+      "got %r / %r" % (_changed, _note))
+
+_changed, _note = monitor.classify_change(
+    "Annex I entry\nAnnex I entry\nother line", "Annex I entry\nother line"
+)
+check("losing one of two identical lines still alerts", _changed is True,
+      "got %r / %r" % (_changed, _note))
+
+_changed, _note = monitor.classify_change(
+    "Tariff 2026\nPaper 120 EUR/t\nGlass 95 EUR/t",
+    "Tariff 2026\nPaper 135 EUR/t\nGlass 95 EUR/t",
+)
+check("a fee change alerts", _changed is True, "got %r" % (_changed,))
+check("the note carries both the old and new figure",
+      "135" in (_note or "") and "120" in (_note or ""), "note=%r" % (_note,))
+
+# ACCEPTED LOSS -- asserted so it cannot drift silently. On a page where the
+# ORDER ITSELF is the information, a pure reordering will not alert. This is
+# the deliberate price of killing reshuffle noise on 213 sources. Reverse it
+# only with a per-row opt-in, never by switching the whole comparison back.
+_changed, _note = monitor.classify_change(
+    "1. Alpha Refinery\n2. Beta Refinery\n3. Gamma Refinery",
+    "1. Alpha Refinery\n3. Gamma Refinery\n2. Beta Refinery",
+)
+check("ACCEPTED LOSS: order-only change on a ranked list is silent",
+      _changed is False, "got %r / %r" % (_changed, _note))
+
+
+# ---------------------------------------------------------------------------
+# 5. Non-English consent UI must not reach the diff (2026-09-15), and it must
+#    go through the REAL extraction path, not a copy of the filter.
+#    Strings are real: rows 105/148 (ECHA German locale) and row 14 (CONAI).
+# ---------------------------------------------------------------------------
+print("NON-ENGLISH CONSENT FILTER (extract_text_and_images)")
+
+_DE_HTML = (
+    "<html><body>"
+    "<p>Diese Website verwendet Cookies. Mehr erfahren Sie auf unserer</p>"
+    "<p>Cookies-Seite</p>"
+    "<p>Alle Cookies akzeptieren</p>"
+    "<p>Nur unbedingt notwendige Cookies akzeptieren</p>"
+    "<p>Datenschutzerkl\u00e4rung</p>"
+    "<p>Consent Selection</p>"
+    "<p>Learn more about this provider</p>"
+    "<p>Eintrag 23 des Anhangs XVII wurde 2026 ge\u00e4ndert</p>"
+    "<p>prior informed consent procedure under Regulation (EU) No 649/2012</p>"
+    "</body></html>"
+).encode("utf-8")
+_de_text, _ = monitor.extract_text_and_images(
+    _DE_HTML, "text/html; charset=utf-8", "https://echa.europa.eu/de/test"
+)
+for _s in ("verwendet Cookies", "Cookies-Seite", "Alle Cookies akzeptieren",
+           "notwendige Cookies", "Datenschutzerkl", "Consent Selection",
+           "Learn more about this provider"):
+    check("German/Cookiebot line dropped: %s" % _s, _s not in _de_text,
+          "still present")
+check("German regulatory substance survives the consent filter",
+      "Anhangs XVII" in _de_text, "text=%r" % (_de_text[:200],))
+check("PIC tripwire still holds (lawful use of 'consent')",
+      "649/2012" in _de_text, "text=%r" % (_de_text[:200],))
+
+
+# ---------------------------------------------------------------------------
+# 6. Dead-link markers, non-English and bare "page not found" (2026-09-15).
+#    Four dead pages were sitting in the OK bucket reporting "unchanged"
+#    every run. Rows 172 and 14 were confirmed dead in a real browser.
+# ---------------------------------------------------------------------------
+print("DEAD-LINK MARKERS")
+
+for _label, _txt in (
+    ("row 172 Commission", "Page not found | Environment An official website"),
+    ("row 14 CONAI", "Page Not Found - Conai\nConsent\nDetails"),
+    ("row 35 Swedish", "Sidan hittades inte - Batteriretur"),
+    ("row 11 German", "404-Fehler | stiftung elektro-altger\u00e4te register"),
+):
+    check("flags %s" % _label, monitor.is_dead_link(_txt) is not None,
+          "not flagged")
+
+# Tripwire: the conservative discipline must hold. A bare "404" in an address
+# or a page that merely mentions not finding records is NOT a dead link.
+for _alive in (
+    "404 Main Street, Sacramento CA -- office address",
+    "Restriction list under REACH Annex XVII, last updated 08 September 2026",
+    "Search results: no records found for that CAS number",
+    "The page you are viewing lists all notified bodies",
+):
+    check("does not flag healthy text: %s" % _alive[:40],
+          monitor.is_dead_link(_alive) is None, "wrongly flagged")
+
+
 if failures:
     print("FAILED: %d check(s) -> %s" % (len(failures), "; ".join(failures)))
     sys.exit(1)

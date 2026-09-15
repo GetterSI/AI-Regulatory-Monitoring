@@ -47,7 +47,26 @@ jobs:
 
       - name: Regression tests — consent filter and image comparison
         # Exits non-zero on any failed check, so this step fails loudly.
-        run: python tests/test_noise_filters.py
+        #
+        # Vera, 2026-09-15: tee the output and render it into the run summary.
+        # GitHub's log viewer only renders the first ~49 lines of a step, so
+        # once this suite grew past that the later sections became invisible —
+        # a green tick proved the suite exited zero but not WHICH checks ran.
+        # $GITHUB_STEP_SUMMARY renders in full on the run page.
+        run: |
+          set -o pipefail
+          python tests/test_noise_filters.py 2>&1 | tee /tmp/tests.log
+
+      - name: Show the full test output
+        if: always()
+        run: |
+          {
+            echo "### Regression test output"
+            echo ""
+            echo '```'
+            cat /tmp/tests.log 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
   probe:
     runs-on: ubuntu-latest

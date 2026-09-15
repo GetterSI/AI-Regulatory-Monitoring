@@ -33,6 +33,7 @@ import gzip
 import zlib
 import hashlib
 import difflib
+from collections import Counter
 import datetime
 import urllib.request
 import urllib.error
@@ -92,6 +93,13 @@ UA_GOOGLEBOT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/b
 REQUEST_TIMEOUT = 30
 PLAYWRIGHT_NAV_TIMEOUT_MS = 35000
 PLAYWRIGHT_IDLE_TIMEOUT_MS = 12000
+# Vera, 2026-09-15: some WAF interstitials clear THEMSELVES after a few
+# seconds in a real browser. Observed directly on ECHA: the tab title went
+# "Azure WAF" and then became the real page title after about six seconds, so
+# the flat 3s settle below was marginal for that host. Rather than guess a
+# longer constant for all 213 pages, poll only while the rendered content
+# still looks like a challenge, up to this ceiling.
+PLAYWRIGHT_CHALLENGE_WAIT_MS = 14000
 # How many times to retry FlareSolverr itself before giving up on a page.
 # Solving a Cloudflare-style challenge is inherently non-deterministic — the
 # same URL that gets a clean solve on one run can come back "flaresolverr:
@@ -191,6 +199,30 @@ CONSENT_PATTERNS = [
     # Anchored to line start AND followed by a separator, so "Consent of the
     # notified body is required under Article 30" is untouched. The rule
     # against matching the bare word "consent" still holds.
+    # ADDED 2026-09-15 (Vera). CONSENT_RE was English-only, so every
+    # non-English consent widget passed straight through and churned
+    # forever. Found on ECHA row 148 (German locale), whose extracted text
+    # is dominated by ECHA's embedded Legal Notice and German cookie prose,
+    # and on row 14 (CONAI) where an 8,754-character Cookiebot banner was
+    # hiding the fact that the page underneath is a 404.
+    #
+    # Validated before shipping against every line of all 213 stored
+    # snapshots: 36 matches across 73,531 lines, on 9 rows, and NONE of them
+    # carried a fee, tariff, threshold, deadline, quantity or year. The rule
+    # against matching the bare word "consent" still holds.
+    r"diese website verwendet cookies",
+    r"cookies?-(seite|einstellungen|richtlinie)",
+    r"(alle|notwendige|erforderliche|unbedingt notwendige) cookies (akzeptieren|zulassen)",
+    r"datenschutz(einstellungen|erkl\u00e4rung)",
+    r"ce site (web )?utilise des cookies",
+    r"(accepter|refuser) (tous )?les cookies",
+    r"(este|esta) (sitio|web) utiliza cookies",
+    r"aceptar (todas las )?cookies",
+    r"questo sito (web )?utilizza i cookie",
+    # Cookiebot's own widget strings, seen on rows 13 and 14.
+    r"\[#GPC_(BANNER_ICON|TOAST_TEXT)#\]",
+    r"consent selection",
+    r"learn more about this provider",
     r"^\s*consent\s*[|>]",
 ]
 CONSENT_RE = re.compile("|".join(CONSENT_PATTERNS), re.IGNORECASE)
@@ -345,6 +377,29 @@ DEAD_LINK_MARKERS = (
     "404 - page not found",
     "404 not found",
     "http error 404",
+    # ADDED 2026-09-15 (Vera). DEAD_LINK_MARKERS was all-English, and the
+    # only "page not found" entry required the "404 - " prefix. Four dead
+    # pages were therefore sitting in the OK bucket reporting "unchanged"
+    # every run -- invisible, which is worse than a gap, because a gap is on
+    # the dashboard: row 172 (a Commission document, "Page not found |
+    # Environment"), row 14 (CONAI, "Page Not Found - Conai", its bulk a
+    # cookie banner), row 35 (Swedish) and row 11 (German). Rows 172 and 14
+    # confirmed dead by opening them in a real browser.
+    #
+    # Validated before shipping against the first 3,000 characters of all
+    # 213 stored snapshots: 6 rows match and every one of them is genuinely
+    # a not-found page (11, 13, 14, 35, 55, 172). No healthy page matched.
+    # Compound phrases only, per the discipline above -- never a bare "404".
+    "page not found",
+    "sidan hittades inte",
+    "404-fehler",
+    "seite nicht gefunden",
+    "page introuvable",
+    "p\u00e1gina no encontrada",
+    "pagina non trovata",
+    "pagina niet gevonden",
+    "nie znaleziono strony",
+    "sivua ei l\u00f6ytynyt",
 )
 
 
@@ -521,6 +576,23 @@ def fetch_with_playwright(url):
         except Exception:  # noqa: BLE001
             pass
         try:
+            # Vera, 2026-09-15: wait out a self-clearing WAF interstitial
+            # (see PLAYWRIGHT_CHALLENGE_WAIT_MS). Only costs time on pages
+            # that ARE showing a challenge -- a normal page breaks out on the
+            # first check. Without this, a page whose interstitial clears at
+            # second six was captured at second three and thrown away as a
+            # challenge, run after run.
+            waited = 0
+            while waited < PLAYWRIGHT_CHALLENGE_WAIT_MS:
+                if not is_bot_challenge(
+                    page.content().encode("utf-8"), "text/html"
+                ):
+                    break
+                page.wait_for_timeout(2000)
+                waited += 2000
+        except Exception:  # noqa: BLE001
+            pass
+        try:
             # Charles, 2026-09-07: "we need to review the entire page ...
             # otherwise we will miss important content." Some pages only
             # populate real content (infinite-scroll lists, intersection-
@@ -545,6 +617,31 @@ def fetch_with_playwright(url):
         except Exception:  # noqa: BLE001
             pass
         html = page.content()
+        try:
+            # Vera, 2026-09-15: row 113 (IEC 62474 declarable substances)
+            # stored NINE characters -- "IEC 62474" -- every run and was
+            # reported OK, i.e. monitored in name only. Confirmed in a real
+            # browser: that page is a shell whose entire content sits in an
+            # <iframe>, and page.content() only ever returns the top
+            # document. If the top document is thin AND there are child
+            # frames, append their HTML so the real content is captured.
+            # Generic on purpose -- no site rule; it triggers on any
+            # frame-based page, including ones added to the watchlist later.
+            if _visible_text_len(
+                html.encode("utf-8"), "text/html"
+            ) < MIN_VISIBLE_TEXT_CHARS:
+                extra = []
+                for frame in page.frames:
+                    if frame is page.main_frame:
+                        continue
+                    try:
+                        extra.append(frame.content())
+                    except Exception:  # noqa: BLE001
+                        pass
+                if extra:
+                    html = html + "\n" + "\n".join(extra)
+        except Exception:  # noqa: BLE001
+            pass
         return True, "text/html; charset=utf-8", html.encode("utf-8"), None
     except Exception as e:  # noqa: BLE001 — deliberately broad, this is a monitor
         return False, "", None, f"playwright: {str(e)[:200]}"
@@ -1147,26 +1244,81 @@ def normalize_for_compare(text):
     return re.sub(r"\s+", " ", text.lower()).strip()
 
 
+# --- Order-insensitive comparison -------------------------------------------
+# Vera, 2026-09-15. Proven on ECHA row 98 (EU Batteries Regulation Annex I/VI
+# Art. 13(5)) by loading that page twice, seconds apart, and hashing the
+# extracted rows: the SAME 15 rows came back at an IDENTICAL total text length
+# (239,234 characters both times) with 10 of the 15 positions different. ECHA's
+# Euclef portlet serves its lists in a different order on every request.
+#
+# Comparing concatenated text therefore reported a change every single run.
+# That is what drove rows 12/40/74/98 and what got row 98 muted as "volatile"
+# by the two-run confirmation rule -- a fixable extraction defect being
+# treated as a permanent property of the page, silencing a battery list.
+#
+# The comparison key is the SORTED multiset of non-empty, whitespace-
+# normalised lines. A reshuffle of the same content is therefore not a change
+# on any site, present or future, with no per-site rule -- the same
+# site-agnostic principle as the two-run confirmation rule. A genuinely added
+# or removed line still changes the multiset, so real detection is untouched,
+# and the note now reports what was actually added or removed instead of
+# whichever line happened to move.
+#
+# ACCEPTED LOSS, asserted in tests/test_noise_filters.py so it cannot drift
+# silently: on a page where the ORDER ITSELF is the information (a ranked
+# list, a league table, "most recent first" where nothing else changes), a
+# pure reordering with no added or removed lines will not alert.
+def compare_key(text):
+    """The sorted multiset of non-empty, normalised lines."""
+    keys = []
+    for line in (text or "").splitlines():
+        norm = normalize_for_compare(line)
+        if norm:
+            keys.append(norm)
+    return sorted(keys)
+
+
+def _line_map(text):
+    """normalised line -> first original-case line, so notes stay readable."""
+    out = {}
+    for line in (text or "").splitlines():
+        norm = normalize_for_compare(line)
+        if norm and norm not in out:
+            out[norm] = line.strip()
+    return out
+
+
 def classify_change(old_text, new_text):
-    """Returns (is_changed, note). Applies cosmetic-noise filtering."""
-    old_n, new_n = normalize_for_compare(old_text), normalize_for_compare(new_text)
-    if old_n == new_n:
+    """Returns (is_changed, note). Order-insensitive (see compare_key)."""
+    old_key, new_key = compare_key(old_text), compare_key(new_text)
+    if old_key == new_key:
         return False, None
 
-    ratio = difflib.SequenceMatcher(None, old_n, new_n).ratio()
+    old_counts, new_counts = Counter(old_key), Counter(new_key)
+    added = list((new_counts - old_counts).elements())
+    removed = list((old_counts - new_counts).elements())
+
+    if not added and not removed:
+        # Same lines, same counts, different order only. Cannot reach here
+        # via the multiset compare above, but kept as an explicit guard so
+        # the intent survives any future change to the key.
+        return False, "reordering only -- same content in a different order"
+
+    ratio = difflib.SequenceMatcher(
+        None, " ".join(old_key), " ".join(new_key)
+    ).ratio()
     if ratio >= 0.995:
-        return False, "near-identical (>99.5% match) — treated as cosmetic"
+        return False, "near-identical (>99.5% match) -- treated as cosmetic"
 
-    diff_lines = list(
-        difflib.unified_diff(old_text.splitlines(), new_text.splitlines(), lineterm="", n=0)
-    )
-    changed_lines = [l for l in diff_lines if l.startswith(("+", "-")) and not l.startswith(("+++", "---"))]
-    changed_lines = [l[1:].strip() for l in changed_lines if l[1:].strip()]
-
-    if not changed_lines:
-        return False, "whitespace-only difference"
-
-    note = " | ".join(changed_lines[:3])[:400]
+    new_map, old_map = _line_map(new_text), _line_map(old_text)
+    parts = []
+    if added:
+        parts.append("added: " + " | ".join(
+            (new_map.get(a, a))[:160] for a in added[:3]))
+    if removed:
+        parts.append("removed: " + " | ".join(
+            (old_map.get(r, r))[:160] for r in removed[:3]))
+    note = "; ".join(parts)[:400]
     return True, note
 
 
@@ -1318,6 +1470,30 @@ def format_dashboard(entries, snapshots, runs, run_record):
         l.append("</details>")
         l.append("")
 
+    if run_record.get("low_confidence"):
+        # Vera, 2026-09-15: rows that fetched successfully but yielded almost
+        # no text. Not gaps and not dead -- they are reported as covered
+        # while holding a title or a nav bar, so a real change to them could
+        # never be detected. Listed so the coverage claim is honest and each
+        # one can be fixed, retired or repointed on its own merits.
+        l.append(f"## Low-confidence pages -- almost no text captured "
+                 f"({len(run_record['low_confidence'])})")
+        l.append("")
+        l.append("These fetched without error, so they are NOT gaps, but so "
+                 "little text came back that a real change would probably go "
+                 "undetected. Each needs its own fix: follow a frame, repoint "
+                 "the URL, or retire the row.")
+        l.append("")
+        l.append("<details><summary>Show low-confidence list</summary>")
+        l.append("")
+        l.append("| Row | Page | Captured |")
+        l.append("|---|---|---|")
+        for c in run_record["low_confidence"]:
+            l.append(f"| {c['row']} | [{escape_md(c['description']) or c['url']}]({c['url']}) | {escape_md(c['note'])} |")
+        l.append("")
+        l.append("</details>")
+        l.append("")
+
     l.append("## Run history (most recent first)")
     l.append("")
     l.append("| Date | Completed (UK time) | Checked | New | Unchanged | Changed | Gaps | Dead | Issue |")
@@ -1369,6 +1545,7 @@ def main():
     volatile_rows = []
     gaps = []
     dead_links = []
+    low_confidence = []
 
     log(f"Loaded {len(entries)} watchlist entries, {len(snapshots)} existing snapshots.")
 
@@ -1451,6 +1628,20 @@ def main():
             is_dead = dead_reason is not None
             had_dead_before = (prev or {}).get("status") == "dead"
 
+            # Vera, 2026-09-15. MIN_VISIBLE_TEXT_CHARS drives escalation but
+            # was never a final gate: fetch_with_retry accepts a thin result
+            # if no layer does better, and nothing surfaced that. So a row
+            # could store a page title, count as covered, and report
+            # "unchanged" every run forever. An audit of all 205 OK rows
+            # found 25 under 1,000 characters -- row 113 at 9 characters,
+            # rows 29/59 at 19, row 203 at 17, row 195 at 185. That is worse
+            # than a gap, because a gap is on the dashboard and this was not.
+            #
+            # Flag it, do NOT suppress it: a change on a thin page still
+            # matters, so the row is still compared exactly as before. This
+            # only makes the weakness visible so it can be fixed per row.
+            thin_text = len((new_text or "").strip()) < MIN_VISIBLE_TEXT_CHARS
+
             # Hash each candidate content image found on the page (see
             # extract_images/fetch_image_hash above). A page whose text is
             # byte-identical to last time can still have genuinely changed
@@ -1513,6 +1704,7 @@ def main():
                 **confirm_fields,
                 "image_hashes": new_image_hashes,
                 "status": "dead" if is_dead else "ok",
+                "low_confidence": thin_text,
                 "last_checked": started_at,
                 "last_changed": started_at if status == "changed" else (prev or {}).get("last_changed"),
                 "last_change_note": note if status == "changed" else (prev or {}).get("last_change_note"),
@@ -1527,6 +1719,14 @@ def main():
                 counts["dead"] += 1
                 dead_links.append({**entry, "note": dead_reason[:200]})
                 log(f"DEAD row {entry['row']:>3}  {url}  ({dead_reason[:100]})")
+
+            if thin_text and not is_dead:
+                low_confidence.append({
+                    **entry,
+                    "note": "%d characters captured" % len((new_text or "").strip()),
+                })
+                log(f"THIN row {entry['row']:>3}  {url}  "
+                    f"({len((new_text or '').strip())} chars)")
 
         counts[status] += 1
         if status == "pending":
@@ -1614,6 +1814,9 @@ def main():
                      "description": c["description"], "note": c["note"]} for c in changes],
         "gaps_list": [{"row": g["row"], "vp_id": g["vp_id"], "url": g["url"],
                        "description": g["description"], "error": g["error"]} for g in gaps],
+        "low_confidence": [{"row": c["row"], "vp_id": c["vp_id"], "url": c["url"],
+                            "description": c["description"], "note": c["note"]}
+                           for c in low_confidence],
         "dead_links": [{"row": d["row"], "vp_id": d["vp_id"], "url": d["url"],
                         "description": d["description"], "note": d["note"]} for d in dead_links],
     }
