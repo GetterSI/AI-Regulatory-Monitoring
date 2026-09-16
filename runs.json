@@ -6125,5 +6125,565 @@
     "new_baseline": 0,
     "started_at": "2026-09-15T15:35:33.261658Z",
     "unchanged": 140
+  },
+  {
+    "changed": 64,
+    "changes": [
+      {
+        "description": "- Afvalfonds verpakkingen",
+        "note": "removed: Accept all | Am I obliged to declare the packaging I remove from imported products? I also already pay a professional waste treatment company for disposal of this packaging. | Customize",
+        "row": 1,
+        "url": "https://www.afvalfondsverpakkingen.nl/en/node/450",
+        "vp_id": 2913449
+      },
+      {
+        "description": "Not yet a client | Valipac",
+        "note": "added: (including non-recyclable plastic) | 2026 tariff | 250; removed: Check your status | No | No",
+        "row": 4,
+        "url": "https://www.valipac.be/en/not-yet-a-client/",
+        "vp_id": 2913465
+      },
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "added: This iframe contains the logic required to handle Ajax powered Gravity Forms.; removed: 0 | 0 | 1",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Electronic Supplier & Seller Recycling Registration | Alberta Recycling",
+        "note": "added: (loose tires and/or tires attached to vehicles or equipment), or | (loose tires and/or tires attached to vehicles or equipment), or | (paints, coatings, and/or paint containers),",
+        "row": 9,
+        "url": "https://www.albertarecycling.ca/suppliers/electronic-suppliers/",
+        "vp_id": 2913482
+      },
+      {
+        "description": "The Japan Containers and Packaging Recycling Association",
+        "note": "added: 01 | Annua Recycling Operation Schedule | Contents",
+        "row": 15,
+        "url": "https://www.jcpra.or.jp/english/tabid/603/index.php",
+        "vp_id": 2913512
+      },
+      {
+        "description": "Packaging Fees | Green Dot Cyprus",
+        "note": "removed: Close | Necessary | Non-necessary",
+        "row": 23,
+        "url": "http://greendot.com.cy/en/business/packaging-fees",
+        "vp_id": 2913555
+      },
+      {
+        "description": "Tarifs et dfinitions des produits soumis  Auvibel",
+        "note": "removed: Accepter tous les cookies | Ce site web utilise des cookies. Certains de ces cookies sont nécessaires au fonctionnement correct du site web et ne peuvent pas être refusés pour consulter ce | Cookies analytiques",
+        "row": 24,
+        "url": "http://www.auvibel.be/fr/remuneration/tarifs",
+        "vp_id": 2913569
+      },
+      {
+        "description": "Procedura de achitare a remuneraiei pentru copia privat  UPFR",
+        "note": "removed: Acceptă | Funcționale | Gestionează consimțământul",
+        "row": 28,
+        "url": "https://upfr.ro/procedura-de-achitare-a-remuneratiei-pentru-copia-privata/",
+        "vp_id": 2913582
+      },
+      {
+        "description": "Ventanilla Unica digital tariffs",
+        "note": "added: . | Aceptar | Aviso legal",
+        "row": 29,
+        "url": "https://www.ventanillaunica.digital/VU_Tarifas.aspx",
+        "vp_id": 2913586
+      },
+      {
+        "description": "Service fees  ETO - MT Eesti Taaskasutusorganisatsioon",
+        "note": "removed: Funktsionaalne | Hindame teie privaatsust | Keeldun",
+        "row": 32,
+        "url": "https://www.eto.ee/en/producerimporter/service-fees/",
+        "vp_id": 2948414
+      },
+      {
+        "description": "Ressources documentaires  Screlec",
+        "note": "added: Aucun résultat car le champ de recherche est vide.; removed: Brochure | Fermer la recherche | Filtrer les ressources",
+        "row": 36,
+        "url": "https://www.screlec.fr/ressources-documentaires/",
+        "vp_id": 3053367
+      },
+      {
+        "description": "https://www.era-gmbh.at/downloads",
+        "note": "removed: Alle Cookies erlauben | Auswahl speichern",
+        "row": 38,
+        "url": "https://www.era-gmbh.at/downloads",
+        "vp_id": 3091428
+      },
+      {
+        "description": "Good Delivery Current List | LBMA",
+        "note": "removed: Clear filters",
+        "row": 39,
+        "url": "https://www.lbma.org.uk/good-delivery/gold-current-list",
+        "vp_id": 3113865
+      },
+      {
+        "description": "English",
+        "note": "removed: Remember choice",
+        "row": 43,
+        "url": "https://www.era-gmbh.at/en/meta/downloads/",
+        "vp_id": 3443014
+      },
+      {
+        "description": "Tarife – Eco-Rom Ambalaje",
+        "note": "removed: I Agree | Privacy Preferences",
+        "row": 45,
+        "url": "http://ecoromambalaje.ro/informatii-publice/tarife/",
+        "vp_id": 3443208
+      },
+      {
+        "description": "Ecologic",
+        "note": "removed: Accès rapides | Voir plus",
+        "row": 51,
+        "url": "https://www.ecologic-france.com/professionnels/eco-contribution-deee-dea-2018-19.html",
+        "vp_id": 3705456
+      },
+      {
+        "description": "Décret n° 2022-748 du 29 avril 2022 relatif à l'information du consommateur sur les qualités et caractéristiques environnementales des produits générateurs de déchets - Légifrance",
+        "note": "added: En renseignant votre adresse électronique, vous acceptez de recevoir le sommaire du Journal officiel de la République française par email. Vous pouvez vous insc | formulaire | le champ recherche; removed: Afficher cette version | Allow | Aujourd'hui",
+        "row": 52,
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045726094",
+        "vp_id": 3763091
+      },
+      {
+        "description": "Ventanilla Unica digital reporting template",
+        "note": "added: . | Aceptar | Aviso legal",
+        "row": 59,
+        "url": "https://www.ventanillaunica.digital/VU_Liquidaciones_Plantillas3T2023.aspx",
+        "vp_id": 4662311
+      },
+      {
+        "description": "Registry of SVHC intentions until outcome - ECHA",
+        "note": "added: Date of inclusion in Candidate List | Date of intention: | Date of MSC agreement",
+        "row": 72,
+        "url": "https://echa.europa.eu/registry-of-svhc-intentions",
+        "vp_id": 5289196
+      },
+      {
+        "description": "ReSimple | Tarifas",
+        "note": "removed: Aprendamos | Categoría Domiciliaria | Categoría Domiciliaria",
+        "row": 77,
+        "url": "https://www.resimple.cl/tarifas/",
+        "vp_id": 5608899
+      },
+      {
+        "description": "Tarifs et supports - Copie France",
+        "note": "removed: Fermer | J'accepte | Je refuse",
+        "row": 81,
+        "url": "https://www.copiefrance.fr/fr/faire-sa-declaration/tarifs-et-supports",
+        "vp_id": 5693369
+      },
+      {
+        "description": "HDS Croatian Composers Society",
+        "note": "added: (u mjesecu) | . | kn; removed: --- | --- | ---",
+        "row": 92,
+        "url": "https://www.zamp.hr/korisnici/pregled/64/98/privatno-kopiranje",
+        "vp_id": 5917859
+      },
+      {
+        "description": "Price list - sewa",
+        "note": "removed: 3rd Party Cookies | Accept | Enable All",
+        "row": 93,
+        "url": "https://www.sewa.sk/en/price-list",
+        "vp_id": 5925311
+      },
+      {
+        "description": "The Proposition 65 List - OEHHA",
+        "note": "removed: - Any - | - Any - | Authoritative Bodies",
+        "row": 102,
+        "url": "https://oehha.ca.gov/proposition-65/proposition-65-list",
+        "vp_id": 6174557
+      },
+      {
+        "description": "IEC 62474",
+        "note": "added: \"Basis for Including\" | \"CAS Number\" | \"Comments/Footnotes\"",
+        "row": 113,
+        "url": "https://std.iec.ch/iec62474/iec62474.nsf/Index?open&q=125415",
+        "vp_id": 6276685
+      },
+      {
+        "description": "CESI China RoHS News",
+        "note": "added: 上一页 | 下一页 | 第",
+        "row": 118,
+        "url": "https://www.cesi.cn/rohs/page/list.jsp?catalog=/001/001-006",
+        "vp_id": 6351528
+      },
+      {
+        "description": "French Sustainability Index",
+        "note": "removed: Agrandir | Agrandir l'image | Copier dans le presse-papier",
+        "row": 119,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-durabilite",
+        "vp_id": 6367839
+      },
+      {
+        "description": "French Repairability Index",
+        "note": "removed: Agrandir | Agrandir l'image | Copier dans le presse-papier",
+        "row": 120,
+        "url": "https://www.ecologie.gouv.fr/politiques-publiques/indice-reparabilite",
+        "vp_id": 6367916
+      },
+      {
+        "description": "EU Deforestation Regulation",
+        "note": "removed: Collapse all | EN | EN",
+        "row": 121,
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:C_202501974",
+        "vp_id": 6410635
+      },
+      {
+        "description": "Circular Materials EPR Compliance Scheme News",
+        "note": "removed: Alberta | All | New Brunswick",
+        "row": 124,
+        "url": "https://www.circularmaterials.ca/news/",
+        "vp_id": 6415805
+      },
+      {
+        "description": "South Africa EPR Regulation",
+        "note": "added: Help | opens in new tab; removed: 3 | 3 / - | Ask AI",
+        "row": 131,
+        "url": "https://lawlibrary.org.za/akn/za/act/gn/2020/1184/eng@2024-11-06",
+        "vp_id": 6456975
+      },
+      {
+        "description": "Saskatchewan Packaging and Paper Regulations",
+        "note": "added: Couldn't find what you were looking for?; removed: Add to Cart | Email | Mailing Address",
+        "row": 138,
+        "url": "https://publications.saskatchewan.ca/#/products/120617",
+        "vp_id": 6513044
+      },
+      {
+        "description": "EUDR Indicators - FSC Country Score (Risk Assessments)",
+        "note": "removed: Download | Download | Download",
+        "row": 142,
+        "url": "https://www.fsc-eudr-journey.org/fsc-aligned-eudr-risk-assessment",
+        "vp_id": 6521217
+      },
+      {
+        "description": "EUDR Indicators - Indigenous peoples, satellite (LandMark)",
+        "note": "added: *Note that community-level data download packages were updated 10 September 2025. See the Update Log in the Readme file, which is included in the zip package, f | Additional information about the methods of compilation and original sources of Indigenous and local community data on LandMark can be found on the | All community-level data files are aggregated from a large number of sources. In",
+        "row": 145,
+        "url": "https://www.landmarkmap.org/data-methods/access-data",
+        "vp_id": 6521271
+      },
+      {
+        "description": "EUDR Indicators - Timber Species Risk (WWF)",
+        "note": "removed: Assess Risk | Manage Risk | Search for Species",
+        "row": 146,
+        "url": "https://www.woodrisk.org/assess-risk/species",
+        "vp_id": 6521276
+      },
+      {
+        "description": "Take back systems - Reclay Österreich",
+        "note": "added: +43 (0)1-994 99 69-0 | . | [/group]",
+        "row": 149,
+        "url": "https://reclay-group.com/at/en/services/take-back-systems/",
+        "vp_id": 6711808
+      },
+      {
+        "description": "Registration of producers packaging section",
+        "note": "removed: Cerrar | Configuración cookies | Cookies analíticas",
+        "row": 152,
+        "url": "https://www.miteco.gob.es/es/calidad-y-evaluacion-ambiental/temas/prevencion-y-gestion-residuos/prevencion-y-gestion-residuos/registro-productores-producto-seccion-envases.html",
+        "vp_id": 6717343
+      },
+      {
+        "description": "Tariff and appliance list – SENS eRecycling",
+        "note": "added: . | An error has occurred. Please try again later or contact us by email: | Formular wird versendet...; removed: About SENS | Back | Become a partner",
+        "row": 154,
+        "url": "https://www.erecycling.ch/en/vrg-partner/tarife-und-geraeteliste.html",
+        "vp_id": 6727349
+      },
+      {
+        "description": "Downloads for partners – SENS eRecycling",
+        "note": "added: . | An error has occurred. Please try again later or contact us by email: | Formular wird versendet...; removed: About SENS | Back | Become a partner",
+        "row": 155,
+        "url": "https://www.erecycling.ch/en/wissenswertes/downloads-partner.html",
+        "vp_id": 6727379
+      },
+      {
+        "description": "SENS Switzerland WEEE Regulation",
+        "note": "added: . | An error has occurred. Please try again later or contact us by email: | Formular wird versendet...; removed: About SENS | Back | Become a partner",
+        "row": 156,
+        "url": "https://www.erecycling.ch/en/wissenswertes/downloads-partner.html",
+        "vp_id": 6727566
+      },
+      {
+        "description": "Léko tariffs",
+        "note": "added: Type your search!; removed: Download the 2026 price list | I accept | Join",
+        "row": 158,
+        "url": "https://www.leko-organisme.fr/en/pourquoi-leko/",
+        "vp_id": 6834415
+      },
+      {
+        "description": "Procircular Fees",
+        "note": "added: . | Additional information: | Are a member of Procircular?",
+        "row": 159,
+        "url": "https://procircular.es/en/our-operation/",
+        "vp_id": 6840783
+      },
+      {
+        "description": "Ecobulpack Tariffs",
+        "note": "added: Address for correspondence* | Company* | Contact person*",
+        "row": 162,
+        "url": "https://www.ecobulpack.bg/en/information-for-companies/",
+        "vp_id": 6952701
+      },
+      {
+        "description": "Emballageretur fees",
+        "note": "removed: Current prices - 2026 | Former prices - 2025",
+        "row": 163,
+        "url": "https://retur.dk/en/priser-og-miljobidrag/priser-emballage",
+        "vp_id": 7189052
+      },
+      {
+        "description": "Elektro Recycling Austria ",
+        "note": "removed: Remember choice",
+        "row": 165,
+        "url": "https://era-gmbh.at/en/meta/downloads/",
+        "vp_id": 7191666
+      },
+      {
+        "description": "Legislatie de mediu pentru OIREP - Modificari si actualizari",
+        "note": "removed: Accept | Activat | Activat",
+        "row": 167,
+        "url": "https://ecosynergy.ro/legislatie-otr-mediu/",
+        "vp_id": 7191886
+      },
+      {
+        "description": "Tarife gestionare DBA - SNRB | Sistemul Naţional De Reciclare Al Bateriilor",
+        "note": "added: Search here...; removed: Acceptă | Administrează consimțămintele | Funcționale",
+        "row": 168,
+        "url": "https://snrb.org/tarife-gestionare-dba/",
+        "vp_id": 7197185
+      },
+      {
+        "description": "Annual Producer Meetings & Fee Consultations - Knowledge Base",
+        "note": "added: click here. | Please note that due to the competitive environment, 2027 fees for Circular Materials in Ontario producers will be shared through a separate Producer Advisory G | The 2026 Annual Producer Meeting (APM) is being held on Thursday, October 15.; removed: 2016 Annual Steward Meeting – October 26 | 2017 Annual Steward Meeting – October 31 | 2018 Annual Steward Meeting – October 24",
+        "row": 170,
+        "url": "https://knowledge.werecycle.ca/?title=Producers/03_Fees/Annual_Producer_Meetings_%26_Fee_Consultations",
+        "vp_id": 7251443
+      },
+      {
+        "description": "Interzero Croatia News",
+        "note": "removed: Accept | Essential | Manage settings",
+        "row": 171,
+        "url": "https://epr.interzero.hr/blog/",
+        "vp_id": 7332498
+      },
+      {
+        "description": "Prices - Ecoembes Companies",
+        "note": "removed: Acero | Acero | Aluminio",
+        "row": 173,
+        "url": "https://ecoembesempresas.com/en/prices",
+        "vp_id": 7429652
+      },
+      {
+        "description": "VIII-787 Lithuania Law on Waste Management",
+        "note": "added: ( | ( | (; removed: Lietuvos Respublikos aplinkos ministerija | Lietuvos Respublikos Seimo kanceliarija",
+        "row": 176,
+        "url": "https://e-seimas.lrs.lt/portal/legalActEditions/lt/TAD/TAIS.59267",
+        "vp_id": 7550943
+      },
+      {
+        "description": "Electrical and electronic equipment (EEE) covered by the WEEE Regulations - GOV.UK",
+        "note": "added: Do not include personal or financial information like your National Insurance number or credit card details. | Help us improve GOV.UK; removed: Cancel | Hide cookie message | No",
+        "row": 177,
+        "url": "https://www.gov.uk/government/publications/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations",
+        "vp_id": 7791333
+      },
+      {
+        "description": "Electrical and electronic equipment (EEE) covered by the WEEE Regulations - GOV.UK",
+        "note": "added: Do not include personal or financial information like your National Insurance number or credit card details. | Help us improve GOV.UK; removed: Cancel | Hide cookie message | No",
+        "row": 178,
+        "url": "https://www.gov.uk/government/publications/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations/electrical-and-electronic-equipment-eee-covered-by-the-weee-regulations#choose-the-most-appropriate-category-for-your-product",
+        "vp_id": 7791338
+      },
+      {
+        "description": "RLG WEEE - Romania Tariffs",
+        "note": "added: RO | Contact Form | VN | Contact Form (Contact Page + Popup); removed: All Locations | Americas | Asia",
+        "row": 180,
+        "url": "https://rev-log.com/ro/rlg-systems-romania/",
+        "vp_id": 7792897
+      },
+      {
+        "description": "California Electronic Waste Recycling Act Reporting Guidance",
+        "note": "added: Arabic | Armenian | Chinese (Simplified); removed: Categories | Current Document Date | Description",
+        "row": 184,
+        "url": "https://www2.calrecycle.ca.gov/Docs/Publications/Details/1250",
+        "vp_id": 7817237
+      },
+      {
+        "description": "Stichting OPEN",
+        "note": "removed: Accepteren | Beheer toestemming | Functioneel",
+        "row": 185,
+        "url": "https://www.stichting-open.org/en/producers-importers/",
+        "vp_id": 7820135
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "removed: Back to top",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      },
+      {
+        "description": "Tracking PFAS legislation across the US | Manufacturing Dive",
+        "note": "added: Already a subscriber? Sign in with your email above. | Continue reading for free; removed: Adopted | Adopted | Adopted",
+        "row": 196,
+        "url": "https://www.manufacturingdive.com/news/tracking-pfas-forever-chemicals-bills-legislation-us-states/749829/",
+        "vp_id": 8210516
+      },
+      {
+        "description": "Packaging Declarations 2026 - Green Dot Cyprus",
+        "note": "removed: Close | Necessary | Non-necessary",
+        "row": 197,
+        "url": "https://greendot.com.cy/en/green-dot-member-declarations/packaging-statements-2026/",
+        "vp_id": 8223405
+      },
+      {
+        "description": "North American Industry Classification System (NAICS) U.S. Census Bureau",
+        "note": "removed: 1997 NAICS | 1997 NAICS | 2002 NAICS",
+        "row": 202,
+        "url": "https://www.census.gov/naics/#q5?48967",
+        "vp_id": 8604334
+      },
+      {
+        "description": "MOENV Taiwan Packaging registration and declaration documents",
+        "note": "added: (1)責任業者相關法規及範圍說明 | (2)合規塑膠再生料物品申請程序說明 | 113年度查核場說明會講義",
+        "row": 203,
+        "url": "https://recycle1.moenv.gov.tw/sys/Business/doc/DocDownload.aspx",
+        "vp_id": 8615358
+      },
+      {
+        "description": "MOENV Taiwan Packaging - Latest News",
+        "note": "added: 1150707 | 1150727 | 1150805",
+        "row": 204,
+        "url": "https://recycle1.moenv.gov.tw/",
+        "vp_id": 8615426
+      },
+      {
+        "description": "Latest news | Ecosurety",
+        "note": "removed: Category | Newest first",
+        "row": 206,
+        "url": "https://www.ecosurety.com/news",
+        "vp_id": 8693410
+      },
+      {
+        "description": "Éco Entreprises Québec Fees",
+        "note": "removed: , page courante | Faire basculer le menu des autres enfants de Entreprises : tout sur votre rôle | Faire basculer le panneau de recherche",
+        "row": 207,
+        "url": "https://www.eeq.ca/entreprises-tout-sur-votre-role/grilles-de-taux-utiles-pour-votre-declaration",
+        "vp_id": 8882904
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-16",
+    "dead": 10,
+    "dead_links": [
+      {
+        "description": "Gertearten",
+        "note": "404-Fehler | stiftung elektro-altgeräte register",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "Page Not Found - Conai",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "note": "Sidan hittades inte - Batteriretur",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Page not found | Environment",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-16T07:43:38.715181Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 28,
+    "low_confidence": [
+      {
+        "description": "ECHA CHEM main page",
+        "note": "173 characters captured",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "new_baseline": 0,
+    "started_at": "2026-09-16T07:09:34.125028Z",
+    "unchanged": 141
   }
 ]
