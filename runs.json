@@ -7370,5 +7370,145 @@
     "new_baseline": 0,
     "started_at": "2026-09-19T08:07:20.692038Z",
     "unchanged": 195
+  },
+  {
+    "changed": 3,
+    "changes": [
+      {
+        "description": "PFAS in products: Currently unavoidable use | Minnesota Pollution Control Agency",
+        "note": "added: Second round of check-in group meetings to discuss proposed rule concepts and solicit feedback | Spring 2027; removed: Second round of check-in group meetings or webinar to discuss proposed rule concepts and solicit feedback | Winter 2026-27",
+        "row": 111,
+        "url": "https://www.pca.state.mn.us/get-engaged/pfas-in-products-currently-unavoidable-use",
+        "vp_id": 6222509
+      },
+      {
+        "description": "PFAS Resources for States and other ECOS Members - The Environmental Council of the States (ECOS)",
+        "note": "added: North Carolina Announces State’s Largest Environmental Damages Recovery | Sep 2026; removed: Mar 2026 | Wisconsin Approves Bipartisan $125M PFAS Package",
+        "row": 117,
+        "url": "https://www.ecos.org/pfas/",
+        "vp_id": 6329558
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "added: 17 septiembre, 2026 | La actividad a la que también asistieron estudiantes del colegio Jorge Huneeus Zegers de La Pintana destacó los avances del […] | Ministra Toledo conmemora el Día Internacional de la Preservación de la Capa de Ozono con actividad ciudadana en el Museo Interactivo Mirador; removed: 8 septiembre, 2026 | Desde reciclaje de aceite a parrillas a gas: alcalde Desbordes y min",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-20",
+    "dead": 10,
+    "dead_links": [
+      {
+        "description": "Gertearten",
+        "note": "404-Fehler | stiftung elektro-altgeräte register",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "Page Not Found - Conai",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "note": "Sidan hittades inte - Batteriretur",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Page not found | Environment",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-20T08:39:43.563624Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 32,
+    "low_confidence": [
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "note": "24 characters captured",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "173 characters captured",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "new_baseline": 0,
+    "started_at": "2026-09-20T08:06:47.754302Z",
+    "unchanged": 200
   }
 ]
