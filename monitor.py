@@ -1395,10 +1395,10 @@ def create_github_issue(date_str, changes, gaps):
             f"(would have reported {len(changes)} change(s)).")
         return False, None, "no token/repo"
 
-    lines = ["## CUSTOM MONITOR (the original, bespoke one)\n",
+    lines = ["## Custom Monitor (Option A) — the original bespoke monitor\n",
              f"**{len(changes)} page(s) changed** on {date_str}.\n",
-             "_The other monitor emails under URLWATCH, from the "
-             "regulatory-watch repository._\n"]
+             "_Option B is the urlwatch-based monitor, which emails under "
+             "URL-Watch (Option B) from the URL-Watch-Option-B repo._\n"]
     for c in changes:
         lines.append(f"- [{c['description'] or c['url']}]({c['url']})\n  {c['note']}")
     if gaps:
@@ -1410,7 +1410,7 @@ def create_github_issue(date_str, changes, gaps):
         # distinguishable in an inbox from the urlwatch-based monitor in
         # GetterSI/regulatory-watch, which leads with URLWATCH. Both used to
         # start with the word "Regulatory" and were easy to confuse.
-        "title": f"CUSTOM MONITOR — {len(changes)} changed — {date_str}",
+        "title": f"Custom Monitor (Option A) — {len(changes)} changed — {date_str}",
         "body": body,
         "labels": ["regulatory-change"],
     }).encode()
