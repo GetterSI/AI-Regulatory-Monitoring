@@ -7664,5 +7664,166 @@
     "new_baseline": 0,
     "started_at": "2026-09-21T08:07:38.412692Z",
     "unchanged": 200
+  },
+  {
+    "changed": 1,
+    "changes": [
+      {
+        "description": "IEC 62474",
+        "note": "added: DSL/RSL: D33.00; XML schema: X8.21; MCL: M3.00. | IEC 62474 DSL/RSL updated on September 20, 2026. | Please See News for additional information; removed: Out of Service for Update -- contents are in transition and not valid | Please see News page for Information",
+        "row": 113,
+        "url": "https://std.iec.ch/iec62474/iec62474.nsf/Index?open&q=125415",
+        "vp_id": 6276685
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-22",
+    "dead": 10,
+    "dead_links": [
+      {
+        "description": "Gertearten",
+        "note": "404-Fehler | stiftung elektro-altgeräte register",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "Page Not Found - Conai",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "note": "Sidan hittades inte - Batteriretur",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Page not found | Environment",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-22T08:47:46.238809Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 34,
+    "low_confidence": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "0 characters captured",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Metteurs sur le marché | Corepile",
+        "note": "109 characters captured",
+        "row": 44,
+        "url": "https://www.corepile.fr/vous-etes/metteurs-sur-le-marche/",
+        "vp_id": 3443194
+      },
+      {
+        "description": "Environment Law No. 2872. | FAOLEX",
+        "note": "24 characters captured",
+        "row": 76,
+        "url": "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC007700/",
+        "vp_id": 5608865
+      },
+      {
+        "description": "JOIN COREPILE | Corepile",
+        "note": "109 characters captured",
+        "row": 90,
+        "url": "https://www.corepile.fr/vous-etes/metteurs-sur-le-marche/join-corepile/",
+        "vp_id": 5910805
+      },
+      {
+        "description": "COREPILE MEMBER | Corepile",
+        "note": "109 characters captured",
+        "row": 91,
+        "url": "https://www.corepile.fr/vous-etes/metteurs-sur-le-marche/corepile-member/",
+        "vp_id": 5910807
+      },
+      {
+        "description": "EU-ELV-ART_2_11 - ECHA Hazardous Substances list",
+        "note": "39 characters captured",
+        "row": 105,
+        "url": "https://echa.europa.eu/de/eu-end_of_life_vehicles-art_2_11?p_p_id=eucleflegislationlist_WAR_euclefportlet&p_p_lifecycle=0",
+        "vp_id": 6174846
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "173 characters captured",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "new_baseline": 0,
+    "started_at": "2026-09-22T08:06:53.306162Z",
+    "unchanged": 194
   }
 ]
