@@ -7825,5 +7825,187 @@
     "new_baseline": 0,
     "started_at": "2026-09-22T08:06:53.306162Z",
     "unchanged": 194
+  },
+  {
+    "changed": 8,
+    "changes": [
+      {
+        "description": "- Afvalfonds verpakkingen",
+        "note": "added: Administratie en aangifte: Opgaaf 2026 controleren en aanpassen | Banned | Conformiteit; removed: Lees meer | Ook onze website maakt gebruik van cookies. Bijvoorbeeld functionele cookies die de website goed laten werken. Deze cookies zijn automatisch ingesteld en anonie | Stuur een e-mail",
+        "row": 1,
+        "url": "https://www.afvalfondsverpakkingen.nl/en/node/450",
+        "vp_id": 2913449
+      },
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "removed: . | . | 2025",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Retela.cz » Current clients",
+        "note": "added: New price list from 1 January 2027 | Price list valid from 1 July 2025 to 31 December 2026 you can find; removed: New price list valid from 1 July 2025 | Price list for 2024 you can find",
+        "row": 62,
+        "url": "https://www.retela.cz/en/importers-producers/",
+        "vp_id": 4758267
+      },
+      {
+        "description": "EUDR Info - Due Diligence Information System (European Commission)",
+        "note": "added: .; removed: , but note that it is currently being updated to reflect the amended provisions of the EUDR.",
+        "row": 78,
+        "url": "https://green-business.ec.europa.eu/deforestation-regulation-implementation/deforestation-due-diligence-registry_en#training-testing-and-user-manuals",
+        "vp_id": 5692226
+      },
+      {
+        "description": "Proposition 65 - OEHHA",
+        "note": "added: Mon, 09/21/2026 - 12:00pm | Proposition 65: Vinyl Acetate Pre-Regulatory Workshop | Proposition 65: Vinyl Acetate Pre-Regulatory Workshop; removed: At the request of the Personal Care Products Council, OEHHA hereby extends the public comment period. The Office of Environmental Health Hazard Assessment is pr | by the dermal route and 1-bromopropane in Title 27, California Code of Regulations",
+        "row": 103,
+        "url": "https://oehha.ca.gov/proposition-65",
+        "vp_id": 6174560
+      },
+      {
+        "description": "PFAS Central",
+        "note": "added: 11 Sep 2026 | Rev. Environ. Sci. Biotechnol. | 12 Sep 2026 | Environ. Sci. Technol. Lett. | 14 Sep 2026 | Environ. Health Perspect.; removed: 10 Sep 2026 | J. Hazard. Mater. | 10 Sep 2026 | WRAL News | 11 Sep 2026 | Maryland Matters",
+        "row": 132,
+        "url": "https://pfascentral.org/",
+        "vp_id": 6475025
+      },
+      {
+        "description": "Stichting OPEN",
+        "note": "added: Accountantsprotocol 2026 | Annual Report 2025 | Deelnemerslijst stimuleringsregeling per mei 2026; removed: ABBO Stichting OPEN met disclaimer ENG | Alignment with Your Own CSR Strategy | Arranging in other EU member states or as a foreign producer",
+        "row": 185,
+        "url": "https://www.stichting-open.org/en/producers-importers/",
+        "vp_id": 7820135
+      },
+      {
+        "description": "MMA – Ministerio del Medio Ambiente",
+        "note": "added: 21 septiembre, 2026 | La Agenda Nacional de Economía Circular se estructura en tres pilares y contempla nuevas reglas, infraestructura y datos para avanzar […] | Ministra Toledo inicia participación en la 81° Asamblea General de Naciones Unidas; removed: 9 septiembre, 2026 | El documento, de acceso gratuito y adaptado al currículum nacional desde educación Parvularia hasta Enseñanza Media, ",
+        "row": 194,
+        "url": "https://mma.gob.cl/",
+        "vp_id": 7959669
+      }
+    ],
+    "checked": 213,
+    "date": "2026-09-23",
+    "dead": 10,
+    "dead_links": [
+      {
+        "description": "Gertearten",
+        "note": "404-Fehler | stiftung elektro-altgeräte register",
+        "row": 11,
+        "url": "https://www.stiftung-ear.de/de/themen/elektrog/herstellerbevollmaechtigte/kategorien/geraetearten",
+        "vp_id": 2913486
+      },
+      {
+        "description": "Fees  ERP Portugal - EN",
+        "note": "404 - Page not found - ERP Global",
+        "row": 13,
+        "url": "https://erp-recycling.org/en-pt/fees/",
+        "vp_id": 2913504
+      },
+      {
+        "description": "Environmental contribution",
+        "note": "Page Not Found - Conai",
+        "row": 14,
+        "url": "http://www.conai.org/en/businesses/environmental-contribution/",
+        "vp_id": 2913511
+      },
+      {
+        "description": "BlyBatteriRetur | taganden",
+        "note": "Sidan hittades inte - Batteriretur",
+        "row": 35,
+        "url": "https://blybatteriretur.se/producent/ataganden/",
+        "vp_id": 3033758
+      },
+      {
+        "description": "Extended Producer Responsibility - EPR - Polyco",
+        "note": "Sorry, the page you are looking for does not exist.",
+        "row": 55,
+        "url": "https://www.polyco.co.za/extended-producer-responsibility/",
+        "vp_id": 4324364
+      },
+      {
+        "description": "Extended Producer Responsibility Fees - Fibre Circle",
+        "note": "The requested URL was not found on this server.",
+        "row": 56,
+        "url": "https://fibrecircle.co.za/epr-fees/",
+        "vp_id": 4431158
+      },
+      {
+        "description": "Deforestation FAQs",
+        "note": "The file or folder does not exists.",
+        "row": 65,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 4965563
+      },
+      {
+        "description": "EUDR Info - API details for Noud (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 161,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/6d251428-9ddc-44df-9e2b-2540fd82f8eb/details",
+        "vp_id": 6910501
+      },
+      {
+        "description": "Exemptions list - validity and rolling plan",
+        "note": "Page not found | Environment",
+        "row": 172,
+        "url": "https://environment.ec.europa.eu/document/f4bd701f-7c2c-4d52-9a03-dc91866e6c61_en",
+        "vp_id": 7383164
+      },
+      {
+        "description": "EUDR Info - FAQs (EU Circabc)",
+        "note": "The file or folder does not exists.",
+        "row": 187,
+        "url": "https://circabc.europa.eu/ui/group/34861680-e799-4d7c-bbad-da83c45da458/library/e126f816-844b-41a9-89ef-cb2a33b6aa56/details",
+        "vp_id": 7885990
+      }
+    ],
+    "finished_at": "2026-09-23T08:43:38.248591Z",
+    "gaps": 2,
+    "gaps_list": [
+      {
+        "description": "-",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c% | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 42,
+        "url": "https://www.ecommunity-erp.co.il/%d7%99%d7%a6%d7%a8%d7%a0%d7%99%d7%9d-%d7%95%d7%99%d7%91%d7%95%d7%90%d7%a0%d7%99%d7%9d/%d7%98%d7%91%d7%9c%d7%aa-%d7%93%d7%9e%d7%99-%d7%98%d7%99%d7%a4%d7%95%d7%9c/",
+        "vp_id": 3164928
+      },
+      {
+        "description": "VerpackG - Germany Packaging Regulation",
+        "error": "<urlopen error timed out> | playwright: playwright: Page.goto: Timeout 35000ms exceeded.\nCall log:\nnavigating to \"https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html\", waiting until \"domcontentloaded\"\n | flaresolverr: flaresolverr unreachable: timed out",
+        "row": 193,
+        "url": "https://www.gesetze-im-internet.de/verpackg/BJNR223410017.html",
+        "vp_id": 7941194
+      }
+    ],
+    "issue_error": null,
+    "issue_number": 35,
+    "low_confidence": [
+      {
+        "description": "Product Definitions, Fees & Clarification Protocols  EPRA | ARPE | Electronic Products Recycling Association | Association pour le recyclage des produits lectroniques",
+        "note": "0 characters captured",
+        "row": 5,
+        "url": "https://epra.ca/what-is-a-steward/product-definitions-fees-clarification-protocols",
+        "vp_id": 2913466
+      },
+      {
+        "description": "Electronics Recycling Program - Alberta Recycling Management Authority",
+        "note": "70 characters captured",
+        "row": 125,
+        "url": "https://www.albertarecycling.ca/stewardship-recycling/electronics/",
+        "vp_id": 6416453
+      },
+      {
+        "description": "ECHA CHEM main page",
+        "note": "173 characters captured",
+        "row": 195,
+        "url": "https://chem.echa.europa.eu/",
+        "vp_id": 7993611
+      }
+    ],
+    "new_baseline": 0,
+    "started_at": "2026-09-23T08:07:24.938105Z",
+    "unchanged": 197
   }
 ]
